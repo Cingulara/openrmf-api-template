@@ -15,6 +15,7 @@ namespace openstig_template_api.Models
         public DateTime created { get; set; }
         public string title { get; set; }
         public string description { get; set; }
+        public CHECKLIST CHECKLIST { get; set; }
         public string rawChecklist { get; set; }
         
         [BsonId]
