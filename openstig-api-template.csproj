@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <RootNamespace>openstig_upload_api</RootNamespace>
+    <RootNamespace>openstig_template_api</RootNamespace>
     <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
     <ProjectGuid>{05a94d30-9b4d-4bdc-b312-7f35957ea1a9}</ProjectGuid>
   </PropertyGroup>
