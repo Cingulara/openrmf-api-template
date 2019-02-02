@@ -7,6 +7,9 @@ PUT to /{id} to update a new checklist content but keep the rest in tact
 
 /swagger/ gives you the API structure.
 
+## Making your local Docker image
+docker build --rm -t openstig-api-template:0.1 .
+
 ## creating the user
 * ~/mongodb/bin/mongo 'mongodb://root:myp2ssw0rd@localhost'
 * use admin
