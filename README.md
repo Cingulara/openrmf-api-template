@@ -13,8 +13,8 @@ docker build --rm -t openstig-api-template:0.1 .
 ## creating the user
 * ~/mongodb/bin/mongo 'mongodb://root:myp2ssw0rd@localhost'
 * use admin
-* db.createUser({ user: "openstig" , pwd: "openstig1234!", roles: ["readWriteAnyDatabase"]});
-* use openstig
+* db.createUser({ user: "openstigtemplate" , pwd: "openstig1234!", roles: ["readWriteAnyDatabase"]});
+* use openstigtemplate
 * db.createCollection("Templates");
 
 ## connecting to the database collection straight
