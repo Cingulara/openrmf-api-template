@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.2/openstig-template-api.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.2/openstig-api-template.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -32,8 +32,8 @@
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
                 "ASPNETCORE_URLS": "http://*:8088",
-                "mongoConnection": "mongodb://openstig:openstig1234!@localhost",
-                "mongodb": "openstig"
+                "mongoConnection": "mongodb://openstigtemplate:openstig1234!@localhost",
+                "mongodb": "openstigtemplate"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
