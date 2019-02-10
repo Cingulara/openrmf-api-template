@@ -51,6 +51,7 @@ namespace openstig_template_api.Controllers
                     title = title,
                     description = description + "\n\nUploaded filename: " + name,
                     created = DateTime.Now,
+                    updatedOn = DateTime.Now,
                     type = checklistType,
                     rawChecklist = rawChecklist
                 });
@@ -111,7 +112,7 @@ namespace openstig_template_api.Controllers
 
         // GET /value
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTemplates(string id)
+        public async Task<IActionResult> GetTemplate(string id)
         {
             try {
                 Template template = new Template();
