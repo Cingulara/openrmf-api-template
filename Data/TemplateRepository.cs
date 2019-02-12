@@ -30,24 +30,13 @@ namespace openstig_template_api.Data {
             }
         }
 
-        private ObjectId GetInternalId(string id)
-        {
-            ObjectId internalId;
-            if (!ObjectId.TryParse(id, out internalId))
-                internalId = ObjectId.Empty;
-
-            return internalId;
-        }
         // query after Id or InternalId (BSonId value)
         //
         public async Task<Template> GetTemplate(string id)
         {
             try
             {
-                ObjectId internalId = GetInternalId(id);
-                return await _context.Templates
-                                .Find(Template => Template.id.ToString() == id 
-                                    || Template.InternalId == internalId).FirstOrDefaultAsync();
+                return await _context.Templates.Find(Template => Template.id == new Guid(id)).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
