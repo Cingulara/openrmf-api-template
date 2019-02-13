@@ -20,6 +20,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 
 using openstig_template_api.Data;
+using openstig_template_api.Classes;
 
 namespace openstig_template_api.Controllers
 {
@@ -50,6 +51,7 @@ namespace openstig_template_api.Controllers
                     title = title,
                     description = description + "\n\nUploaded filename: " + name,
                     created = DateTime.Now,
+                    updatedOn = DateTime.Now,
                     type = checklistType,
                     rawChecklist = rawChecklist
                 });
@@ -90,5 +92,54 @@ namespace openstig_template_api.Controllers
             }
         }
         
+        // GET the listing with Ids of the Checklist Templates, but without all the extra XML
+        [HttpGet]
+        public async Task<IActionResult> ListTemplates()
+        {
+            try {
+                IEnumerable<Template> Templates;
+                Templates = await _TemplateRepo.GetAllTemplates();
+                foreach (Template a in Templates) {
+                    a.rawChecklist = string.Empty;
+                }
+                return Ok(Templates);
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error listing all Templates and deserializing the checklist XML");
+                return BadRequest();
+            }
+        }
+
+        // GET /value
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTemplate(string id)
+        {
+            try {
+                Template template = new Template();
+                template = await _TemplateRepo.GetTemplate(id);
+                template.CHECKLIST = ChecklistLoader.LoadChecklist(template.rawChecklist);
+                template.rawChecklist = string.Empty;
+                return Ok(template);
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error Retrieving Template");
+                return NotFound();
+            }
+        }
+        
+        // GET /value
+        [HttpGet("download/{id}")]
+        public async Task<IActionResult> DownloadChecklist(string id)
+        {
+            try {
+                Template template = new Template();
+                template = await _TemplateRepo.GetTemplate(id);
+                return Ok(template.rawChecklist);
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error Retrieving Template for Download");
+                return NotFound();
+            }
+        }        
     }
 }
