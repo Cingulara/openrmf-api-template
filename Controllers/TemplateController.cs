@@ -16,7 +16,6 @@ using System.Xml;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 
 using openstig_template_api.Data;

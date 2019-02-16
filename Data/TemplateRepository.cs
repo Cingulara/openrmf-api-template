@@ -29,6 +29,14 @@ namespace openstig_template_api.Data {
                 throw ex;
             }
         }
+        private ObjectId GetInternalId(string id)
+        {
+            ObjectId internalId;
+            if (!ObjectId.TryParse(id, out internalId))
+                internalId = ObjectId.Empty;
+
+            return internalId;
+        }
 
         // query after Id or InternalId (BSonId value)
         //
@@ -36,7 +44,7 @@ namespace openstig_template_api.Data {
         {
             try
             {
-                return await _context.Templates.Find(Template => Template.id == new Guid(id)).FirstOrDefaultAsync();
+                return await _context.Templates.Find(Template => Template.InternalId == GetInternalId(id)).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
@@ -96,18 +104,13 @@ namespace openstig_template_api.Data {
 
         public async Task<bool> UpdateTemplate(string id, Template body)
         {
-            var filter = Builders<Template>.Filter.Eq(s => s.id.ToString(), id);
-            var update = Builders<Template>.Update
-                            .Set(s => s, body)
-                            .CurrentDate(s => s.updatedOn);
+            var filter = Builders<Template>.Filter.Eq(s => s.InternalId, GetInternalId(id));
 
             try
             {
-                UpdateResult actionResult 
-                    = await _context.Templates.UpdateOneAsync(filter, update);
-
-                return actionResult.IsAcknowledged
-                    && actionResult.ModifiedCount > 0;
+                body.InternalId = GetInternalId(id);
+                var actionResult = await _context.Templates.ReplaceOneAsync(filter, body);
+                return actionResult.IsAcknowledged && actionResult.ModifiedCount > 0;
             }
             catch (Exception ex)
             {
@@ -115,22 +118,5 @@ namespace openstig_template_api.Data {
                 throw ex;
             }
         }
-
-        // public async Task<bool> RemoveAllTemplates()
-        // {
-        //     try
-        //     {
-        //         DeleteResult actionResult 
-        //             = await _context.Templates.DeleteManyAsync(new BsonDocument());
-
-        //         return actionResult.IsAcknowledged
-        //             && actionResult.DeletedCount > 0;
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         // log or manage the exception
-        //         throw ex;
-        //     }
-        // }
     }
 }
