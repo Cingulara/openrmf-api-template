@@ -115,8 +115,7 @@ namespace openstig_template_api.Controllers
             try {
                 Template template = new Template();
                 template = await _TemplateRepo.GetTemplate(id);
-                template.CHECKLIST = ChecklistLoader.LoadChecklist(template.rawChecklist);
-                template.rawChecklist = string.Empty;
+                //template.CHECKLIST = ChecklistLoader.LoadChecklist(template.rawChecklist);
                 return Ok(template);
             }
             catch (Exception ex) {
