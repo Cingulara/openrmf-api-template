@@ -36,7 +36,7 @@ namespace openstig_template_api.Controllers
 
         // POST as new
         [HttpPost]
-        public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, STIGtype checklistType, string title = "New Uploaded Template Checklist", string description = "")
+        public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, STIGtype type, string title = "New Uploaded Template Checklist", string description = "")
         {
             try {
                 var name = checklistFile.FileName;
@@ -50,7 +50,7 @@ namespace openstig_template_api.Controllers
                     description = description + "\n\nUploaded filename: " + name,
                     created = DateTime.Now,
                     updatedOn = DateTime.Now,
-                    type = checklistType,
+                    type = type,
                     rawChecklist = rawChecklist
                 });
 
@@ -64,7 +64,7 @@ namespace openstig_template_api.Controllers
 
         // PUT as update
         [HttpPut]
-        public async Task<IActionResult> UpdateChecklist(string id, IFormFile checklistFile, STIGtype checklistType, string title = "New Uploaded Template Checklist", string description = "")
+        public async Task<IActionResult> UpdateChecklist(string id, IFormFile checklistFile, STIGtype type, string title = "New Uploaded Template Checklist", string description = "")
         {
             try {
 
@@ -78,7 +78,7 @@ namespace openstig_template_api.Controllers
                     updatedOn = DateTime.Now,
                     title = title,
                     description = description,
-                    type = checklistType,
+                    type = type,
                     rawChecklist = rawChecklist
                 });
 
