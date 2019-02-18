@@ -21,7 +21,5 @@ namespace openstig_template_api.Data {
         // update just a single document
         Task<bool> UpdateTemplate(string id, Template body);
 
-        // should be used with high cautious, only in relation with demo setup
-        // Task<bool> RemoveAllArtifacts();
     }
 }
