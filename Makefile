@@ -1,4 +1,4 @@
-VERSION ?= 0.3
+VERSION ?= 0.6
 NAME ?= "openstig-api-template"
 AUTHOR ?= "Dale Bingham"
 PORT_EXT ?= 8088
