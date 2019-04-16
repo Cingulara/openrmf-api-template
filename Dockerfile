@@ -18,4 +18,4 @@ WORKDIR /app
 RUN apt-get update && apt-get -y install ca-certificates
 
 COPY --from=build-env /app/out ./
-ENTRYPOINT ["dotnet", "openstig-api-template.dll"]
+ENTRYPOINT ["dotnet", "openrmf-api-template.dll"]
