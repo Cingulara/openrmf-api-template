@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using openstig_template_api.Models;
+using openrmf_templates_api.Models;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using System.Xml;
 
-namespace openstig_template_api.Classes
+namespace openrmf_templates_api.Classes
 {
     public static class ChecklistLoader
     {        

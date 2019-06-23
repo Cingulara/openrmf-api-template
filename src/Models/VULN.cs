@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace openstig_template_api.Models
+namespace openrmf_templates_api.Models
 {
 
     public class VULN {

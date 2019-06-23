@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using openstig_template_api.Models;
+using openrmf_templates_api.Models;
 using System.IO;
 using System.Text;
 using Microsoft.AspNetCore;
@@ -17,10 +17,10 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-using openstig_template_api.Data;
-using openstig_template_api.Classes;
+using openrmf_templates_api.Data;
+using openrmf_templates_api.Classes;
 
-namespace openstig_template_api.Controllers
+namespace openrmf_templates_api.Controllers
 {
     [Route("/")]
     public class TemplateController : Controller

@@ -1,4 +1,4 @@
-namespace openstig_template_api.Models
+namespace openrmf_templates_api.Models
 {
     public class Settings
     {

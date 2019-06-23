@@ -14,10 +14,10 @@ using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-using openstig_template_api.Models;
-using openstig_template_api.Data;
+using openrmf_templates_api.Models;
+using openrmf_templates_api.Data;
 
-namespace openstig_template_api
+namespace openrmf_templates_api
 {
     public class Startup
     {

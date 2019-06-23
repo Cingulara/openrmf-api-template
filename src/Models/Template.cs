@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace openstig_template_api.Models
+namespace openrmf_templates_api.Models
 {
     [Serializable]
     public class Template
     {
         public Template () {
+            CHECKLIST = new CHECKLIST();
         }
 
         public DateTime created { get; set; }
