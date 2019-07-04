@@ -1,8 +1,8 @@
 using MongoDB.Driver;
-using openstig_template_api.Models;
+using openrmf_templates_api.Models;
 using Microsoft.Extensions.Options;
 
-namespace openstig_template_api.Data
+namespace openrmf_templates_api.Data
 {
     public class TemplateContext
     {

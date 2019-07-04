@@ -1,9 +1,9 @@
-using openstig_template_api.Models;
+using openrmf_templates_api.Models;
 using System.Collections.Generic;
 using System;
 using System.Threading.Tasks;
 
-namespace openstig_template_api.Data {
+namespace openrmf_templates_api.Data {
     public interface ITemplateRepository
     {
         Task<IEnumerable<Template>> GetAllTemplates();

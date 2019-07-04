@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
 
-namespace openstig_template_api
+namespace openrmf_templates_api
 {
     public class Program
     {

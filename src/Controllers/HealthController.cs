@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace openstig_template_api.Controllers
+namespace openrmf_templates_api.Controllers
 {
     [Route("healthz")]
     public class HealthController : Controller
