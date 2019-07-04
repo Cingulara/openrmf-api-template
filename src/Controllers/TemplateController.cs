@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using openstig_template_api.Models;
+using openrmf_templates_api.Models;
 using System.IO;
 using System.Text;
 using Microsoft.AspNetCore;
@@ -17,10 +17,10 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-using openstig_template_api.Data;
-using openstig_template_api.Classes;
+using openrmf_templates_api.Data;
+using openrmf_templates_api.Classes;
 
-namespace openstig_template_api.Controllers
+namespace openrmf_templates_api.Controllers
 {
     [Route("/")]
     public class TemplateController : Controller
@@ -36,7 +36,7 @@ namespace openstig_template_api.Controllers
 
         // POST as new
         [HttpPost]
-        public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, STIGtype type, string title = "New Uploaded Template Checklist", string description = "")
+        public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, string description = "")
         {
             try {
                 var name = checklistFile.FileName;
@@ -45,14 +45,7 @@ namespace openstig_template_api.Controllers
                 {
                     rawChecklist = reader.ReadToEnd();  
                 }
-                await _TemplateRepo.AddTemplate(new Template () {
-                    title = title,
-                    description = description + "\n\nUploaded filename: " + name,
-                    created = DateTime.Now,
-                    updatedOn = DateTime.Now,
-                    type = type,
-                    rawChecklist = rawChecklist
-                });
+                await _TemplateRepo.AddTemplate(MakeTemplateRecord(rawChecklist));
 
                 return Ok();
             }
@@ -64,23 +57,16 @@ namespace openstig_template_api.Controllers
 
         // PUT as update
         [HttpPut]
-        public async Task<IActionResult> UpdateChecklist(string id, IFormFile checklistFile, STIGtype type, string title = "New Uploaded Template Checklist", string description = "")
+        public async Task<IActionResult> UpdateChecklist(string id, IFormFile checklistFile, string description = "")
         {
             try {
-
                 var name = checklistFile.FileName;
                 string rawChecklist =  string.Empty;
                 using (var reader = new StreamReader(checklistFile.OpenReadStream()))
                 {
                     rawChecklist = reader.ReadToEnd();  
                 }
-                await _TemplateRepo.UpdateTemplate(id, new Template () {
-                    updatedOn = DateTime.Now,
-                    title = title,
-                    description = description,
-                    type = type,
-                    rawChecklist = rawChecklist
-                });
+                await _TemplateRepo.UpdateTemplate(id, MakeTemplateRecord(rawChecklist));
 
                 return Ok();
             }
@@ -90,6 +76,47 @@ namespace openstig_template_api.Controllers
             }
         }
         
+        
+      // this parses the text and system, generates the pieces, and returns the artifact to save
+      private Template MakeTemplateRecord(string rawChecklist) {
+            Template newArtifact = new Template();
+            newArtifact.created = DateTime.Now;
+            newArtifact.updatedOn = DateTime.Now;
+            newArtifact.rawChecklist = rawChecklist;
+
+            // parse the checklist and get the data needed
+            rawChecklist = rawChecklist.Replace("\n","").Replace("\t","");
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(rawChecklist);
+
+            XmlNodeList assetList = xmlDoc.GetElementsByTagName("ASSET");
+            // get the title and release which is a list of children of child nodes buried deeper :face-palm-emoji:
+            XmlNodeList stiginfoList = xmlDoc.GetElementsByTagName("STIG_INFO");
+            foreach (XmlElement child in stiginfoList.Item(0).ChildNodes) {
+            if (child.FirstChild.InnerText == "releaseinfo")
+                newArtifact.stigRelease = child.LastChild.InnerText;
+            else if (child.FirstChild.InnerText == "title")
+                newArtifact.stigType = child.LastChild.InnerText;
+            }
+
+            // shorten the names a bit
+            if (newArtifact != null && !string.IsNullOrEmpty(newArtifact.stigType)){
+            newArtifact.stigType = newArtifact.stigType.Replace("Security Technical Implementation Guide", "STIG");
+            newArtifact.stigType = newArtifact.stigType.Replace("Windows", "WIN");
+            newArtifact.stigType = newArtifact.stigType.Replace("Application Security and Development", "ASD");
+            newArtifact.stigType = newArtifact.stigType.Replace("Microsoft Internet Explorer", "MSIE");
+            newArtifact.stigType = newArtifact.stigType.Replace("Red Hat Enterprise Linux", "REL");
+            newArtifact.stigType = newArtifact.stigType.Replace("MS SQL Server", "MSSQL");
+            newArtifact.stigType = newArtifact.stigType.Replace("Server", "SVR");
+            newArtifact.stigType = newArtifact.stigType.Replace("Workstation", "WRK");
+            }
+            if (newArtifact != null && !string.IsNullOrEmpty(newArtifact.stigRelease)) {
+            newArtifact.stigRelease = newArtifact.stigRelease.Replace("Release: ", "R"); // i.e. R11, R2 for the release number
+            newArtifact.stigRelease = newArtifact.stigRelease.Replace("Benchmark Date:","dated");
+            }
+            return newArtifact;
+        }
+    
         // GET the listing with Ids of the Checklist Templates, but without all the extra XML
         [HttpGet]
         public async Task<IActionResult> ListTemplates()
@@ -97,9 +124,6 @@ namespace openstig_template_api.Controllers
             try {
                 IEnumerable<Template> Templates;
                 Templates = await _TemplateRepo.GetAllTemplates();
-                foreach (Template a in Templates) {
-                    a.rawChecklist = string.Empty;
-                }
                 return Ok(Templates);
             }
             catch (Exception ex) {
