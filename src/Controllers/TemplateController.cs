@@ -1,21 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using openrmf_templates_api.Models;
 using System.IO;
-using System.Text;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Cors.Infrastructure;
-using System.Xml.Serialization;
 using System.Xml;
-using Newtonsoft.Json;
-using Microsoft.Extensions.Options;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 using openrmf_templates_api.Data;
 using openrmf_templates_api.Classes;
@@ -36,6 +28,7 @@ namespace openrmf_templates_api.Controllers
 
         // POST as new
         [HttpPost]
+        [Authorize(Roles = "Administrator,Editor")]
         public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, string description = "")
         {
             try {
@@ -57,6 +50,7 @@ namespace openrmf_templates_api.Controllers
 
         // PUT as update
         [HttpPut]
+        [Authorize(Roles = "Administrator,Editor")]
         public async Task<IActionResult> UpdateChecklist(string id, IFormFile checklistFile, string description = "")
         {
             try {
@@ -119,6 +113,7 @@ namespace openrmf_templates_api.Controllers
     
         // GET the listing with Ids of the Checklist Templates, but without all the extra XML
         [HttpGet]
+        [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> ListTemplates()
         {
             try {
@@ -134,6 +129,7 @@ namespace openrmf_templates_api.Controllers
 
         // GET /value
         [HttpGet("{id}")]
+        [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> GetTemplate(string id)
         {
             try {
@@ -150,6 +146,7 @@ namespace openrmf_templates_api.Controllers
         
         // GET /value
         [HttpGet("download/{id}")]
+        [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> DownloadChecklist(string id)
         {
             try {
