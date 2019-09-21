@@ -32,8 +32,10 @@
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
                 "ASPNETCORE_URLS": "http://*:8088",
-                "mongoConnection": "mongodb://openrmf:openrmf1234!@localhost/openrmf?authSource=admin",
-                "mongodb": "openrmftemplate"
+                "MONGODBCONNECTION": "mongodb://openrmf:openrmf1234!@localhost/openrmf?authSource=admin",
+                "MONGODB": "openrmftemplate",
+                "JWT-AUTHORITY" : "http://192.168.11.39:9001/auth/realms/openrmf",
+                "JWT-CLIENT": "openrmf"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
