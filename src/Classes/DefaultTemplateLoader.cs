@@ -32,6 +32,7 @@ namespace openrmf_templates_api.Classes
             foreach (string file in filenames) {
                 // read in the file
                 rawChecklist = File.ReadAllText(file);
+                rawChecklist = rawChecklist.Replace("\t","").Replace(">\n<","><");
                 t = MakeTemplateSystemRecord(rawChecklist);
                 // save them to the database
                 _templateRepo.AddTemplate(t).Wait();
