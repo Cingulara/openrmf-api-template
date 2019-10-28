@@ -16,12 +16,17 @@ namespace openrmf_templates_api.Data {
             _context = new TemplateContext(settings);
         }
 
+        public TemplateRepository(Settings settings)
+        {
+            _context = new TemplateContext(settings);
+        }
+
         public async Task<IEnumerable<Template>> GetAllTemplates()
         {
             try
             {
-                return await _context.Templates
-                        .Find(_ => true).ToListAsync();
+                return await _context.Templates.Find(Template => Template.templateType == "USER" || Template.templateType == null)
+                        .ToListAsync();
             }
             catch (Exception ex)
             {
@@ -94,6 +99,21 @@ namespace openrmf_templates_api.Data {
 
                 return actionResult.IsAcknowledged 
                     && actionResult.DeletedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                // log or manage the exception
+                throw ex;
+            }
+        }
+
+        public async Task<bool> RemoveSystemTemplates()
+        {
+            try
+            {
+                DeleteResult actionResult 
+                    = await _context.Templates.DeleteManyAsync(Builders<Template>.Filter.Eq("templateType", "SYSTEM"));
+                return actionResult.IsAcknowledged;
             }
             catch (Exception ex)
             {
