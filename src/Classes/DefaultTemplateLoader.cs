@@ -29,13 +29,18 @@ namespace openrmf_templates_api.Classes
             // remove old ones first
             if (filenames.Length > 0) _templateRepo.RemoveSystemTemplates().Wait();
             // cycle through the files
-            foreach (string file in filenames) {
-                // read in the file
-                rawChecklist = File.ReadAllText(file);
-                rawChecklist = rawChecklist.Replace("\t","").Replace(">\n<","><");
-                t = MakeTemplateSystemRecord(rawChecklist);
-                // save them to the database
-                _templateRepo.AddTemplate(t).Wait();
+            try {
+                foreach (string file in filenames) {
+                    // read in the file
+                    rawChecklist = File.ReadAllText(file);
+                    rawChecklist = rawChecklist.Replace("\t","").Replace(">\n<","><");
+                    t = MakeTemplateSystemRecord(rawChecklist);
+                    // save them to the database
+                    _templateRepo.AddTemplate(t).Wait();
+                }
+            }
+            catch (Exception ex) {
+                // log the error with the ex.Message
             }
 
             // return success
