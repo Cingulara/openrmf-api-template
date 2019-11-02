@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--DISA STIG Viewer :: 2.8-->
+<CHECKLIST>
+	<ASSET>
+		<ROLE>None</ROLE>
+		<ASSET_TYPE>Computing</ASSET_TYPE>
+		<HOST_NAME></HOST_NAME>
+		<HOST_IP></HOST_IP>
+		<HOST_MAC></HOST_MAC>
+		<HOST_FQDN></HOST_FQDN>
+		<TECH_AREA></TECH_AREA>
+		<TARGET_KEY>2633</TARGET_KEY>
+		<WEB_OR_DATABASE>false</WEB_OR_DATABASE>
+		<WEB_DB_SITE></WEB_DB_SITE>
+		<WEB_DB_INSTANCE></WEB_DB_INSTANCE>
+	</ASSET>
+	<STIGS>
+		<iSTIG>
+			<STIG_INFO>
+				<SI_DATA>
+					<SID_NAME>version</SID_NAME>
+					<SID_DATA>1</SID_DATA>
+				</SI_DATA>
+				<SI_DATA>
+					<SID_NAME>classification</SID_NAME>
+					<SID_DATA>UNCLASSIFIED//FOR OFFICIAL USE ONLY</SID_DATA>
+				</SI_DATA>
+				<SI_DATA>
+					<SID_NAME>customname</SID_NAME>
+				</SI_DATA>
+				<SI_DATA>
+					<SID_NAME>stigid</SID_NAME>
+					<SID_DATA>HBSS_HIP_8_Firewall</SID_DATA>
+				</SI_DATA>
+				<SI_DATA>
+					<SID_NAME>description</SID_NAME>
+					<SID_DATA>The HBSS HIP 8 Firewall Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</SID_DATA>
+				</SI_DATA>
+				<SI_DATA>
+					<SID_NAME>filename</SID_NAME>
+					<SID_DATA>FOUO_HBSS_HIP_8_Firewall_V1R14_Manual-xccdf.xml</SID_DATA>
+				</SI_DATA>
+				<SI_DATA>
+					<SID_NAME>releaseinfo</SID_NAME>
+					<SID_DATA>Release: 14 Benchmark Date: 25 Oct 2019</SID_DATA>
+				</SI_DATA>
+				<SI_DATA>
+					<SID_NAME>title</SID_NAME>
+					<SID_DATA>HBSS HIP 8 Firewall</SID_DATA>
+				</SI_DATA>
+				<SI_DATA>
+					<SID_NAME>uuid</SID_NAME>
+					<SID_DATA>75456c71-6969-4a6b-8a3b-3cfc3c8adb74</SID_DATA>
+				</SI_DATA>
+				<SI_DATA>
+					<SID_NAME>notice</SID_NAME>
+					<SID_DATA>terms-of-use</SID_DATA>
+				</SI_DATA>
+				<SI_DATA>
+					<SID_NAME>source</SID_NAME>
+				</SI_DATA>
+			</STIG_INFO>
+			<VULN>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Num</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>V-14560</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Severity</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>medium</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Group_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H36900</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>SV-60331r2_rule</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H36900 - HIP 8 FW</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U) The Host Intrusion Prevention System (HIPS) Firewall must be enabled.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Discuss</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>A host-based firewall adds another layer of protection to prevent unauthorized traffic from reaching or leaving the system. To be effective, it must be enabled and properly configured.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>IA_Controls</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U) This check needs to be completed for every active policy that controls McAfee Agents and whose OS is compatible with the HIP firewall.
+
+From the ePO server console, select the asset to be checked, then select "Assigned Policies", followed by the correct version of HIPS from the dropdown product list (e.g., Host Intrusion Prevention 8: Firewall). 
+
+From the "Firewall Options" category, select the applicable policy.
+
+From the "Firewall status" section, verify the "Enabled" option is checked.
+
+If the "Enabled" option is not checked, this is a finding.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U) From the ePO server console, select the asset to be checked, then select "Assigned Policies", followed by the correct version of HIPS from the dropdown product list (e.g., Host Intrusion Prevention 8: Firewall). 
+
+From the "Firewall Options" category, select the applicable policy.
+
+From the "Firewall status" section, check the "Enabled" option.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Positives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Negatives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Documentable</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>false</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigations</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Potential_Impact</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Third_Party_Tools</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigation_Control</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Responsibility</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>System Administrator</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Security_Override_Guidance</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content_Ref</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>M</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Weight</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>10.0</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Class</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>FOUO</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>HBSS HIP 8 Firewall :: Version 1, Release: 14 Benchmark Date: 25 Oct 2019</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>2633</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
+				</STIG_DATA>
+				<STATUS>Not_Reviewed</STATUS>
+				<FINDING_DETAILS></FINDING_DETAILS>
+				<COMMENTS></COMMENTS>
+				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
+				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
+			</VULN>
+			<VULN>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Num</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>V-14561</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Severity</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>medium</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Group_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H36920</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>SV-60349r1_rule</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H36920 - HIP 8 FW</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) The Host Intrusion Prevention System (HIPS) Firewall must be set for regular protection.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Discuss</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>A host-based firewall adds another layer of protection to prevent unauthorized traffic from reaching or leaving the system. To be effective, it must be enabled and properly configured.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>IA_Controls</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) This check needs to be completed for every active policy that controls McAfee Agents.
+
+From the ePO server console, select the asset to be checked, then select "Assigned Policies", followed by the correct version of HIPS from the dropdown product list (e.g., Host Intrusion Prevention 8: Firewall). 
+
+From the "Firewall Options" category, select the applicable policy.
+
+From the "Firewall status" section, verify the "Regular protection" option is selected.
+
+If the "Regular Protection" option is not selected, this is a finding.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) From the ePO server console, select the asset to be checked, then select "Assigned Policies", followed by the correct version of HIPS from the dropdown product list (e.g., Host Intrusion Prevention 8: Firewall). 
+
+From the "Firewall Options" category, select the applicable policy.
+
+From the "Firewall status" section, select the "Regular protection" option.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Positives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Negatives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Documentable</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>false</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigations</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Potential_Impact</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Third_Party_Tools</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigation_Control</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Responsibility</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>System Administrator</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Security_Override_Guidance</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content_Ref</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>M</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Weight</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>10.0</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Class</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>FOUO</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>HBSS HIP 8 Firewall :: Version 1, Release: 14 Benchmark Date: 25 Oct 2019</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>2633</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
+				</STIG_DATA>
+				<STATUS>Not_Reviewed</STATUS>
+				<FINDING_DETAILS></FINDING_DETAILS>
+				<COMMENTS></COMMENTS>
+				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
+				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
+			</VULN>
+			<VULN>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Num</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>V-14562</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Severity</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>medium</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Group_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H36940</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>SV-60359r1_rule</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H36940 - HIP 8 FW</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) The Host Intrusion Prevention System (HIPS) Firewall must not be set to retain client rules.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Discuss</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>A host-based firewall adds another layer of protection to prevent unauthorized traffic from reaching or leaving the system. To be effective, it must be enabled and properly configured.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>IA_Controls</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) This check needs to be completed for every active policy that controls McAfee Agents.
+
+From the ePO server console, select the asset to be checked, then select "Assigned Policies", followed by the correct version of HIPS from the dropdown product list (e.g., Host Intrusion Prevention 8: Firewall). 
+
+From the "Firewall Options" category, select the applicable policy.
+
+From the "Firewall client rules" section, verify the "Retain existing client rules when this policy is enforced" option is not checked.
+
+If the "Retain existing client rules when this policy is enforced" option is checked, this is a finding.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) From the ePO server console, select the asset to be checked, then select "Assigned Policies", followed by the correct version of HIPS from the dropdown product list (e.g., Host Intrusion Prevention 8: Firewall). 
+
+From the "Firewall Options" category, select the applicable policy.
+
+From the "Firewall client rules" section, uncheck the "Retain existing client rules when this policy is enforced" option.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Positives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Negatives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Documentable</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>false</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigations</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Potential_Impact</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Third_Party_Tools</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigation_Control</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Responsibility</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>System Administrator</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Security_Override_Guidance</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content_Ref</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>M</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Weight</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>10.0</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Class</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>FOUO</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>HBSS HIP 8 Firewall :: Version 1, Release: 14 Benchmark Date: 25 Oct 2019</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>2633</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
+				</STIG_DATA>
+				<STATUS>Not_Reviewed</STATUS>
+				<FINDING_DETAILS></FINDING_DETAILS>
+				<COMMENTS></COMMENTS>
+				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
+				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
+			</VULN>
+			<VULN>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Num</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>V-47483</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Severity</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>medium</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Group_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H37000</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>SV-60365r5_rule</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H37000 - HIP 8 FW</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) The Host Intrusion Prevention System (HIPS) Firewall must include a rule to allow outbound connections, unless a rule explicitly blocks the connection.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Discuss</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>Outbound connections are imperative for the operation of the McAfee Agent to communicate with the ePO server, Agent Handlers, and repositories. To ensure that connectivity is maintained, all outbound connections must be allowed with an explicit rule.
+
+Rules may also be explicitly created to block undesired outbound connections.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>IA_Controls</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>Note: This check is intended for outbound connections from client workstations. Refer to the following STIGs for additional firewall rules that must be implemented for each specific application: ePO server STIGs, Agents Handler STIG, Staging Server STIG and Remote Console STIG. 
+
+If H36900 is compliant (HIPS Enabled), any FW policy applied has an implicit rule to block all traffic but is hidden and cannot be checked. 
+
+The spirit and intent of this STIG check is to ensure there are explicit rules configured to allow all OUTBOUND traffic so that the client can communicate to the ePO server and other security systems, unless blocked by a specific block rule. 
+This can be individual rules allowing specific outbound destination/protocols above the "Block All".
+
+This check will ensure the client workstation can make all outbound connections except for those explicitly dropped. This rule must be above the "Block All" rule but below all explicitly configured rules.
+
+From the HBSS client, right-click the "McAfee Agent" icon in the system tray, then select Manage Features | Host Intrusion Prevention to open the McAfee UI console. 
+
+Select the “Firewall Policy” tab.
+
+From the "Firewall rules" list, verify there is a rule, or multiple rules, to allow outbound connections.
+
+If no rule exists to allow outbound connections, this is a finding.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>From the ePO server console, select the asset to be checked, then select "Assigned Policies", followed by the correct version of HIPS from the dropdown product list (e.g., Host Intrusion Prevention 8: Firewall). 
+
+From the "Firewall Rules" category, select the applicable policy.
+
+Create a firewall rule to allow outbound connections.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Positives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Negatives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Documentable</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>false</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigations</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Potential_Impact</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Third_Party_Tools</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigation_Control</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Responsibility</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>System Administrator</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Security_Override_Guidance</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content_Ref</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>M</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Weight</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>10.0</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Class</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>FOUO</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>HBSS HIP 8 Firewall :: Version 1, Release: 14 Benchmark Date: 25 Oct 2019</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>2633</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
+				</STIG_DATA>
+				<STATUS>Not_Reviewed</STATUS>
+				<FINDING_DETAILS></FINDING_DETAILS>
+				<COMMENTS></COMMENTS>
+				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
+				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
+			</VULN>
+			<VULN>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Num</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>V-47485</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Severity</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>medium</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Group_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H37020</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>SV-60367r5_rule</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H37020 - HIP 8 FW</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) The Host Intrusion Prevention System (HIPS) Firewall must include a rule to block IPv6 Protocols 41 outbound connections.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Discuss</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>The Internet transition mechanism for migrating from Internet Protocol version 4 (IPv4) to Internet Protocol version 6 (IPv6) uses tunneling to encapsulate IPv6 traffic over explicitly-configured IPv4 links. This traffic is sent over IP protocol 41. The tunneled packets do not provide visibility so blocking Protocols 41 with the firewall aids in preventing unknown traffic.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>IA_Controls</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>This check needs to be completed for every active policy that controls McAfee Agents. 
+
+From the ePO server console, select the asset to be checked, then select "Assigned Policies", followed by the correct version of HIPS from the dropdown product list (e.g., Host Intrusion Prevention 8: Firewall). 
+
+From the "Firewall Rules" category, select the applicable Firewall policy.
+
+From the Firewall rules page, verify a rule exists for blocking IPv6.
+View the rule configured for blocking IPv6.
+Under Description &gt;&gt; Action: verify “Block” is selected.
+Under Description &gt;&gt; Direction, verify “Out” is selected.
+Under Description &gt;&gt; Status, verify “Enabled” is selected.
+Under Network Options &gt;&gt; Network protocol, verify IP Protocol IPv4 Protocol is selected.
+Under Network Options &gt;&gt; Media types, verify Wired, Wireless and Virtual are selected.
+Under Transport Options &gt;&gt; Transport Options, verify Transport protocol selected is “IPv6 encapsulation in IPv4”
+If the settings are not all configured as stated, this is a finding.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) From the ePO server console, select the asset to be checked, then select "Assigned Policies", followed by the correct version of HIPS from the dropdown product list (e.g., Host Intrusion Prevention 8: Firewall).
+
+From the "Firewall Rules" category, select the applicable policy.
+
+From the Firewall rules page, select “New Rule”.
+
+Enter the following: 
+Name: e.g., IPv6 (41) Outbound
+Action: Block
+Direction: Out
+Status: Enabled
+
+Click “Next”.
+Network Protocol: IP Protocol, IPv4 Protocol (checked)
+Media Types: Wired, Wireless, Virtual (all checked)
+
+Click “Next”.
+Transport Protocol dropdown: IPv6 encapsulation in IPv4
+
+Click “Next”, click “Next”, click “Next, click “Save”.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Positives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Negatives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Documentable</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>false</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigations</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Potential_Impact</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Third_Party_Tools</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigation_Control</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Responsibility</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>System Administrator</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Security_Override_Guidance</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content_Ref</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>M</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Weight</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>10.0</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Class</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>FOUO</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>HBSS HIP 8 Firewall :: Version 1, Release: 14 Benchmark Date: 25 Oct 2019</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>2633</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
+				</STIG_DATA>
+				<STATUS>Not_Reviewed</STATUS>
+				<FINDING_DETAILS></FINDING_DETAILS>
+				<COMMENTS></COMMENTS>
+				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
+				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
+			</VULN>
+			<VULN>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Num</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>V-47487</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Severity</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>medium</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Group_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H37040</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>SV-60369r4_rule</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>H37040 - HIP 8 FW</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Rule_Title</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) The Host Intrusion Prevention System (HIPS) Firewall must include a Connection Aware Group (CAG) rule to prevent cross-domain violations.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Vuln_Discuss</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>Operation across different classification levels or across mixed DoD and non-DoD networks could cause cross contamination of data, loss of data, data leakage, or unauthorized access.</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>IA_Controls</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) This check needs to be completed for every active policy that controls McAfee Agents.
+
+From the HBSS client, right- click on the McAfee Agent icon in the system tray, then select Manage Features | Host Intrusion Prevention to open the McAfee UI console. 
+
+Select the “Firewall Policy” tab.
+
+Verify that there is a CAG Firewall rule preventing cross domain violations. This can be done by examining the Firewall Rules list and determining which rule exists that limits data transmitted by Domain Suffix. 
+
+For SIPRNET SIPRNet only, anything other than smil.mil should be blocked. 
+For NIPRNET NIPRNet only, anything other than .mil should be blocked.
+
+Additional methods for preventing cross-domain violations are specified in the McAfee HIP 8 Firewall Configuration guide and include methods using the Gateway IP, DHCP IP, DNS servers used to query, WINS server used, registry key and/or Network-Local IP address. These other methods should be vetted and tested thoroughly.
+Verify cross-domains are listed as blocked domains.
+
+If neither CAG Firewall nor a DNS Block Firewall rule exists to prevent cross domain violations, this is a finding.
+
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>(U//FOUO) From the ePO server console, select the asset to be checked, then select "Assigned Policies", followed by the correct version of HIPS from the dropdown product list (e.g., Host Intrusion Prevention 8: Firewall).
+
+From the "Firewall Rules" category, select the applicable policy.
+
+Create a CAG Firewall rule to prevent cross domain violations.
+</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Positives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>False_Negatives</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Documentable</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>false</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigations</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Potential_Impact</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Third_Party_Tools</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Mitigation_Control</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Responsibility</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>System Administrator</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Security_Override_Guidance</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Check_Content_Ref</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>M</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Weight</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>10.0</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>Class</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>FOUO</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>HBSS HIP 8 Firewall :: Version 1, Release: 14 Benchmark Date: 25 Oct 2019</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
+					<ATTRIBUTE_DATA>2633</ATTRIBUTE_DATA>
+				</STIG_DATA>
+				<STIG_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
+				</STIG_DATA>
+				<STATUS>Not_Reviewed</STATUS>
+				<FINDING_DETAILS></FINDING_DETAILS>
+				<COMMENTS></COMMENTS>
+				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
+				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
+			</VULN>
+		</iSTIG>
+	</STIGS>
+</CHECKLIST>
