@@ -49,6 +49,7 @@ namespace openrmf_templates_api
                     } });
             });
 
+            // add the authentication JWT check that has AuthN and AuthZ in it for the roles needed
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

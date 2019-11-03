@@ -1,5 +1,7 @@
-# openstig-api-upload
-This is the openSTIG Upload API for uploading a CKL file. It has two calls.
+# openrmf-api-upload
+This is the OpenRMF Upload API for uploading a CKL file. It has two calls. It also has a load of 
+CKL files that are loaded as SYSTEM templates for later use in uploading SCAP scan (XCCDF) files
+for making checklists.
 
 POST to / to save a new checklist
 

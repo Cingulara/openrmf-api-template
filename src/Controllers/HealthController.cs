@@ -14,7 +14,11 @@ namespace openrmf_templates_api.Controllers
             _logger = logger;
         }
 
-        // GET the listing with Ids of all the scores for the checklists
+        /// <summary>
+        /// GET the listing with Ids of all the scores for the checklists. This is used
+        /// mainly for the K8s health check but can be used for any kind of health check.
+        /// </summary>
+        /// <returns>an OK if good to go, otherwise returns a bad request</returns>
         [HttpGet]
         public ActionResult<string> Get()
         {

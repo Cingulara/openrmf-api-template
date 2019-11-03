@@ -11,17 +11,24 @@ using System.Xml;
 namespace openrmf_templates_api.Classes
 {
     public static class ChecklistLoader
-    {        
+    {
+        /// <summary>
+        /// Reads in the raw checklist file CKL and from that XML string, creates a C# class
+        /// of all the data in the file by parsing it.
+        /// </summary>
+        /// <param name="rawChecklist">The long XML string of the checklist</param>
+        /// <returns>
+        ///  A CHECKLITS record which is a C# representation of the CKL XML file in class form.
+        /// </returns>
         public static CHECKLIST LoadChecklist(string rawChecklist) {
             CHECKLIST myChecklist = new CHECKLIST();
             XmlSerializer serializer = new XmlSerializer(typeof(CHECKLIST));
+            // sanitize it for JS
             rawChecklist = rawChecklist.Replace("\n","").Replace("\t","");
-            // using (TextReader reader = new StringReader(rawChecklist))
-            // {
-            //     myChecklist = (CHECKLIST)serializer.Deserialize(reader);
-            // }
             XmlDocument xmlDoc = new XmlDocument();
+            // load the doc into the XML structure
             xmlDoc.LoadXml(rawChecklist);
+            // get the three main nodes we care about
             XmlNodeList assetList = xmlDoc.GetElementsByTagName("ASSET");
             XmlNodeList vulnList = xmlDoc.GetElementsByTagName("VULN");
             XmlNodeList stiginfoList = xmlDoc.GetElementsByTagName("STIG_INFO");
@@ -41,6 +48,14 @@ namespace openrmf_templates_api.Classes
             return myChecklist;
         }
 
+        /// <summary>
+        /// Take the ASSET XML node in here and parse to fill in the checklist.
+        /// </summary>
+        /// <param name="node">The XML node for the ASSET XML structure</param>
+        /// <returns>
+        /// The ASSET record matching the XML to the C# class structure for including
+        /// into the larger CHECKLIST structure to use.
+        /// </returns>
         private static ASSET getAssetListing(XmlNode node) {
             ASSET asset = new ASSET();
             foreach (XmlElement child in node.ChildNodes)
@@ -84,6 +99,14 @@ namespace openrmf_templates_api.Classes
             return asset;
         }
 
+        /// <summary>
+        /// Take the STIG_INFO XML node in here and parse to fill in the checklist.
+        /// </summary>
+        /// <param name="node">The XML node for the STIG_INFO XML structure</param>
+        /// <returns>
+        /// The STIG_INFO record matching the XML to the C# class structure for including
+        /// into the larger CHECKLIST structure to use.
+        /// </returns>
         private static STIG_INFO getStigInfoListing(XmlNode node) {
             STIG_INFO info = new STIG_INFO();
             SI_DATA data; // used for the name/value pairs
@@ -104,6 +127,16 @@ namespace openrmf_templates_api.Classes
             return info;
         }
  
+        /// <summary>
+        /// Take the VULN XML nodes in here and parse to fill in the checklist. This 
+        /// is the main meat of the checklist file as it has all the status and pieces
+        /// of the checklist we care about.
+        /// </summary>
+        /// <param name="nodes">The XML nodes for the VULN XML structure</param>
+        /// <returns>
+        /// The VULN list of records matching the XML to the C# class structure for including
+        /// into the larger CHECKLIST structure to use.
+        /// </returns>
         private static List<VULN> getVulnerabilityListing(XmlNodeList nodes) {
             List<VULN> vulns = new List<VULN>();
             VULN vuln;

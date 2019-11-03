@@ -12,7 +12,14 @@ using System.Xml;
 namespace openrmf_templates_api.Classes
 {
     public static class DefaultTemplateLoader
-    {        
+    {
+        /// <summary>
+        /// At startup, reads the directory included below and then one by one, loads the template CKL files
+        /// and puts them into the database via a Template record that is a SYSTEM template.
+        /// </summary>
+        /// <returns>
+        ///  No return.
+        /// </returns>
         public static bool LoadTemplates() {
             // load the templates
             var path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/templatefiles/";
@@ -47,6 +54,16 @@ namespace openrmf_templates_api.Classes
             return true;
         }
 
+        /// <summary>
+        /// Take the raw checklist and generate a System Template record to save into
+        /// the database. This is called from the above routine when this API initially
+        /// starts up.
+        /// </summary>
+        /// <param name="rawChecklist">The long XML string of the checklist</param>
+        /// <returns>
+        ///  A template record with a GUID that is all 1's, type of SYSTEM template, and the 
+        ///  rest of the Template data filled in to save as a database record.
+        /// </returns>
         private static Template MakeTemplateSystemRecord(string rawChecklist) {
             Template newArtifact = new Template();
             newArtifact.created = DateTime.Now;
