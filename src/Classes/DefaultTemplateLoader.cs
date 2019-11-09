@@ -84,10 +84,13 @@ namespace openrmf_templates_api.Classes
             // get the title and release which is a list of children of child nodes buried deeper :face-palm-emoji:
             XmlNodeList stiginfoList = xmlDoc.GetElementsByTagName("STIG_INFO");
             foreach (XmlElement child in stiginfoList.Item(0).ChildNodes) {
-            if (child.FirstChild.InnerText == "releaseinfo")
-                newArtifact.stigRelease = child.LastChild.InnerText;
-            else if (child.FirstChild.InnerText == "title")
-                newArtifact.stigType = child.LastChild.InnerText;
+                if (child.FirstChild.InnerText == "releaseinfo")
+                    newArtifact.stigRelease = child.LastChild.InnerText;
+                else if (child.FirstChild.InnerText == "title") {
+                    newArtifact.stigType = child.LastChild.InnerText;
+                    newArtifact.stigType = newArtifact.stigType.Replace("STIG", "Security Technical Implementation Guide").Replace("MS Windows","Windows")
+                        .Replace("Microsoft Windows","Windows").Replace("Dot Net","DotNet");
+                }
             }
 
             if (newArtifact != null && !string.IsNullOrEmpty(newArtifact.stigRelease)) {
