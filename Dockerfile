@@ -18,4 +18,5 @@ WORKDIR /app
 RUN apt-get update && apt-get -y install ca-certificates
 
 COPY --from=build-env /app/out ./
+# start the application
 ENTRYPOINT ["dotnet", "openrmf-api-template.dll"]

@@ -18,6 +18,9 @@ namespace openrmf_templates_api.Data {
         // remove a single document
         Task<bool> RemoveTemplate(string id);
 
+        // remove a single document
+        Task<bool> RemoveSystemTemplates();
+
         // update just a single document
         Task<bool> UpdateTemplate(string id, Template body);
 

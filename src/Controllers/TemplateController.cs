@@ -27,7 +27,15 @@ namespace openrmf_templates_api.Controllers
             _TemplateRepo = TemplateRepo;
         }
 
-        // POST as new
+        /// <summary>
+        /// POST Called from the OpenRMF UI (or external access) to add a new template via a POST if you 
+        /// have the correct roles in your JWT.`
+        /// </summary>
+        /// <param name="checklistFile">The actual template CKL file uploaded</param>
+        /// <param name="description">A description of the template</param>
+        /// <returns>
+        /// HTTP Status showing it was created or that there is an error.
+        /// </returns>
         [HttpPost]
         [Authorize(Roles = "Administrator,Editor")]
         public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, string description = "")
@@ -56,7 +64,16 @@ namespace openrmf_templates_api.Controllers
             }
         }
 
-        // PUT as update
+        /// <summary>
+        /// PUT Called from the OpenRMF UI (or external access) to update a current template via a PUT if you 
+        /// have the correct roles in your JWT.`
+        /// </summary>
+        /// <param name="id">The ID of the record template to update</param>
+        /// <param name="checklistFile">The actual template CKL file uploaded</param>
+        /// <param name="description">A description of the template</param>
+        /// <returns>
+        /// HTTP Status showing it was created or that there is an error.
+        /// </returns>
         [HttpPut]
         [Authorize(Roles = "Administrator,Editor")]
         public async Task<IActionResult> UpdateChecklist(string id, IFormFile checklistFile, string description = "")
@@ -93,10 +110,15 @@ namespace openrmf_templates_api.Controllers
                 return BadRequest();
             }
         }
-        
-        
-      // this parses the text and system, generates the pieces, and returns the artifact to save
-      private Template MakeTemplateRecord(string rawChecklist) {
+                
+        /// <summary>
+        /// parses the text and system, generates the pieces, and returns the artifact to save
+        /// </summary>
+        /// <param name="rawChecklist">The raw XML string of the CKL template file</param>
+        /// <returns>
+        /// a Template Record for saving into the database
+        /// </returns>
+        private Template MakeTemplateRecord(string rawChecklist) {
             Template newArtifact = new Template();
             newArtifact.created = DateTime.Now;
             newArtifact.updatedOn = DateTime.Now;
@@ -117,25 +139,30 @@ namespace openrmf_templates_api.Controllers
                 newArtifact.stigType = child.LastChild.InnerText;
             }
 
-            // shorten the names a bit
+            // shorten the names a bit for USER templates
             if (newArtifact != null && !string.IsNullOrEmpty(newArtifact.stigType)){
-            newArtifact.stigType = newArtifact.stigType.Replace("Security Technical Implementation Guide", "STIG");
-            newArtifact.stigType = newArtifact.stigType.Replace("Windows", "WIN");
-            newArtifact.stigType = newArtifact.stigType.Replace("Application Security and Development", "ASD");
-            newArtifact.stigType = newArtifact.stigType.Replace("Microsoft Internet Explorer", "MSIE");
-            newArtifact.stigType = newArtifact.stigType.Replace("Red Hat Enterprise Linux", "REL");
-            newArtifact.stigType = newArtifact.stigType.Replace("MS SQL Server", "MSSQL");
-            newArtifact.stigType = newArtifact.stigType.Replace("Server", "SVR");
-            newArtifact.stigType = newArtifact.stigType.Replace("Workstation", "WRK");
+                newArtifact.stigType = newArtifact.stigType.Replace("Security Technical Implementation Guide", "STIG");
+                newArtifact.stigType = newArtifact.stigType.Replace("Windows", "WIN");
+                newArtifact.stigType = newArtifact.stigType.Replace("Application Security and Development", "ASD");
+                newArtifact.stigType = newArtifact.stigType.Replace("Microsoft Internet Explorer", "MSIE");
+                newArtifact.stigType = newArtifact.stigType.Replace("Red Hat Enterprise Linux", "REL");
+                newArtifact.stigType = newArtifact.stigType.Replace("MS SQL Server", "MSSQL");
+                newArtifact.stigType = newArtifact.stigType.Replace("Server", "SVR");
+                newArtifact.stigType = newArtifact.stigType.Replace("Workstation", "WRK");
             }
             if (newArtifact != null && !string.IsNullOrEmpty(newArtifact.stigRelease)) {
-            newArtifact.stigRelease = newArtifact.stigRelease.Replace("Release: ", "R"); // i.e. R11, R2 for the release number
-            newArtifact.stigRelease = newArtifact.stigRelease.Replace("Benchmark Date:","dated");
+                newArtifact.stigRelease = newArtifact.stigRelease.Replace("Release: ", "R"); // i.e. R11, R2 for the release number
+                newArtifact.stigRelease = newArtifact.stigRelease.Replace("Benchmark Date:","dated");
             }
             return newArtifact;
         }
     
-        // GET the listing with Ids of the Checklist Templates, but without all the extra XML
+        /// <summary>
+        /// GET the user listing with Ids of the Checklist Templates, but without all the extra XML
+        /// </summary>
+        /// <returns>
+        /// HTTP Status and the list of all Template records for non-SYSTEM templates
+        /// </returns>
         [HttpGet]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> ListTemplates()
@@ -151,7 +178,13 @@ namespace openrmf_templates_api.Controllers
             }
         }
 
-        // GET /value
+        /// <summary>
+        /// GET a specific template record based on the ID for viewing
+        /// </summary>
+        /// <param name="id">The id of the template database record</param>
+        /// <returns>
+        /// HTTP Status and the Template being requested. Or a 404.
+        /// </returns>
         [HttpGet("{id}")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> GetTemplate(string id)
@@ -168,7 +201,13 @@ namespace openrmf_templates_api.Controllers
             }
         }
         
-        // GET /value
+        /// <summary>
+        /// GET a specific template record based on the ID to download into a CKL file
+        /// </summary>
+        /// <param name="id">The id of the template database record</param>
+        /// <returns>
+        /// HTTP Status and the Template being requested in CKL form. Or a 404.
+        /// </returns>
         [HttpGet("download/{id}")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> DownloadChecklist(string id)

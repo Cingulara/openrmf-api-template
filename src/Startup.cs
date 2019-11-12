@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 
 using openrmf_templates_api.Models;
 using openrmf_templates_api.Data;
+using openrmf_templates_api.Classes;
 
 namespace openrmf_templates_api
 {
@@ -48,6 +49,7 @@ namespace openrmf_templates_api
                     } });
             });
 
+            // add the authentication JWT check that has AuthN and AuthZ in it for the roles needed
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -140,6 +142,14 @@ namespace openrmf_templates_api
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
-        }
+
+            // load the templates from CKL files
+            if (DefaultTemplateLoader.LoadTemplates()) {
+                // log the loading was successful
+            } 
+            else {
+                // Log it was not successful
+            }
+        }   
     }
 }

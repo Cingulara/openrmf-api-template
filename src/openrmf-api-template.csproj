@@ -8,8 +8,8 @@
     <ProjectGuid>{95fe0bbf-276d-4153-8f1b-6ecfd0516b40}</ProjectGuid>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
-    <Version>0.8</Version>
-    <InformationalVersion>This is a beta of the OpenSTIG Tool Template API from Cingulara</InformationalVersion>
+    <Version>0.9.1</Version>
+    <InformationalVersion>This is a beta of the OpenRMF Tool Template API from Cingulara</InformationalVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,4 +33,9 @@
     <Content Update="nlog.config" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   
+  <ItemGroup>
+    <Content Include="templatefiles/**"> 
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> 
+    </Content> 
+  </ItemGroup>
 </Project>

@@ -14,6 +14,12 @@ namespace openrmf_templates_api.Data
             if (client != null)
                 _database = client.GetDatabase(settings.Value.Database);
         }
+        public TemplateContext(Settings settings)
+        {
+            var client = new MongoClient(settings.ConnectionString);
+            if (client != null)
+                _database = client.GetDatabase(settings.Database);
+        }
 
         public IMongoCollection<Template> Templates
         {
