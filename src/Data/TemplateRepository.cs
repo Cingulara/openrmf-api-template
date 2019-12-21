@@ -138,5 +138,28 @@ namespace openrmf_templates_api.Data {
                 throw ex;
             }
         }
+
+        public async Task<long> CountUserTemplates(){
+            try {
+                long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "USER"));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                // log or manage the exception
+                throw ex;
+            }
+        }
+        public async Task<long> CountSystemTemplates(){
+            try {
+                long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "SYSTEM"));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                // log or manage the exception
+                throw ex;
+            }
+        }
     }
 }

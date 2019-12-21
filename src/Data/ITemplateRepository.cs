@@ -24,5 +24,13 @@ namespace openrmf_templates_api.Data {
         // update just a single document
         Task<bool> UpdateTemplate(string id, Template body);
 
+
+        /******************************************** 
+         Dashboard specific calls
+        ********************************************/
+        // get the # of checklists for the dashboard listing
+        Task<long> CountUserTemplates();
+
+        Task<long> CountSystemTemplates();
     }
 }

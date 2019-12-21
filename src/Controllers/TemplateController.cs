@@ -210,7 +210,7 @@ namespace openrmf_templates_api.Controllers
         /// </returns>
         [HttpGet("download/{id}")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
-        public async Task<IActionResult> DownloadChecklist(string id)
+        public async Task<IActionResult> DownloadTemplate(string id)
         {
             try {
                 Template template = new Template();
@@ -221,6 +221,40 @@ namespace openrmf_templates_api.Controllers
                 _logger.LogError(ex, "Error Retrieving Template for Download");
                 return NotFound();
             }
-        }        
+        }
+
+        
+        #region Dashboard APIs
+        // GET /count/templates
+        [HttpGet("count/templates")]
+        [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        public async Task<IActionResult> CountUserTemplates()
+        {
+            try {
+                long result = await _TemplateRepo.CountUserTemplates();
+                return Ok(result);
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error Retrieving User Template Count in MongoDB");
+                return NotFound();
+            }
+        }
+
+        
+        // GET /count/systemtemplates
+        [HttpGet("count/systemtemplates")]
+        [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        public async Task<IActionResult> CountSystemTemplates()
+        {
+            try {
+                long result = await _TemplateRepo.CountSystemTemplates();
+                return Ok(result);
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error Retrieving System Template Count in MongoDB");
+                return NotFound();
+            }
+        }
+        #endregion
     }
 }
