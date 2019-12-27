@@ -70,7 +70,7 @@ namespace openrmf_templates_api.Controllers
 
         /// <summary>
         /// PUT Called from the OpenRMF UI (or external access) to update a current template via a PUT if you 
-        /// have the correct roles in your JWT.`
+        /// have the correct roles in your JWT.
         /// </summary>
         /// <param name="id">The ID of the record template to update</param>
         /// <param name="checklistFile">The actual template CKL file uploaded</param>

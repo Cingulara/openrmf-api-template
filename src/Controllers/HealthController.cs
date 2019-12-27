@@ -22,7 +22,7 @@ namespace openrmf_templates_api.Controllers
         /// </summary>
         /// <returns>an OK if good to go, otherwise returns a bad request</returns>
         /// <response code="200">Returns the newly created item</response>
-        /// <response code="400">If the health check is bad</response>     
+        /// <response code="400">If the health check is bad</response>
         [HttpGet]
         public ActionResult<string> Get()
         {
