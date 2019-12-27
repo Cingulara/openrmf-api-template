@@ -76,10 +76,10 @@ namespace openrmf_templates_api.Controllers
         /// <param name="checklistFile">The actual template CKL file uploaded</param>
         /// <param name="description">A description of the template</param>
         /// <returns>
-        /// HTTP Status showing it was created or that there is an error.
+        /// HTTP Status showing it was updated or that there is an error.
         /// </returns>
-        /// <response code="200">Returns the newly created item</response>
-        /// <response code="400">If the item did not create correctly</response>
+        /// <response code="200">Returns the newly updated item</response>
+        /// <response code="400">If the item did not update correctly</response>
         /// <response code="404">If the ID passed in is not valid</response>
         [HttpPut]
         [Authorize(Roles = "Administrator,Editor")]
