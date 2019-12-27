@@ -38,6 +38,8 @@ namespace openrmf_templates_api.Controllers
         /// <returns>
         /// HTTP Status showing it was created or that there is an error.
         /// </returns>
+        /// <response code="200">Returns the newly created item</response>
+        /// <response code="400">If the item did not create correctly</response>     
         [HttpPost]
         [Authorize(Roles = "Administrator,Editor")]
         public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, string description = "")
@@ -76,6 +78,9 @@ namespace openrmf_templates_api.Controllers
         /// <returns>
         /// HTTP Status showing it was created or that there is an error.
         /// </returns>
+        /// <response code="200">Returns the newly created item</response>
+        /// <response code="400">If the item did not create correctly</response>
+        /// <response code="404">If the ID passed in is not valid</response>
         [HttpPut]
         [Authorize(Roles = "Administrator,Editor")]
         public async Task<IActionResult> UpdateChecklist(string id, IFormFile checklistFile, string description = "")
@@ -89,7 +94,11 @@ namespace openrmf_templates_api.Controllers
                 }
                 Template newTemplate = MakeTemplateRecord(rawChecklist);
                 Template oldTemplate = await _TemplateRepo.GetTemplate(id);
-                
+
+                // if this is empty, the ID passed is bad
+                if (oldTemplate == null)
+                    return NotFound();
+
                 if (oldTemplate != null && oldTemplate.createdBy != Guid.Empty){
                     // this is an update of an older one, keep the createdBy intact
                     newTemplate.createdBy = oldTemplate.createdBy;
@@ -165,6 +174,8 @@ namespace openrmf_templates_api.Controllers
         /// <returns>
         /// HTTP Status and the list of all Template records for non-SYSTEM templates
         /// </returns>
+        /// <response code="200">Returns the list of all non system templates</response>
+        /// <response code="400">If the search did not work correctly</response>
         [HttpGet]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> ListTemplates()
@@ -187,6 +198,8 @@ namespace openrmf_templates_api.Controllers
         /// <returns>
         /// HTTP Status and the Template being requested. Or a 404.
         /// </returns>
+        /// <response code="200">Returns the searched for template by ID</response>
+        /// <response code="404">If the search did not work correctly</response>
         [HttpGet("{id}")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> GetTemplate(string id)
@@ -210,6 +223,8 @@ namespace openrmf_templates_api.Controllers
         /// <returns>
         /// HTTP Status and the Template being requested in CKL form. Or a 404.
         /// </returns>
+        /// <response code="200">Returns the XML of the template for template by ID</response>
+        /// <response code="404">If the search did not work correctly</response>
         [HttpGet("download/{id}")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> DownloadTemplate(string id)
@@ -227,7 +242,15 @@ namespace openrmf_templates_api.Controllers
 
         
         #region Dashboard APIs
-        // GET /count/templates
+        
+        /// <summary>
+        /// GET a count of the non-system templates for the dashboard number
+        /// </summary>
+        /// <returns>
+        /// HTTP Status and the count of user templates
+        /// </returns>
+        /// <response code="200">Returns the number</response>
+        /// <response code="404">If the count query did not work correctly</response>
         [HttpGet("count/templates")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> CountUserTemplates()
@@ -241,9 +264,15 @@ namespace openrmf_templates_api.Controllers
                 return NotFound();
             }
         }
-
         
-        // GET /count/systemtemplates
+        /// <summary>
+        /// GET a count of the system templates for the dashboard number
+        /// </summary>
+        /// <returns>
+        /// HTTP Status and the count of system templates
+        /// </returns>
+        /// <response code="200">Returns the number</response>
+        /// <response code="404">If the count query did not work correctly</response>
         [HttpGet("count/systemtemplates")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> CountSystemTemplates()
