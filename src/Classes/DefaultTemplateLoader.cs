@@ -91,6 +91,12 @@ namespace openrmf_templates_api.Classes
                     newArtifact.stigType = newArtifact.stigType.Replace("STIG", "Security Technical Implementation Guide").Replace("MS Windows","Windows")
                         .Replace("Microsoft Windows","Windows").Replace("Dot Net","DotNet");
                 }
+                else if (child.FirstChild.InnerText == "version") {
+                    newArtifact.version = child.LastChild.InnerText;
+                }
+                else if (child.FirstChild.InnerText == "filename") {
+                    newArtifact.filename = child.LastChild.InnerText;
+                }
             }
 
             if (newArtifact != null && !string.IsNullOrEmpty(newArtifact.stigRelease)) {
