@@ -167,6 +167,7 @@ namespace openrmf_templates_api.Controllers
             _logger.LogInformation("MakeTemplateRecord() shortening names a bit to trim titles and such");
             // shorten the names a bit for USER templates
             if (newArtifact != null && !string.IsNullOrEmpty(newArtifact.stigType)){
+                newArtifact.title = newArtifact.stigType;
                 newArtifact.stigType = newArtifact.stigType.Replace("Security Technical Implementation Guide", "STIG");
                 newArtifact.stigType = newArtifact.stigType.Replace("Windows", "WIN");
                 newArtifact.stigType = newArtifact.stigType.Replace("Application Security and Development", "ASD");
