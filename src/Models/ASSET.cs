@@ -7,7 +7,18 @@ namespace openrmf_templates_api.Models
     public class ASSET {
 
         public ASSET (){
-
+			// setup for these to at least print out when you generate XML
+			ROLE = "";
+			ASSET_TYPE = "";
+			HOST_NAME = "";
+			HOST_IP = "";
+			HOST_MAC = "";
+			HOST_FQDN = "";
+			TECH_AREA = "";
+			TARGET_KEY = "";
+			WEB_OR_DATABASE = "";
+			WEB_DB_SITE = "";
+			WEB_DB_INSTANCE = "";
         }
 
 		public string ROLE { get; set; }

@@ -21,12 +21,13 @@ namespace openrmf_templates_api.Models
         public string rawChecklist { get; set; }
         public string stigType { get; set; }
         public string stigRelease { get; set; }
-        public string title { get {
-            if (templateType == "USER")
-                return "Template-" + stigType.Trim() + "-" + stigRelease.Trim();
-            else
-                return stigType;
-        }}        
+        public string stigDate { get; set; }
+
+        // the _id from the parsed in data if any
+        public string stigId { get; set; }
+
+        public string title { get ; set;}        
+
         public string templateType { get; set; }
         public string version {get; set;}
         public string filename {get; set;}
