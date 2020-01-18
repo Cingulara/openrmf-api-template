@@ -291,6 +291,8 @@ namespace openrmf_templates_api.Classes
                                         vulnListing.Responsibility = ruledescription.Substring(16, ruledescription.IndexOf("Responsibility",16)-18);
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Responsibility.Length+33);
+                                    // in case there is another Reponsibility, trim it and then move to IAControls
+                                    ruledescription = ruledescription.Substring(ruledescription.IndexOf("<IAControls"));
                                     // IAControls
                                     if (ruledescription.Substring(12, ruledescription.IndexOf("IAControls",12)-13) == "<")
                                         vulnListing.IA_Controls = ""; // empty
