@@ -41,13 +41,19 @@ namespace openrmf_templates_api.Classes
                     // read in the file
                     rawChecklist = File.ReadAllText(file);
                     rawChecklist = rawChecklist.Replace("\t","").Replace(">\n<","><");
-                    t = MakeTemplateSystemRecord(rawChecklist, file.Substring(file.LastIndexOf("/")+1));
-                    // save them to the database
-                    _templateRepo.AddTemplate(t).Wait();
+                    try {
+                        t = MakeTemplateSystemRecord(rawChecklist, file.Substring(file.LastIndexOf("/")+1));
+                        // save them to the database
+                        _templateRepo.AddTemplate(t).Wait();
+                    }
+                    catch (Exception tempEx) {
+                        Console.WriteLine("Error parsing template file: {0}. {1}", file, tempEx.Message);
+                    }
                 }
             }
             catch (Exception ex) {
                 // log the error with the ex.Message
+                Console.WriteLine("Error parsing template files: {0}", ex.Message);
             }
 
             // return success
@@ -247,7 +253,7 @@ namespace openrmf_templates_api.Classes
                                     if (ruledescription.Substring(13, ruledescription.IndexOf("Mitigations",13)-14) == "<")
                                         vulnListing.Mitigations = ""; // empty
                                     else {
-                                        vulnListing.Mitigations = ruledescription.Substring(16, ruledescription.IndexOf("Mitigations",13)-15);
+                                        vulnListing.Mitigations = ruledescription.Substring(13, ruledescription.IndexOf("Mitigations",13)-15);
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Mitigations.Length+27);
                                     // SeverityOverrideGuidance
@@ -261,35 +267,35 @@ namespace openrmf_templates_api.Classes
                                     if (ruledescription.Substring(18, ruledescription.IndexOf("PotentialImpacts",18)-19) == "<")
                                         vulnListing.Potential_Impact = ""; // empty
                                     else {
-                                        vulnListing.Potential_Impact = ruledescription.Substring(26, ruledescription.IndexOf("PotentialImpacts",18)-20);
+                                        vulnListing.Potential_Impact = ruledescription.Substring(18, ruledescription.IndexOf("PotentialImpacts",18)-20);
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Potential_Impact.Length+37);
                                     // ThirdPartyTools
                                     if (ruledescription.Substring(17, ruledescription.IndexOf("ThirdPartyTools",17)-18) == "<")
                                         vulnListing.Third_Party_Tools = ""; // empty
                                     else {
-                                        vulnListing.Third_Party_Tools = ruledescription.Substring(26, ruledescription.IndexOf("ThirdPartyTools",17)-19);
+                                        vulnListing.Third_Party_Tools = ruledescription.Substring(17, ruledescription.IndexOf("ThirdPartyTools",17)-19);
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Third_Party_Tools.Length+35);
                                     // MitigationControl
                                     if (ruledescription.Substring(19, ruledescription.IndexOf("MitigationControl",19)-20) == "<")
                                         vulnListing.Mitigation_Control = ""; // empty
                                     else {
-                                        vulnListing.Mitigation_Control = ruledescription.Substring(26, ruledescription.IndexOf("MitigationControl",19)-21);
+                                        vulnListing.Mitigation_Control = ruledescription.Substring(19, ruledescription.IndexOf("MitigationControl",19)-21);
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Mitigation_Control.Length+39);
                                     // Responsibility
                                     if (ruledescription.Substring(16, ruledescription.IndexOf("Responsibility",16)-17) == "<")
                                         vulnListing.Responsibility = ""; // empty
                                     else {
-                                        vulnListing.Responsibility = ruledescription.Substring(26, ruledescription.IndexOf("Responsibility",16)-18);
+                                        vulnListing.Responsibility = ruledescription.Substring(16, ruledescription.IndexOf("Responsibility",16)-18);
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Responsibility.Length+33);
                                     // IAControls
                                     if (ruledescription.Substring(12, ruledescription.IndexOf("IAControls",12)-13) == "<")
                                         vulnListing.IA_Controls = ""; // empty
                                     else {
-                                        vulnListing.IA_Controls = ruledescription.Substring(26, ruledescription.IndexOf("IAControls",12)-14);
+                                        vulnListing.IA_Controls = ruledescription.Substring(12, ruledescription.IndexOf("IAControls",12)-14);
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.IA_Controls.Length+25);
                                 } else if (rule.Name == "ident") {
@@ -323,10 +329,10 @@ namespace openrmf_templates_api.Classes
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Rule_ID", ATTRIBUTE_DATA = vulnListing.Rule_ID});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Rule_Ver", ATTRIBUTE_DATA = vulnListing.Rule_Ver});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Rule_Title", ATTRIBUTE_DATA = vulnListing.Rule_Title});
-                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Vuln_Discuss", ATTRIBUTE_DATA = vulnListing.Vuln_Discuss.Replace("\r\n",Environment.NewLine)});
+                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Vuln_Discuss", ATTRIBUTE_DATA = vulnListing.Vuln_Discuss.Replace("\r\n",Environment.NewLine).Replace("\"","'")});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "IA_Controls", ATTRIBUTE_DATA = vulnListing.IA_Controls});
-                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Check_Content", ATTRIBUTE_DATA = vulnListing.Check_Content.Replace("\r\n",Environment.NewLine)});
-                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Fix_Text", ATTRIBUTE_DATA = vulnListing.Fix_Text.Replace("\r\n",Environment.NewLine)});
+                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Check_Content", ATTRIBUTE_DATA = vulnListing.Check_Content.Replace("\r\n",Environment.NewLine).Replace("\"","'")});
+                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Fix_Text", ATTRIBUTE_DATA = vulnListing.Fix_Text.Replace("\r\n",Environment.NewLine).Replace("\"","'")});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "False_Positives", ATTRIBUTE_DATA = vulnListing.False_Positives});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "False_Negatives", ATTRIBUTE_DATA = vulnListing.False_Negatives});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Documentable", ATTRIBUTE_DATA = vulnListing.Documentable});
