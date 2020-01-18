@@ -79,6 +79,7 @@ namespace openrmf_templates_api.Classes
             newArtifact.updatedOn = DateTime.Now;
             // make these SYSTEM types versus the default USER type
             newArtifact.templateType = "SYSTEM";
+            newArtifact.filename = filename;
             newArtifact.description = "SYSTEM Template loaded by default by OpenRMF for SCAP Scans and Creation Wizard.";
 
             // parse the checklist and get the data needed
