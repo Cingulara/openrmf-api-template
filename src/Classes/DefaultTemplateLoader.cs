@@ -332,10 +332,10 @@ namespace openrmf_templates_api.Classes
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Rule_ID", ATTRIBUTE_DATA = vulnListing.Rule_ID});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Rule_Ver", ATTRIBUTE_DATA = vulnListing.Rule_Ver});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Rule_Title", ATTRIBUTE_DATA = vulnListing.Rule_Title});
-                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Vuln_Discuss", ATTRIBUTE_DATA = vulnListing.Vuln_Discuss.Replace("\r\n",Environment.NewLine).Replace("\"","'")});
+                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Vuln_Discuss", ATTRIBUTE_DATA = vulnListing.Vuln_Discuss}); //.Replace("\r\n",Environment.NewLine).Replace("\"","'")
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "IA_Controls", ATTRIBUTE_DATA = vulnListing.IA_Controls});
-                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Check_Content", ATTRIBUTE_DATA = vulnListing.Check_Content.Replace("\r\n",Environment.NewLine).Replace("\"","'")});
-                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Fix_Text", ATTRIBUTE_DATA = vulnListing.Fix_Text.Replace("\r\n",Environment.NewLine).Replace("\"","'")});
+                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Check_Content", ATTRIBUTE_DATA = vulnListing.Check_Content}); //.Replace("\r\n",Environment.NewLine).Replace("\"","'")
+                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Fix_Text", ATTRIBUTE_DATA = vulnListing.Fix_Text}); //.Replace("\r\n",Environment.NewLine).Replace("\"","'")
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "False_Positives", ATTRIBUTE_DATA = vulnListing.False_Positives});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "False_Negatives", ATTRIBUTE_DATA = vulnListing.False_Negatives});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Documentable", ATTRIBUTE_DATA = vulnListing.Documentable});
@@ -360,7 +360,7 @@ namespace openrmf_templates_api.Classes
                 vulnitem.COMMENTS = "";
                 vulnitem.FINDING_DETAILS = "";
                 vulnitem.SEVERITY_JUSTIFICATION = "";
-                vulnitem.SEVERITY_OVERRIDE = vulnListing.Security_Override_Guidance;
+                vulnitem.SEVERITY_OVERRIDE = "";
 
                 // add the item to the CHECKLIST format for later serialization
                 newArtifact.CHECKLIST.STIGS.iSTIG.VULN.Add(vulnitem);
