@@ -106,9 +106,9 @@ namespace openrmf_templates_api.Classes
             foreach (XmlNode node in nodeListing) {
                 if (node.ParentNode != null && node.ParentNode.Name == "Benchmark") {
                     if (!string.IsNullOrEmpty(node.InnerText)) {
-                        newArtifact.title = node.InnerText;
-                        newArtifact.stigType = newArtifact.title.Replace("STIG", "Security Technical Implementation Guide").Replace("MS Windows","Windows")
+                        newArtifact.title = node.InnerText.Replace("STIG", "Security Technical Implementation Guide").Replace("MS Windows","Windows")
                          .Replace("Microsoft Windows","Windows").Replace("Dot Net","DotNet");
+                        newArtifact.stigType = newArtifact.title;
                         break;
                     }
                 }
