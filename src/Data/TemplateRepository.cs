@@ -1,3 +1,5 @@
+// Copyright (c) Cingulara LLC 2019 and Tutela LLC 2019. All rights reserved.
+// Licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 license. See LICENSE file in the project root for full license information.
 using openrmf_templates_api.Models;
 using System.Collections.Generic;
 using System;
@@ -131,6 +133,29 @@ namespace openrmf_templates_api.Data {
                 body.InternalId = GetInternalId(id);
                 var actionResult = await _context.Templates.ReplaceOneAsync(filter, body);
                 return actionResult.IsAcknowledged && actionResult.ModifiedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                // log or manage the exception
+                throw ex;
+            }
+        }
+
+        public async Task<long> CountUserTemplates(){
+            try {
+                long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "USER"));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                // log or manage the exception
+                throw ex;
+            }
+        }
+        public async Task<long> CountSystemTemplates(){
+            try {
+                long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "SYSTEM"));
+                return result;
             }
             catch (Exception ex)
             {
