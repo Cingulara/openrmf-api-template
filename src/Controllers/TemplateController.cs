@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Cingulara LLC 2019 and Tutela LLC 2019. All rights reserved.
+// Licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 license. See LICENSE file in the project root for full license information.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,17 +38,21 @@ namespace openrmf_templates_api.Controllers
         /// <returns>
         /// HTTP Status showing it was created or that there is an error.
         /// </returns>
+        /// <response code="200">Returns the newly created item</response>
+        /// <response code="400">If the item did not create correctly</response>     
         [HttpPost]
         [Authorize(Roles = "Administrator,Editor")]
         public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, string description = "")
         {
             try {
+                _logger.LogInformation("Calling UploadNewChecklist()");
                 var name = checklistFile.FileName;
                 string rawChecklist =  string.Empty;
                 using (var reader = new StreamReader(checklistFile.OpenReadStream()))
                 {
                     rawChecklist = reader.ReadToEnd();  
                 }
+                _logger.LogInformation("UploadNewChecklist() Making the template");
                 Template t = MakeTemplateRecord(rawChecklist);
                 
                 // grab the user/system ID from the token if there which is *should* always be
@@ -54,7 +60,9 @@ namespace openrmf_templates_api.Controllers
                 if (claim != null) { // get the value
                     t.createdBy = Guid.Parse(claim.Value);
                 }
+                _logger.LogInformation("UploadNewChecklist() template created, saving to the database");
                 await _TemplateRepo.AddTemplate(t);
+                _logger.LogInformation("Called UploadNewChecklist() and added checklists successfully");
 
                 return Ok();
             }
@@ -66,34 +74,45 @@ namespace openrmf_templates_api.Controllers
 
         /// <summary>
         /// PUT Called from the OpenRMF UI (or external access) to update a current template via a PUT if you 
-        /// have the correct roles in your JWT.`
+        /// have the correct roles in your JWT.
         /// </summary>
         /// <param name="id">The ID of the record template to update</param>
         /// <param name="checklistFile">The actual template CKL file uploaded</param>
         /// <param name="description">A description of the template</param>
         /// <returns>
-        /// HTTP Status showing it was created or that there is an error.
+        /// HTTP Status showing it was updated or that there is an error.
         /// </returns>
+        /// <response code="200">Returns the newly updated item</response>
+        /// <response code="400">If the item did not update correctly</response>
+        /// <response code="404">If the ID passed in is not valid</response>
         [HttpPut]
         [Authorize(Roles = "Administrator,Editor")]
         public async Task<IActionResult> UpdateChecklist(string id, IFormFile checklistFile, string description = "")
         {
             try {
+                _logger.LogInformation("Calling UpdateChecklist({0})", id);
                 var name = checklistFile.FileName;
                 string rawChecklist =  string.Empty;
                 using (var reader = new StreamReader(checklistFile.OpenReadStream()))
                 {
                     rawChecklist = reader.ReadToEnd();  
                 }
+                _logger.LogInformation("UpdateChecklist() Getting the template record ready to update");
                 Template newTemplate = MakeTemplateRecord(rawChecklist);
                 Template oldTemplate = await _TemplateRepo.GetTemplate(id);
-                
+
+                // if this is empty, the ID passed is bad
+                if (oldTemplate == null) {
+                    _logger.LogWarning("UpdateChecklist() called with invalid artifact Id {0}", id);
+                    return NotFound();
+                }
+
                 if (oldTemplate != null && oldTemplate.createdBy != Guid.Empty){
                     // this is an update of an older one, keep the createdBy intact
                     newTemplate.createdBy = oldTemplate.createdBy;
                 }
-                
                 oldTemplate = null;
+                _logger.LogInformation("UpdateChecklist() made new template record from old one");
 
                 // grab the user/system ID from the token if there which is *should* always be
                 var claim = this.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).FirstOrDefault();
@@ -101,7 +120,9 @@ namespace openrmf_templates_api.Controllers
                     newTemplate.updatedBy = Guid.Parse(claim.Value);
                 }
                 
+                _logger.LogInformation("UpdateChecklist() saving the updated template record");
                 await _TemplateRepo.UpdateTemplate(id, newTemplate);
+                _logger.LogInformation("Called UpdateChecklist({0}) successfully", id);
 
                 return Ok();
             }
@@ -119,6 +140,7 @@ namespace openrmf_templates_api.Controllers
         /// a Template Record for saving into the database
         /// </returns>
         private Template MakeTemplateRecord(string rawChecklist) {
+            _logger.LogInformation("Calling MakeTemplateRecord()");
             Template newArtifact = new Template();
             newArtifact.created = DateTime.Now;
             newArtifact.updatedOn = DateTime.Now;
@@ -126,11 +148,14 @@ namespace openrmf_templates_api.Controllers
 
             // parse the checklist and get the data needed
             rawChecklist = rawChecklist.Replace("\n","").Replace("\t","");
+            _logger.LogInformation("MakeTemplateRecord() loading the XML passed in");
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(rawChecklist);
 
+            _logger.LogInformation("MakeTemplateRecord() getting the ASSET information");
             XmlNodeList assetList = xmlDoc.GetElementsByTagName("ASSET");
-            // get the title and release which is a list of children of child nodes buried deeper :face-palm-emoji:
+            // get the title and release which is a list of children of child nodes buried deeper
+            _logger.LogInformation("MakeTemplateRecord() getting the STIG_INFO information");
             XmlNodeList stiginfoList = xmlDoc.GetElementsByTagName("STIG_INFO");
             foreach (XmlElement child in stiginfoList.Item(0).ChildNodes) {
             if (child.FirstChild.InnerText == "releaseinfo")
@@ -139,8 +164,10 @@ namespace openrmf_templates_api.Controllers
                 newArtifact.stigType = child.LastChild.InnerText;
             }
 
+            _logger.LogInformation("MakeTemplateRecord() shortening names a bit to trim titles and such");
             // shorten the names a bit for USER templates
             if (newArtifact != null && !string.IsNullOrEmpty(newArtifact.stigType)){
+                newArtifact.title = newArtifact.stigType;
                 newArtifact.stigType = newArtifact.stigType.Replace("Security Technical Implementation Guide", "STIG");
                 newArtifact.stigType = newArtifact.stigType.Replace("Windows", "WIN");
                 newArtifact.stigType = newArtifact.stigType.Replace("Application Security and Development", "ASD");
@@ -154,6 +181,7 @@ namespace openrmf_templates_api.Controllers
                 newArtifact.stigRelease = newArtifact.stigRelease.Replace("Release: ", "R"); // i.e. R11, R2 for the release number
                 newArtifact.stigRelease = newArtifact.stigRelease.Replace("Benchmark Date:","dated");
             }
+            _logger.LogInformation("Called MakeTemplateRecord() successfully...returning template record");
             return newArtifact;
         }
     
@@ -163,13 +191,17 @@ namespace openrmf_templates_api.Controllers
         /// <returns>
         /// HTTP Status and the list of all Template records for non-SYSTEM templates
         /// </returns>
+        /// <response code="200">Returns the list of all non system templates</response>
+        /// <response code="400">If the search did not work correctly</response>
         [HttpGet]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> ListTemplates()
         {
             try {
+                _logger.LogInformation("Calling ListTemplates()");
                 IEnumerable<Template> Templates;
                 Templates = await _TemplateRepo.GetAllTemplates();
+                _logger.LogInformation("Called ListTemplates() successfully");
                 return Ok(Templates);
             }
             catch (Exception ex) {
@@ -185,19 +217,27 @@ namespace openrmf_templates_api.Controllers
         /// <returns>
         /// HTTP Status and the Template being requested. Or a 404.
         /// </returns>
+        /// <response code="200">Returns the searched for template by ID</response>
+        /// <response code="404">If the search did not work correctly</response>
         [HttpGet("{id}")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         public async Task<IActionResult> GetTemplate(string id)
         {
             try {
+                _logger.LogInformation("Calling GetTemplate({0})", id);
                 Template template = new Template();
                 template = await _TemplateRepo.GetTemplate(id);
+                if (template == null) {
+                    _logger.LogWarning("GetTemplate({0}) is not a valid ID", id);
+                    return NotFound();
+                }
                 template.CHECKLIST = ChecklistLoader.LoadChecklist(template.rawChecklist);
+                _logger.LogInformation("Called GetTemplate({0}) successfully", id);
                 return Ok(template);
             }
             catch (Exception ex) {
                 _logger.LogError(ex, "Error Retrieving Template");
-                return NotFound();
+                return BadRequest();
             }
         }
         
@@ -208,19 +248,79 @@ namespace openrmf_templates_api.Controllers
         /// <returns>
         /// HTTP Status and the Template being requested in CKL form. Or a 404.
         /// </returns>
+        /// <response code="200">Returns the XML of the template for template by ID</response>
+        /// <response code="404">If the search did not work correctly</response>
         [HttpGet("download/{id}")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
-        public async Task<IActionResult> DownloadChecklist(string id)
+        public async Task<IActionResult> DownloadTemplate(string id)
         {
             try {
+                _logger.LogInformation("Calling DownloadTemplate({0})", id);
                 Template template = new Template();
                 template = await _TemplateRepo.GetTemplate(id);
+                if (template == null) {
+                    _logger.LogWarning("DownloadTemplate({0}) is not a valid ID", id);
+                    return NotFound();
+                }
+                _logger.LogInformation("Called DownloadTemplate({0}) successfully", id);
                 return Ok(template.rawChecklist);
             }
             catch (Exception ex) {
                 _logger.LogError(ex, "Error Retrieving Template for Download");
                 return NotFound();
             }
-        }        
+        }
+
+        
+        #region Dashboard APIs
+        
+        /// <summary>
+        /// GET a count of the non-system templates for the dashboard number
+        /// </summary>
+        /// <returns>
+        /// HTTP Status and the count of user templates
+        /// </returns>
+        /// <response code="200">Returns the number</response>
+        /// <response code="404">If the count query did not work correctly</response>
+        [HttpGet("count/templates")]
+        [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        public async Task<IActionResult> CountUserTemplates()
+        {
+            try {
+                _logger.LogInformation("Calling CountUserTemplates()");
+                long result = await _TemplateRepo.CountUserTemplates();
+                _logger.LogInformation("Called CountUserTemplates()");
+                return Ok(result);
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error Retrieving User Template Count in MongoDB");
+                return NotFound();
+            }
+        }
+        
+        /// <summary>
+        /// GET a count of the system templates for the dashboard number
+        /// </summary>
+        /// <returns>
+        /// HTTP Status and the count of system templates
+        /// </returns>
+        /// <response code="200">Returns the number</response>
+        /// <response code="404">If the count query did not work correctly</response>
+        [HttpGet("count/systemtemplates")]
+        [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        public async Task<IActionResult> CountSystemTemplates()
+        {
+            try {
+                _logger.LogInformation("Calling CountSystemTemplates()");
+                long result = await _TemplateRepo.CountSystemTemplates();
+                _logger.LogInformation("Called CountSystemTemplates()");
+                return Ok(result);
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error Retrieving System Template Count in MongoDB");
+                return NotFound();
+            }
+        }
+        #endregion
     }
 }
