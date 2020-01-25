@@ -158,10 +158,12 @@ namespace openrmf_templates_api.Controllers
             _logger.LogInformation("MakeTemplateRecord() getting the STIG_INFO information");
             XmlNodeList stiginfoList = xmlDoc.GetElementsByTagName("STIG_INFO");
             foreach (XmlElement child in stiginfoList.Item(0).ChildNodes) {
-            if (child.FirstChild.InnerText == "releaseinfo")
-                newArtifact.stigRelease = child.LastChild.InnerText;
-            else if (child.FirstChild.InnerText == "title")
-                newArtifact.stigType = child.LastChild.InnerText;
+                if (child.FirstChild.InnerText == "releaseinfo")
+                    newArtifact.stigRelease = child.LastChild.InnerText;
+                else if (child.FirstChild.InnerText == "title")
+                    newArtifact.stigType = child.LastChild.InnerText;
+                else if (child.FirstChild.InnerText == "version")
+                    newArtifact.version = child.LastChild.InnerText;
             }
 
             _logger.LogInformation("MakeTemplateRecord() shortening names a bit to trim titles and such");
