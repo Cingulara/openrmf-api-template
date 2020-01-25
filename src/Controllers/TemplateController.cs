@@ -54,6 +54,9 @@ namespace openrmf_templates_api.Controllers
                 }
                 _logger.LogInformation("UploadNewChecklist() Making the template");
                 Template t = MakeTemplateRecord(rawChecklist);
+                if (t != null && !string.IsNullOrEmpty(description)) {
+                    t.description = description;
+                }
                 
                 // grab the user/system ID from the token if there which is *should* always be
                 var claim = this.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).FirstOrDefault();
