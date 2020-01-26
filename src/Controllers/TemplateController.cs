@@ -64,10 +64,11 @@ namespace openrmf_templates_api.Controllers
                     t.createdBy = Guid.Parse(claim.Value);
                 }
                 _logger.LogInformation("UploadNewChecklist() template created, saving to the database");
-                await _TemplateRepo.AddTemplate(t);
+                var record = await _TemplateRepo.AddTemplate(t);
                 _logger.LogInformation("Called UploadNewChecklist() and added checklists successfully");
-
-                return Ok();
+                if (record != null) 
+                    record.rawChecklist = ""; // remove this we do not need it here
+                return Ok(record);
             }
             catch (Exception ex) {
                 _logger.LogError(ex, "Error uploading template checklist file");

@@ -15,7 +15,7 @@ namespace openrmf_templates_api.Data {
         Task<IEnumerable<Template>> GetTemplate(string bodyText, DateTime updatedFrom, long headerSizeLimit);
 
         // add new note document
-        Task AddTemplate(Template item);
+        Task<Template> AddTemplate(Template item);
 
         // remove a single document
         Task<bool> RemoveTemplate(string id);

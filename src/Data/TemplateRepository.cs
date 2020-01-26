@@ -78,11 +78,12 @@ namespace openrmf_templates_api.Data {
             }
         }
         
-        public async Task AddTemplate(Template item)
+        public async Task<Template> AddTemplate(Template item)
         {
             try
             {
                 await _context.Templates.InsertOneAsync(item);
+                return item;
             }
             catch (Exception ex)
             {
