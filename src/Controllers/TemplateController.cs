@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using openrmf_templates_api.Models;
 using System.IO;
+using System.Text;
 using Microsoft.AspNetCore.Http;
 using System.Xml;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
+using NATS.Client;
+using Newtonsoft.Json;
 
 using openrmf_templates_api.Data;
 using openrmf_templates_api.Classes;
@@ -22,11 +26,13 @@ namespace openrmf_templates_api.Controllers
     {
 	    private readonly ITemplateRepository _TemplateRepo;
         private readonly ILogger<TemplateController> _logger;
+        private readonly IConnection _msgServer;
 
-        public TemplateController(ITemplateRepository TemplateRepo, ILogger<TemplateController> logger)
+        public TemplateController(ITemplateRepository TemplateRepo, ILogger<TemplateController> logger, IOptions<NATSServer> msgServer)
         {
             _logger = logger;
             _TemplateRepo = TemplateRepo;
+            _msgServer = msgServer.Value.connection;
         }
 
         /// <summary>
@@ -68,6 +74,15 @@ namespace openrmf_templates_api.Controllers
                 _logger.LogInformation("Called UploadNewChecklist() and added checklists successfully");
                 if (record != null) 
                     record.rawChecklist = ""; // remove this we do not need it here
+                    
+                // publish an audit event
+                _logger.LogInformation("UploadNewChecklist() publish an audit message on a new template {0}.", name);
+                Audit newAudit = GenerateAuditMessage(claim, "upload new template");
+                newAudit.message = string.Format("UploadNewChecklist() delete a single template {0}.", name);
+                newAudit.url = string.Format("POST checklistFile={0}",name);
+                _msgServer.Publish("openrmf.audit.save", Encoding.UTF8.GetBytes(Compression.CompressString(JsonConvert.SerializeObject(newAudit))));
+                _msgServer.Flush();
+                
                 return Ok(record);
             }
             catch (Exception ex) {
@@ -277,7 +292,54 @@ namespace openrmf_templates_api.Controllers
             }
         }
 
-        
+        /// <summary>
+        /// DELETE Called from the OpenRMF UI (or external access) to delete a template by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the template passed in</param>
+        /// <returns>
+        /// HTTP Status showing it was deleted or that there is an error.
+        /// </returns>
+        /// <response code="200">Returns success</response>
+        /// <response code="400">If the item did not delete correctly</response>
+        /// <response code="404">If the ID was not found</response>
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator,Editor")]
+        public async Task<IActionResult> DeleteTemplate(string id)
+        {
+            try {
+                _logger.LogInformation("Calling DeleteTemplate({0})", id);
+                Template template = _TemplateRepo.GetTemplate(id).Result;
+                if (template != null) {
+                    _logger.LogInformation("Deleting Template {0}", id);
+                    var deleted = await _TemplateRepo.RemoveTemplate(id);
+                    if (deleted)  {
+                        var claim = this.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).FirstOrDefault();         
+                        // publish an audit event
+                        _logger.LogInformation("DeleteTemplate() publish an audit message on a deleted template {0}.", id);
+                        Audit newAudit = GenerateAuditMessage(claim, "delete template");
+                        newAudit.message = string.Format("DeleteArtifact() delete a single template {0}.", id);
+                        newAudit.url = string.Format("DELETE /{0}",id);
+                        _msgServer.Publish("openrmf.audit.save", Encoding.UTF8.GetBytes(Compression.CompressString(JsonConvert.SerializeObject(newAudit))));
+                        _msgServer.Flush();
+                        return Ok();
+                    }
+                    else {
+                        _logger.LogWarning("DeleteTemplate() Template id {0} not deleted correctly", id);
+                        return NotFound();
+                    }
+                }
+                else {
+                    _logger.LogWarning("DeleteTemplate() Template id {0} not found", id);
+                    return NotFound();
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "DeleteTemplate() Error Deleting Template {0}", id);
+                return BadRequest();
+            }
+        }
+
+
         #region Dashboard APIs
         
         /// <summary>
@@ -327,6 +389,29 @@ namespace openrmf_templates_api.Controllers
                 return NotFound();
             }
         }
+        #endregion
+
+        #region Private Functions
+        private Audit GenerateAuditMessage(System.Security.Claims.Claim claim, string action) {
+            Audit audit = new Audit();
+            audit.program = "Template API";
+            audit.created = DateTime.Now;
+            audit.action = action;
+            if (claim != null) {
+            audit.userid = claim.Value;
+            var fullname = claim.Subject.Claims.Where(x => x.Type == "name").FirstOrDefault();
+            if (fullname != null) 
+                audit.fullname = fullname.Value;
+            var username = claim.Subject.Claims.Where(x => x.Type == "preferred_username").FirstOrDefault();
+            if (username != null) 
+                audit.username = username.Value;
+            var useremail = claim.Subject.Claims.Where(x => x.Type.Contains("emailaddress")).FirstOrDefault();
+            if (useremail != null) 
+                audit.email = useremail.Value;
+            }
+            return audit;
+        }
+
         #endregion
     }
 }

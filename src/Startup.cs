@@ -16,6 +16,7 @@ using OpenTracing;
 using OpenTracing.Util;
 using Jaeger;
 using Jaeger.Samplers;
+using NATS.Client;
 
 using openrmf_templates_api.Models;
 using openrmf_templates_api.Data;
@@ -35,6 +36,8 @@ namespace openrmf_templates_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+
             // Register the database components
             services.Configure<Settings>(options =>
             {
@@ -62,15 +65,58 @@ namespace openrmf_templates_api
             });
             services.AddOpenTracing();
 
-            // add repositories
+
+            // Create a new connection factory to create a connection.
+            ConnectionFactory cf = new ConnectionFactory();
             
+            // add the options for the server, reconnecting, and the handler events
+            Options opts = ConnectionFactory.GetDefaultOptions();
+            opts.MaxReconnect = -1;
+            opts.ReconnectWait = 1000;
+            opts.Name = "openrmf-api-template";
+            opts.Url = Environment.GetEnvironmentVariable("NATSSERVERURL");
+            opts.AsyncErrorEventHandler += (sender, events) =>
+            {
+                logger.Info("NATS client error. Server: {0}. Message: {1}. Subject: {2}", events.Conn.ConnectedUrl, events.Error, events.Subscription.Subject);
+            };
+
+            opts.ServerDiscoveredEventHandler += (sender, events) =>
+            {
+                logger.Info("A new server has joined the cluster: {0}", events.Conn.DiscoveredServers);
+            };
+
+            opts.ClosedEventHandler += (sender, events) =>
+            {
+                logger.Info("Connection Closed: {0}", events.Conn.ConnectedUrl);
+            };
+
+            opts.ReconnectedEventHandler += (sender, events) =>
+            {
+                logger.Info("Connection Reconnected: {0}", events.Conn.ConnectedUrl);
+            };
+
+            opts.DisconnectedEventHandler += (sender, events) =>
+            {
+                logger.Info("Connection Disconnected: {0}", events.Conn.ConnectedUrl);
+            };
+            
+            // Creates a live connection to the NATS Server with the above options
+            IConnection conn = cf.CreateConnection(opts);
+
+            // setup the NATS server
+            services.Configure<NATSServer>(options =>
+            {
+                options.connection = conn;
+            });
+
+            // add repositories            
             services.AddTransient<ITemplateRepository, TemplateRepository>();
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "OpenRMF Scoring API", Version = "v1", 
-                    Description = "The Scoring API that goes with the OpenRMF tool",
+                c.SwaggerDoc("v1", new Info { Title = "OpenRMF Template API", Version = "v1", 
+                    Description = "The Template API that goes with the OpenRMF tool",
                     Contact = new Contact
                     {
                         Name = "Dale Bingham",

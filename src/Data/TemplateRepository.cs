@@ -94,14 +94,20 @@ namespace openrmf_templates_api.Data {
 
         public async Task<bool> RemoveTemplate(string id)
         {
+            var filter = Builders<Template>.Filter.Eq(s => s.InternalId, GetInternalId(id));
             try
             {
-                DeleteResult actionResult 
-                    = await _context.Templates.DeleteOneAsync(
-                        Builders<Template>.Filter.Eq("Id", id));
-
-                return actionResult.IsAcknowledged 
-                    && actionResult.DeletedCount > 0;
+                Template art = new Template();
+                art.InternalId = GetInternalId(id);
+                // only save the data outside of the checklist, update the date
+                var currentRecord = await _context.Templates.Find(t => t.InternalId == art.InternalId).FirstOrDefaultAsync();
+                if (currentRecord != null){
+                    DeleteResult actionResult = await _context.Templates.DeleteOneAsync(Builders<Template>.Filter.Eq("_id", art.InternalId));
+                    return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
+                } 
+                else {
+                    throw new KeyNotFoundException();
+                }
             }
             catch (Exception ex)
             {

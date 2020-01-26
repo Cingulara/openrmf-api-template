@@ -34,6 +34,7 @@
                 "ASPNETCORE_URLS": "http://*:8088",
                 "MONGODBCONNECTION": "mongodb://openrmf:openrmf1234!@localhost/openrmf?authSource=admin",
                 "MONGODB": "openrmftemplate",
+                "NATSSERVERURL": "nats://127.0.0.1:4222",
                 "JWT-AUTHORITY" : "http://192.168.13.23:9001/auth/realms/openrmf",
                 "JWT-CLIENT": "openrmf"
             },
