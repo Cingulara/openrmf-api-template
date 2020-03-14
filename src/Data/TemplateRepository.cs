@@ -148,6 +148,20 @@ namespace openrmf_templates_api.Data {
             }
         }
 
+        // get the most recent Template record based on title, version, and release
+        public async Task<Template> GetLatestTemplate(string title) {
+            try
+            {
+                var query = _context.Templates.Find(Template => Template.title == title);
+                return await query.SortByDescending(y => y.version).ThenByDescending(z => z.stigRelease).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                // log or manage the exception
+                throw ex;
+            }
+        }
+
         public async Task<long> CountUserTemplates(){
             try {
                 long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "USER"));

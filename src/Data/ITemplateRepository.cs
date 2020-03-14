@@ -26,6 +26,9 @@ namespace openrmf_templates_api.Data {
         // update just a single document
         Task<bool> UpdateTemplate(string id, Template body);
 
+        // see what the most recent Template is by version and release
+        Task<Template> GetLatestTemplate(string title);
+
 
         /******************************************** 
          Dashboard specific calls
