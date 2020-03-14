@@ -420,7 +420,7 @@ namespace openrmf_templates_api.Controllers
             }
             // now that the beginning "release" labels are gone let's see what number is left
             int spacing = value.IndexOf(" ",0); // where is the first space
-            value = value.Substring(0,spacing-1); // this should be the release number
+            value = value.Substring(0,spacing); // this should be the release number
             Int16.TryParse(value, out rel);
             return rel;
         }
