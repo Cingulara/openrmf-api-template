@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using openrmf_templates_api.Models;
 using System.IO;
+using System.Text;
 using Microsoft.AspNetCore.Http;
 using System.Xml;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
+using NATS.Client;
+using Newtonsoft.Json;
 
 using openrmf_templates_api.Data;
 using openrmf_templates_api.Classes;
@@ -22,11 +26,13 @@ namespace openrmf_templates_api.Controllers
     {
 	    private readonly ITemplateRepository _TemplateRepo;
         private readonly ILogger<TemplateController> _logger;
+        private readonly IConnection _msgServer;
 
-        public TemplateController(ITemplateRepository TemplateRepo, ILogger<TemplateController> logger)
+        public TemplateController(ITemplateRepository TemplateRepo, ILogger<TemplateController> logger, IOptions<NATSServer> msgServer)
         {
             _logger = logger;
             _TemplateRepo = TemplateRepo;
+            _msgServer = msgServer.Value.connection;
         }
 
         /// <summary>
@@ -54,6 +60,9 @@ namespace openrmf_templates_api.Controllers
                 }
                 _logger.LogInformation("UploadNewChecklist() Making the template");
                 Template t = MakeTemplateRecord(rawChecklist);
+                if (t != null && !string.IsNullOrEmpty(description)) {
+                    t.description = description;
+                }
                 
                 // grab the user/system ID from the token if there which is *should* always be
                 var claim = this.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).FirstOrDefault();
@@ -61,13 +70,23 @@ namespace openrmf_templates_api.Controllers
                     t.createdBy = Guid.Parse(claim.Value);
                 }
                 _logger.LogInformation("UploadNewChecklist() template created, saving to the database");
-                await _TemplateRepo.AddTemplate(t);
+                var record = await _TemplateRepo.AddTemplate(t);
                 _logger.LogInformation("Called UploadNewChecklist() and added checklists successfully");
-
-                return Ok();
+                if (record != null) 
+                    record.rawChecklist = ""; // remove this we do not need it here
+                    
+                // publish an audit event
+                _logger.LogInformation("UploadNewChecklist() publish an audit message on a new template {0}.", name);
+                Audit newAudit = GenerateAuditMessage(claim, "upload new template");
+                newAudit.message = string.Format("UploadNewChecklist() delete a single template {0}.", name);
+                newAudit.url = string.Format("POST checklistFile={0}",name);
+                _msgServer.Publish("openrmf.audit.save", Encoding.UTF8.GetBytes(Compression.CompressString(JsonConvert.SerializeObject(newAudit))));
+                _msgServer.Flush();
+                
+                return Ok(record);
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error uploading template checklist file");
+                _logger.LogError(ex, "UploadNewChecklist() Error uploading template checklist file");
                 return BadRequest();
             }
         }
@@ -127,7 +146,7 @@ namespace openrmf_templates_api.Controllers
                 return Ok();
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error Uploading updated Template Checklist file");
+                _logger.LogError(ex, "UpdateChecklist({0}) Error Uploading updated Template Checklist file", id);
                 return BadRequest();
             }
         }
@@ -158,10 +177,12 @@ namespace openrmf_templates_api.Controllers
             _logger.LogInformation("MakeTemplateRecord() getting the STIG_INFO information");
             XmlNodeList stiginfoList = xmlDoc.GetElementsByTagName("STIG_INFO");
             foreach (XmlElement child in stiginfoList.Item(0).ChildNodes) {
-            if (child.FirstChild.InnerText == "releaseinfo")
-                newArtifact.stigRelease = child.LastChild.InnerText;
-            else if (child.FirstChild.InnerText == "title")
-                newArtifact.stigType = child.LastChild.InnerText;
+                if (child.FirstChild.InnerText == "releaseinfo")
+                    newArtifact.stigRelease = child.LastChild.InnerText;
+                else if (child.FirstChild.InnerText == "title")
+                    newArtifact.stigType = child.LastChild.InnerText;
+                else if (child.FirstChild.InnerText == "version")
+                    newArtifact.version = child.LastChild.InnerText;
             }
 
             _logger.LogInformation("MakeTemplateRecord() shortening names a bit to trim titles and such");
@@ -205,7 +226,7 @@ namespace openrmf_templates_api.Controllers
                 return Ok(Templates);
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error listing all Templates and deserializing the checklist XML");
+                _logger.LogError(ex, "ListTemplates() Error listing all Templates and deserializing the checklist XML");
                 return BadRequest();
             }
         }
@@ -236,7 +257,7 @@ namespace openrmf_templates_api.Controllers
                 return Ok(template);
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error Retrieving Template");
+                _logger.LogError(ex, "GetLatestTemplate({0}) Error Retrieving Template", id);
                 return BadRequest();
             }
         }
@@ -266,12 +287,144 @@ namespace openrmf_templates_api.Controllers
                 return Ok(template.rawChecklist);
             }
             catch (Exception ex) {
-                _logger.LogError(ex, "Error Retrieving Template for Download");
+                _logger.LogError(ex, "DownloadTemplate({0}) Error Retrieving Template for Download", id);
                 return NotFound();
             }
         }
 
+        /// <summary>
+        /// DELETE Called from the OpenRMF UI (or external access) to delete a template by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the template passed in</param>
+        /// <returns>
+        /// HTTP Status showing it was deleted or that there is an error.
+        /// </returns>
+        /// <response code="200">Returns success</response>
+        /// <response code="400">If the item did not delete correctly</response>
+        /// <response code="404">If the ID was not found</response>
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator,Editor")]
+        public async Task<IActionResult> DeleteTemplate(string id)
+        {
+            try {
+                _logger.LogInformation("Calling DeleteTemplate({0})", id);
+                Template template = _TemplateRepo.GetTemplate(id).Result;
+                if (template != null) {
+                    _logger.LogInformation("Deleting Template {0}", id);
+                    var deleted = await _TemplateRepo.RemoveTemplate(id);
+                    if (deleted)  {
+                        var claim = this.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).FirstOrDefault();         
+                        // publish an audit event
+                        _logger.LogInformation("DeleteTemplate() publish an audit message on a deleted template {0}.", id);
+                        Audit newAudit = GenerateAuditMessage(claim, "delete template");
+                        newAudit.message = string.Format("DeleteArtifact() delete a single template {0}.", id);
+                        newAudit.url = string.Format("DELETE /{0}",id);
+                        _msgServer.Publish("openrmf.audit.save", Encoding.UTF8.GetBytes(Compression.CompressString(JsonConvert.SerializeObject(newAudit))));
+                        _msgServer.Flush();
+                        return Ok();
+                    }
+                    else {
+                        _logger.LogWarning("DeleteTemplate() Template id {0} not deleted correctly", id);
+                        return NotFound();
+                    }
+                }
+                else {
+                    _logger.LogWarning("DeleteTemplate() Template id {0} not found", id);
+                    return NotFound();
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "DeleteTemplate() Error Deleting Template {0}", id);
+                return BadRequest();
+            }
+        }
+
+
+        /// <summary>
+        /// See if a specific checklist version/release has an update
+        /// </summary>
+        /// <param name="systemGroupId">The id of the system record for this checklist</param>
+        /// <param name="artifactId">The id of the checklist</param>
+        /// <returns>
+        /// HTTP Status and the Template information being requested (Template record). Or a 404.
+        /// </returns>
+        /// <response code="200">Returns the searched for template information</response>
+        /// <response code="404">If the search did not work correctly</response>
+        [HttpGet("checklistupdate/system/{systemGroupId}/artifact/{artifactId}")]
+        [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        public async Task<IActionResult> GetLatestTemplate(string systemGroupId, string artifactId)
+        {
+            try {
+                _logger.LogInformation("Calling GetLatestTemplate({0}, {1})", systemGroupId, artifactId);
+                Artifact art = NATSClient.GetCurrentChecklist(systemGroupId, artifactId);
+                if (art != null) {
+                    Template template = new Template();
+                    string stigType = "";
+                    SI_DATA data = art.CHECKLIST.STIGS.iSTIG.STIG_INFO.SI_DATA.Where(x => x.SID_NAME == "title").FirstOrDefault();
+                    if (data != null) {
+                        // get the artifact checklists's actual checklist type from DISA
+                        stigType = data.SID_DATA;
+                        template = await _TemplateRepo.GetLatestTemplate(stigType);
+                        if (template == null) {
+                            _logger.LogWarning("GetLatestTemplate({0}, {1}) is not a valid ID", systemGroupId, artifactId);
+                            return NotFound();
+                        }
+                        
+                        // now let's compare versions and releases and see if there is a new one
+                        if (Convert.ToInt16(template.version) > Convert.ToInt16(art.version)) {
+                            _logger.LogInformation("Called GetLatestTemplate({0}, {1}) successfully and returned a new template version {2}", systemGroupId, artifactId, art.version);
+                            // new version, send it
+                            return Ok(template);
+                        }
+                        if (Convert.ToInt16(template.version) == Convert.ToInt16(art.version)) {
+                            // same version, let's check the release
+                            // checklist Release = Rxx where xx is a number like "R18 dated 25 Oct 2019"
+                            // template release is the full text "Release: 6 Benchmark Date: 24 Jan 2020" 
+                            // so we need to remove Release:, trim it, then take the first "word" up to the space
+                            // convert to INT if possible, and then test the template release > checklist release
+                            int artifactRelease = GetReleaseValue(art.stigRelease);
+                            int templateRelease = GetReleaseValue(template.stigRelease);
+                            if (templateRelease > artifactRelease) {
+                                _logger.LogInformation("Called GetLatestTemplate({0}, {1}) successfully and returned a new template release {2}", systemGroupId, artifactId, template.stigRelease);
+                                return Ok(template);
+                            } else {
+                                _logger.LogInformation("Called GetLatestTemplate({0}, {1}) successfully and already at the correct version {2} and release {3}", systemGroupId, artifactId, art.version, art.stigRelease);
+                                return NotFound("No New Template");
+                            }
+                        }
+                        else {
+                            // this is not valid, return not found
+                            _logger.LogWarning("Called GetLatestTemplate({0}, {1}) with an odd version and release", systemGroupId, artifactId);
+                            return NotFound("The checklist passed in had an Invalid Version and/or Release");
+                        }
+                    } else {
+                        _logger.LogWarning("Called GetLatestTemplate({0}, {1}) with an invalid systemId or artifactId checklist type", systemGroupId, artifactId);
+                        return BadRequest("The checklist passed in had an Invalid System Artifact/Checklist Type");
+                    }
+                } else {
+                    _logger.LogWarning("Called GetLatestTemplate({0}, {1}) with an invalid systemId or artifactId", systemGroupId, artifactId);
+                    return BadRequest("The checklist passed in had an Invalid System Artifact/Checklist");
+                }
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "GetLatestTemplate({0}, {1}) Error Retrieving Latest Template", systemGroupId, artifactId);
+                return BadRequest();
+            }
+        }
         
+        private short GetReleaseValue(string release) {
+            short rel = 0;
+            string value = release.Replace("Release: ",""); // remove this for templates
+            if (value.Substring(0,1) == "R") {// this is for checklists or for R12 kind of designations for release
+                value = value.Substring(1); // keep the rest
+            }
+            // now that the beginning "release" labels are gone let's see what number is left
+            int spacing = value.IndexOf(" ",0); // where is the first space
+            value = value.Substring(0,spacing); // this should be the release number
+            Int16.TryParse(value, out rel);
+            return rel;
+        }
+
         #region Dashboard APIs
         
         /// <summary>
@@ -321,6 +474,29 @@ namespace openrmf_templates_api.Controllers
                 return NotFound();
             }
         }
+        #endregion
+
+        #region Private Functions
+        private Audit GenerateAuditMessage(System.Security.Claims.Claim claim, string action) {
+            Audit audit = new Audit();
+            audit.program = "Template API";
+            audit.created = DateTime.Now;
+            audit.action = action;
+            if (claim != null) {
+            audit.userid = claim.Value;
+            var fullname = claim.Subject.Claims.Where(x => x.Type == "name").FirstOrDefault();
+            if (fullname != null) 
+                audit.fullname = fullname.Value;
+            var username = claim.Subject.Claims.Where(x => x.Type == "preferred_username").FirstOrDefault();
+            if (username != null) 
+                audit.username = username.Value;
+            var useremail = claim.Subject.Claims.Where(x => x.Type.Contains("emailaddress")).FirstOrDefault();
+            if (useremail != null) 
+                audit.email = useremail.Value;
+            }
+            return audit;
+        }
+
         #endregion
     }
 }
