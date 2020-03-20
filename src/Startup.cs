@@ -14,8 +14,6 @@ using Microsoft.AspNetCore.Http;
 using Prometheus;
 using OpenTracing;
 using OpenTracing.Util;
-using Jaeger;
-using Jaeger.Samplers;
 using NATS.Client;
 
 using openrmf_templates_api.Models;
@@ -47,24 +45,17 @@ namespace openrmf_templates_api
             
             // Use "OpenTracing.Contrib.NetCore" to automatically generate spans for ASP.NET Core
             services.AddSingleton<ITracer>(serviceProvider =>  
-            {  
-                string serviceName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;  
-            
-                ILoggerFactory loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();  
-            
-                ISampler sampler = new ConstSampler(sample: true);  
-            
-                ITracer tracer = new Tracer.Builder(serviceName)  
-                    .WithLoggerFactory(loggerFactory)  
-                    .WithSampler(sampler)  
-                    .Build();  
+            {                
+                var loggerFactory = new LoggerFactory();
+                // use the environment variables to setup the Jaeger endpoints
+                var config = Jaeger.Configuration.FromEnv(loggerFactory);
+                var tracer = config.GetTracer();
             
                 GlobalTracer.Register(tracer);  
             
                 return tracer;  
             });
             services.AddOpenTracing();
-
 
             // Create a new connection factory to create a connection.
             ConnectionFactory cf = new ConnectionFactory();

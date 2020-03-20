@@ -339,7 +339,6 @@ namespace openrmf_templates_api.Controllers
             }
         }
 
-
         /// <summary>
         /// See if a specific checklist version/release has an update
         /// </summary>
