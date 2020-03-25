@@ -3,6 +3,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using openrmf_templates_api.Data;
 
 namespace openrmf_templates_api.Controllers
 {
@@ -10,10 +11,12 @@ namespace openrmf_templates_api.Controllers
     public class HealthController : Controller
     {
        private readonly ILogger<HealthController> _logger;
+       private readonly ITemplateRepository _TemplateRepo;
 
-        public HealthController(ILogger<HealthController> logger)
+        public HealthController(ITemplateRepository TemplateRepo, ILogger<HealthController> logger)
         {
             _logger = logger;
+            _TemplateRepo = TemplateRepo;
         }
 
         /// <summary>
@@ -21,14 +24,17 @@ namespace openrmf_templates_api.Controllers
         /// mainly for the K8s health check but can be used for any kind of health check.
         /// </summary>
         /// <returns>an OK if good to go, otherwise returns a bad request</returns>
-        /// <response code="200">Returns the newly created item</response>
+        /// <response code="200">Returns a healthy status</response>
         /// <response code="400">If the health check is bad</response>
         [HttpGet]
         public ActionResult<string> Get()
         {
             try {
                 _logger.LogInformation(string.Format("/healthz: healthcheck heartbeat"));
-                return Ok("ok");
+                if (_TemplateRepo.HealthStatus())
+                    return Ok("ok");
+                else
+                    return BadRequest("database error");
             }
             catch (Exception ex){
                 _logger.LogError(ex, "Healthz check failed!");
