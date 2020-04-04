@@ -148,6 +148,14 @@ namespace openrmf_templates_api.Data {
             }
         }
 
+        // check that the database is responding and it returns at least one collection name
+        public bool HealthStatus(){
+            var result = _context.Templates.Database.ListCollectionNamesAsync().GetAwaiter().GetResult().FirstOrDefault();
+            if (!string.IsNullOrEmpty(result)) // we are good to go
+                return true;
+            return false;
+        }
+
         // get the most recent Template record based on title, version, and release
         public async Task<Template> GetLatestTemplate(string title) {
             try

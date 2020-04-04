@@ -29,6 +29,7 @@ namespace openrmf_templates_api.Data {
         // see what the most recent Template is by version and release
         Task<Template> GetLatestTemplate(string title);
 
+        bool HealthStatus();
 
         /******************************************** 
          Dashboard specific calls

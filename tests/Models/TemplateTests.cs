@@ -11,6 +11,9 @@ namespace tests.Models
         {
             Template t = new Template();
             Assert.True(t != null);
+            Assert.True(t.templateType == "USER");
+            Assert.True(t.CHECKLIST != null);
+            Assert.False(t.updatedOn.HasValue);
         }
     
         [Fact]
@@ -22,7 +25,14 @@ namespace tests.Models
             t.stigType = "Google Chrome";
             t.stigRelease = "Version 1";
             t.rawChecklist = "<XML>";
+            t.title = "This is my Google Chrome title";
+            t.description = "This is my description";
             t.updatedOn = DateTime.Now;
+            t.templateType = "SYSTEM";
+            t.version = "2";
+            t.filename = "This-is-my-checklist-manual-xccdf.xml";
+            t.stigDate = DateTime.Now.ToShortDateString();
+            t.stigId = "myId";
 
             // test things out
             Assert.True(t != null);
@@ -30,7 +40,13 @@ namespace tests.Models
             Assert.True (!string.IsNullOrEmpty(t.stigType));
             Assert.True (!string.IsNullOrEmpty(t.stigRelease));
             Assert.True (!string.IsNullOrEmpty(t.rawChecklist));
-            Assert.True (!string.IsNullOrEmpty(t.title));  // readonly from other fields
+            Assert.True (!string.IsNullOrEmpty(t.title));
+            Assert.True (!string.IsNullOrEmpty(t.description));
+            Assert.True (!string.IsNullOrEmpty(t.templateType));
+            Assert.True (!string.IsNullOrEmpty(t.version));
+            Assert.True (!string.IsNullOrEmpty(t.filename));
+            Assert.True (!string.IsNullOrEmpty(t.stigDate));
+            Assert.True (!string.IsNullOrEmpty(t.stigId));
             Assert.True (t.updatedOn.HasValue);
             Assert.True (!string.IsNullOrEmpty(t.updatedOn.Value.ToShortDateString()));
             Assert.True (t.CHECKLIST != null);
