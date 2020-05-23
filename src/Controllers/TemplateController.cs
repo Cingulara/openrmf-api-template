@@ -353,7 +353,7 @@ namespace openrmf_templates_api.Controllers
         /// <response code="404">If the search did not work correctly</response>
         [HttpGet("checklistupdate/system/{systemGroupId}/artifact/{artifactId}")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
-        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new [] {"systemGroupId", "artifactId"})]
+        //[ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new [] {"systemGroupId", "artifactId"})]
         public async Task<IActionResult> GetLatestTemplate(string systemGroupId, string artifactId)
         {
             try {
