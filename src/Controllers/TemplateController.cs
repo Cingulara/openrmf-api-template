@@ -47,7 +47,7 @@ namespace openrmf_templates_api.Controllers
         /// <response code="200">Returns the newly created item</response>
         /// <response code="400">If the item did not create correctly</response>     
         [HttpPost]
-        [Authorize(Roles = "Administrator,Editor")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, string description = "")
         {
             try {
@@ -105,7 +105,7 @@ namespace openrmf_templates_api.Controllers
         /// <response code="400">If the item did not update correctly</response>
         /// <response code="404">If the ID passed in is not valid</response>
         [HttpPut]
-        [Authorize(Roles = "Administrator,Editor")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UpdateChecklist(string id, IFormFile checklistFile, string description = "")
         {
             try {
@@ -216,6 +216,7 @@ namespace openrmf_templates_api.Controllers
         /// <response code="400">If the search did not work correctly</response>
         [HttpGet]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
         public async Task<IActionResult> ListTemplates()
         {
             try {
@@ -242,6 +243,7 @@ namespace openrmf_templates_api.Controllers
         /// <response code="404">If the search did not work correctly</response>
         [HttpGet("{id}")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new [] {"id"})]
         public async Task<IActionResult> GetTemplate(string id)
         {
             try {
@@ -303,7 +305,7 @@ namespace openrmf_templates_api.Controllers
         /// <response code="400">If the item did not delete correctly</response>
         /// <response code="404">If the ID was not found</response>
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Administrator,Editor")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteTemplate(string id)
         {
             try {
@@ -351,6 +353,7 @@ namespace openrmf_templates_api.Controllers
         /// <response code="404">If the search did not work correctly</response>
         [HttpGet("checklistupdate/system/{systemGroupId}/artifact/{artifactId}")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        //[ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any, VaryByQueryKeys = new [] {"systemGroupId", "artifactId"})]
         public async Task<IActionResult> GetLatestTemplate(string systemGroupId, string artifactId)
         {
             try {
@@ -436,6 +439,7 @@ namespace openrmf_templates_api.Controllers
         /// <response code="404">If the count query did not work correctly</response>
         [HttpGet("count/templates")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
         public async Task<IActionResult> CountUserTemplates()
         {
             try {
@@ -460,6 +464,7 @@ namespace openrmf_templates_api.Controllers
         /// <response code="404">If the count query did not work correctly</response>
         [HttpGet("count/systemtemplates")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
         public async Task<IActionResult> CountSystemTemplates()
         {
             try {
