@@ -15,7 +15,7 @@ namespace openrmf_templates_api.Data {
         Task<IEnumerable<Template>> GetTemplate(string bodyText, DateTime updatedFrom, long headerSizeLimit);
 
         // add new note document
-        Task AddTemplate(Template item);
+        Task<Template> AddTemplate(Template item);
 
         // remove a single document
         Task<bool> RemoveTemplate(string id);
@@ -26,6 +26,10 @@ namespace openrmf_templates_api.Data {
         // update just a single document
         Task<bool> UpdateTemplate(string id, Template body);
 
+        // see what the most recent Template is by version and release
+        Task<Template> GetLatestTemplate(string title);
+
+        bool HealthStatus();
 
         /******************************************** 
          Dashboard specific calls

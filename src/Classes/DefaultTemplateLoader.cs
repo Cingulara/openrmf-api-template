@@ -257,11 +257,19 @@ namespace openrmf_templates_api.Classes
                                         vulnListing.Mitigations = ruledescription.Substring(13, ruledescription.IndexOf("Mitigations",13)-15);
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Mitigations.Length+27);
-                                    // SeverityOverrideGuidance
-                                    if (ruledescription.Substring(26, ruledescription.IndexOf("SeverityOverrideGuidance",26)-27) == "<")
-                                        vulnListing.Security_Override_Guidance = ""; // empty
-                                    else {
-                                        vulnListing.Security_Override_Guidance = ruledescription.Substring(26, ruledescription.IndexOf("SeverityOverrideGuidance",26)-28);
+                                    // SeverityOverrideGuidance, sometimes SecurityOverrideGuidance
+                                    if (ruledescription.IndexOf("SeverityOverrideGuidance",26) >= 0) {
+                                        if (ruledescription.Substring(26, ruledescription.IndexOf("SeverityOverrideGuidance",26)-27) == "<")
+                                            vulnListing.Security_Override_Guidance = ""; // empty
+                                        else {
+                                            vulnListing.Security_Override_Guidance = ruledescription.Substring(26, ruledescription.IndexOf("SeverityOverrideGuidance",26)-28);
+                                        }
+                                    } else if (ruledescription.IndexOf("SecurityOverrideGuidance",26) >= 0) {
+                                        if (ruledescription.Substring(26, ruledescription.IndexOf("SecurityOverrideGuidance",26)-27) == "<")
+                                            vulnListing.Security_Override_Guidance = ""; // empty
+                                        else {
+                                            vulnListing.Security_Override_Guidance = ruledescription.Substring(26, ruledescription.IndexOf("SecurityOverrideGuidance",26)-28);
+                                        }
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Security_Override_Guidance.Length+53);
                                     // PotentialImpacts
@@ -351,10 +359,14 @@ namespace openrmf_templates_api.Classes
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "STIGRef", ATTRIBUTE_DATA = newArtifact.title + " :: Version " + newArtifact.version + ", " + newArtifact.stigRelease});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "TargetKey", ATTRIBUTE_DATA = newArtifact.CHECKLIST.ASSET.TARGET_KEY});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "STIG_UUID", ATTRIBUTE_DATA = stigGUID}); // use the same UUID throughout
-                // there can be more than one in here; make sure we have at least one
-                foreach(string str in vulnListing.CCI_REF.Split("||")) {
-                    if (!string.IsNullOrEmpty(str) && str.Length > 3) // make sure it is valid
-                        vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "CCI_REF", ATTRIBUTE_DATA = str});
+                if (vulnListing.CCI_REF != null) { //there are CCI REFs in here so get them
+                    // there can be more than one in here; make sure we have at least one
+                    foreach(string str in vulnListing.CCI_REF.Split("||")) {
+                        if (!string.IsNullOrEmpty(str) && str.Length > 3) // make sure it is valid
+                            vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "CCI_REF", ATTRIBUTE_DATA = str});
+                    }
+                } else {
+                    vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "CCI_REF", ATTRIBUTE_DATA = ""});
                 }
                 vulnitem.STATUS = "Not_Reviewed"; // by default
                 vulnitem.COMMENTS = "";

@@ -78,11 +78,12 @@ namespace openrmf_templates_api.Data {
             }
         }
         
-        public async Task AddTemplate(Template item)
+        public async Task<Template> AddTemplate(Template item)
         {
             try
             {
                 await _context.Templates.InsertOneAsync(item);
+                return item;
             }
             catch (Exception ex)
             {
@@ -93,14 +94,20 @@ namespace openrmf_templates_api.Data {
 
         public async Task<bool> RemoveTemplate(string id)
         {
+            var filter = Builders<Template>.Filter.Eq(s => s.InternalId, GetInternalId(id));
             try
             {
-                DeleteResult actionResult 
-                    = await _context.Templates.DeleteOneAsync(
-                        Builders<Template>.Filter.Eq("Id", id));
-
-                return actionResult.IsAcknowledged 
-                    && actionResult.DeletedCount > 0;
+                Template art = new Template();
+                art.InternalId = GetInternalId(id);
+                // only save the data outside of the checklist, update the date
+                var currentRecord = await _context.Templates.Find(t => t.InternalId == art.InternalId).FirstOrDefaultAsync();
+                if (currentRecord != null){
+                    DeleteResult actionResult = await _context.Templates.DeleteOneAsync(Builders<Template>.Filter.Eq("_id", art.InternalId));
+                    return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
+                } 
+                else {
+                    throw new KeyNotFoundException();
+                }
             }
             catch (Exception ex)
             {
@@ -133,6 +140,28 @@ namespace openrmf_templates_api.Data {
                 body.InternalId = GetInternalId(id);
                 var actionResult = await _context.Templates.ReplaceOneAsync(filter, body);
                 return actionResult.IsAcknowledged && actionResult.ModifiedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                // log or manage the exception
+                throw ex;
+            }
+        }
+
+        // check that the database is responding and it returns at least one collection name
+        public bool HealthStatus(){
+            var result = _context.Templates.Database.ListCollectionNamesAsync().GetAwaiter().GetResult().FirstOrDefault();
+            if (!string.IsNullOrEmpty(result)) // we are good to go
+                return true;
+            return false;
+        }
+
+        // get the most recent Template record based on title, version, and release
+        public async Task<Template> GetLatestTemplate(string title) {
+            try
+            {
+                var query = _context.Templates.Find(Template => Template.title == title);
+                return await query.SortByDescending(y => y.version).ThenByDescending(z => z.stigRelease).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
