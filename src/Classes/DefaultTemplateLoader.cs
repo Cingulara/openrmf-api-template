@@ -30,8 +30,11 @@ namespace openrmf_templates_api.Classes
             string rawChecklist = "";
             Template t;
             Settings s = new Settings();
-            s.ConnectionString = Environment.GetEnvironmentVariable("MONGODBCONNECTION");
-            s.Database = Environment.GetEnvironmentVariable("MONGODB");
+            
+            if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DBTYPE")) || Environment.GetEnvironmentVariable("DBTYPE").ToLower() == "mongo") {
+                s.ConnectionString = Environment.GetEnvironmentVariable("DBCONNECTION");
+                s.Database = Environment.GetEnvironmentVariable("DB");
+            }
             TemplateRepository _templateRepo = new TemplateRepository(s);
             // remove old ones first
             if (filenames.Length > 0) _templateRepo.RemoveSystemTemplates().Wait();
