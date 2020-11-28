@@ -150,7 +150,7 @@ namespace openrmf_templates_api.Controllers
                 return BadRequest();
             }
         }
-                
+
         /// <summary>
         /// parses the text and system, generates the pieces, and returns the artifact to save
         /// </summary>
