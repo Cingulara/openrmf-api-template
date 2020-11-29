@@ -28,12 +28,10 @@ jobs:
       run: dotnet test tests --verbosity normal
     - name: Build the Docker image
       run: docker build . --file ./Dockerfile --tag localbuild/openrmf-api-template:latest
-    - uses: anchore/scan-action@master
+    - uses: anchore/scan-action@v2
       with:
-        image-reference: "localbuild/openrmf-api-template:latest"
-        dockerfile-path: "./Dockerfile"
+        image: "localbuild/openrmf-api-template:latest"
         fail-build: false
         debug: true
-        include-app-packages: true
     - name: anchore inline scan JSON results
       run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
