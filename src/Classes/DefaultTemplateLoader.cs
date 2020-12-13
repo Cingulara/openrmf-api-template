@@ -313,7 +313,14 @@ namespace openrmf_templates_api.Classes
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.IA_Controls.Length+25);
                                 } else if (rule.Name == "ident") {
-                                    vulnListing.CCI_REF = rule.InnerText + "||"; // could be many of these CCI-xxx numbers
+                                    if (rule.Attributes.Count > 0) {
+                                        foreach (XmlAttribute ruleAttr in rule.Attributes) {
+                                            if (ruleAttr.Name == "system" && ruleAttr.Value.EndsWith(".mil/cci")){
+                                                vulnListing.CCI_REF = vulnListing.CCI_REF + rule.InnerText + "||"; // could be many of these CCI-xxx numbers        
+                                            }
+                                        }
+                                    } else 
+                                        vulnListing.CCI_REF = vulnListing.CCI_REF + rule.InnerText + "||"; // could be many of these CCI-xxx numbers
                                 } else if (rule.Name == "fixtext") {
                                     vulnListing.Fix_Text = rule.InnerText;
                                 } else if (rule.Name == "check") {
