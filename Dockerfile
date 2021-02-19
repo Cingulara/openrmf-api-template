@@ -30,4 +30,4 @@ RUN chown openrmfuser:openrmfgroup /app
 
 USER 1001
 # start the application
-ENTRYPOINT ["./openrmfpro-api-template"]
+ENTRYPOINT ["./openrmf-api-template"]
