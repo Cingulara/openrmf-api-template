@@ -1,4 +1,4 @@
-VERSION ?= 1.05.04
+VERSION ?= 1.05.06
 NAME ?= "openrmf-api-template"
 AUTHOR ?= "Dale Bingham"
 PORT_EXT ?= 8088
