@@ -24,7 +24,7 @@ namespace openrmf_templates_api.Classes
             CHECKLIST myChecklist = new CHECKLIST();
             XmlSerializer serializer = new XmlSerializer(typeof(CHECKLIST));
             // sanitize it for JS
-            rawChecklist = rawChecklist.Replace("\n","").Replace("\t","");
+            rawChecklist = rawChecklist.Replace("\t","");
             XmlDocument xmlDoc = new XmlDocument();
             // load the doc into the XML structure
             xmlDoc.LoadXml(rawChecklist);
