@@ -7,7 +7,7 @@
     <ProjectGuid>{95fe0bbf-276d-4153-8f1b-6ecfd0516b40}</ProjectGuid>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
-    <Version>1.05.05</Version>
+    <Version>1.06.00</Version>
     <InformationalVersion>This is the OpenRMF Tool Template API from Cingulara</InformationalVersion>
   </PropertyGroup>
 

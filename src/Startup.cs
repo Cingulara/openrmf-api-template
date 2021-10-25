@@ -132,8 +132,8 @@ namespace openrmf_templates_api
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(o =>
             {
-                o.Authority = Environment.GetEnvironmentVariable("JWT-AUTHORITY");
-                o.Audience = Environment.GetEnvironmentVariable("JWT-CLIENT");
+                o.Authority = Environment.GetEnvironmentVariable("JWTAUTHORITY");
+                o.Audience = Environment.GetEnvironmentVariable("JWTCLIENT");
                 o.IncludeErrorDetails = true;
                 o.RequireHttpsMetadata = false;
                 o.TokenValidationParameters = new TokenValidationParameters()
@@ -141,7 +141,7 @@ namespace openrmf_templates_api
                     ValidateAudience = false,
                     ValidateIssuerSigningKey = true,
                     ValidateIssuer = true,
-                    ValidIssuer = Environment.GetEnvironmentVariable("JWT-AUTHORITY"),
+                    ValidIssuer = Environment.GetEnvironmentVariable("JWTAUTHORITY"),
                     ValidateLifetime = true
                 };
 
