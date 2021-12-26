@@ -27,8 +27,7 @@ namespace openrmf_templates_api.Data {
         {
             try
             {
-                return await _context.Templates.Find(Template => Template.templateType == "USER" || Template.templateType == null)
-                        .ToListAsync();
+                return await _context.Templates.Find(_ => true).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -121,7 +120,7 @@ namespace openrmf_templates_api.Data {
             try
             {
                 DeleteResult actionResult 
-                    = await _context.Templates.DeleteManyAsync(Builders<Template>.Filter.Eq("templateType", "SYSTEM"));
+                    = await _context.Templates.DeleteManyAsync(Builders<Template>.Filter.Ne("templateType", "USER"));
                 return actionResult.IsAcknowledged;
             }
             catch (Exception ex)
@@ -170,6 +169,18 @@ namespace openrmf_templates_api.Data {
             }
         }
 
+        public async Task<long> CountTemplates(){
+            try {
+                long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Ne("templateType", ""));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                // log or manage the exception
+                throw ex;
+            }
+        }
+
         public async Task<long> CountUserTemplates(){
             try {
                 long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "USER"));
@@ -181,6 +192,7 @@ namespace openrmf_templates_api.Data {
                 throw ex;
             }
         }
+
         public async Task<long> CountSystemTemplates(){
             try {
                 long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "SYSTEM"));

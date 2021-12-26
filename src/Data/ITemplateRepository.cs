@@ -35,6 +35,8 @@ namespace openrmf_templates_api.Data {
          Dashboard specific calls
         ********************************************/
         // get the # of checklists for the dashboard listing
+        Task<long> CountTemplates();
+        
         Task<long> CountUserTemplates();
 
         Task<long> CountSystemTemplates();
