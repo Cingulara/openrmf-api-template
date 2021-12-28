@@ -440,6 +440,31 @@ namespace openrmf_templates_api.Controllers
         [HttpGet("count/templates")]
         [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
         [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
+        public async Task<IActionResult> CountTemplates()
+        {
+            try {
+                _logger.LogInformation("Calling CountTemplates()");
+                long result = await _TemplateRepo.CountTemplates();
+                _logger.LogInformation("Called CountTemplates()");
+                return Ok(result);
+            }
+            catch (Exception ex) {
+                _logger.LogError(ex, "Error Retrieving Template Count in MongoDB");
+                return NotFound();
+            }
+        }
+        
+        /// <summary>
+        /// GET a count of the non-system templates for the dashboard number
+        /// </summary>
+        /// <returns>
+        /// HTTP Status and the count of user templates
+        /// </returns>
+        /// <response code="200">Returns the number</response>
+        /// <response code="404">If the count query did not work correctly</response>
+        [HttpGet("count/usertemplates")]
+        [Authorize(Roles = "Administrator,Reader,Editor,Assessor")]
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
         public async Task<IActionResult> CountUserTemplates()
         {
             try {

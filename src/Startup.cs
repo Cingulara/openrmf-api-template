@@ -239,9 +239,11 @@ namespace openrmf_templates_api
             // load the templates from CKL files
             if (DefaultTemplateLoader.LoadTemplates()) {
                 // log the loading was successful
+                Console.WriteLine("Uploaded the default DISA templates successfully!");
             } 
             else {
                 // Log it was not successful
+                Console.WriteLine("Error uploading the default DISA templates!");
             }
         }   
     }
