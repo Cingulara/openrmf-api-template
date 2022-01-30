@@ -366,6 +366,9 @@ namespace openrmf_templates_api.Controllers
                     if (data != null) {
                         // get the artifact checklists's actual checklist type from DISA
                         stigType = data.SID_DATA;
+                        // server templates sometimes add Microsoft on the front
+                        if (stigType.StartsWith("Microsoft ")) 
+                            stigType = stigType.Replace("Microsoft Windows","Windows"); 
                         template = await _TemplateRepo.GetLatestTemplate(stigType);
                         if (template == null) {
                             _logger.LogWarning("GetLatestTemplate({0}, {1}) is not a valid ID", systemGroupId, artifactId);
