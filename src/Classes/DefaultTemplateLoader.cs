@@ -48,7 +48,6 @@ namespace openrmf_templates_api.Classes
                         t = MakeTemplateSystemRecord(rawChecklist, file.Substring(file.LastIndexOf("/")+1));
                         // save them to the database
                         _templateRepo.AddTemplate(t).Wait();
-                        Console.WriteLine("Added Template file: {0}.", file);
                     }
                     catch (Exception tempEx) {
                         Console.WriteLine("Error parsing template file: {0}. {1}", file, tempEx.Message);
