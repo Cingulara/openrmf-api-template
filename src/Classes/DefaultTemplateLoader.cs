@@ -26,7 +26,7 @@ namespace openrmf_templates_api.Classes
             // make sure there are files in here
             if (!Directory.Exists(path)) return false;
             // get the list of ******Manual-xccdf.xml files in here
-            string[] filenames = Directory.GetFiles(path,"*xccdf.xml");
+            string[] filenames = Directory.GetFiles(path,"*.xml");
             string rawChecklist = "";
             Template t;
             Settings s = new Settings();
