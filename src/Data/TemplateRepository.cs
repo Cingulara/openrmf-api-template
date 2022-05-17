@@ -101,8 +101,16 @@ namespace openrmf_templates_api.Data {
 
         // get the most recent Template record based on title, version, and release
         public async Task<Template> GetLatestTemplate(string title) {
-            var query = _context.Templates.Find(Template => Template.title == title);
-            return await query.SortByDescending(y => y.version).ThenByDescending(z => z.stigRelease).FirstOrDefaultAsync();
+            var filter = Builders<Template>.Filter.Regex(s => s.stigType, new BsonRegularExpression(string.Format(".*{0}.*", title), "i"));
+            filter = filter & Builders<Template>.Filter.Eq(z => z.templateType, "SYSTEM");
+            var query = _context.Templates.Find(filter);
+            return await query.SortByDescending(x => x.version).ThenByDescending(y => y.stigRelease).FirstOrDefaultAsync();
+        }
+
+        public async Task<Template> GetLatestTemplateByExactTitle(string title)
+        {
+            var query = _context.Templates.Find(t => t.stigType.Contains(title) && t.templateType == "SYSTEM");
+            return await query.SortByDescending(x => x.version).ThenByDescending(y => y.stigRelease).FirstOrDefaultAsync();
         }
 
         public async Task<long> CountTemplates(){
