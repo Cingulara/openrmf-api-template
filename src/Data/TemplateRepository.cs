@@ -25,16 +25,9 @@ namespace openrmf_templates_api.Data {
 
         public async Task<IEnumerable<Template>> GetAllTemplates()
         {
-            try
-            {
-                return await _context.Templates.Find(_ => true).ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
-            }
+            return await _context.Templates.Find(_ => true).ToListAsync();
         }
+
         private ObjectId GetInternalId(string id)
         {
             ObjectId internalId;
@@ -48,103 +41,54 @@ namespace openrmf_templates_api.Data {
         //
         public async Task<Template> GetTemplate(string id)
         {
-            try
-            {
-                return await _context.Templates.Find(Template => Template.InternalId == GetInternalId(id)).FirstOrDefaultAsync();
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
-            }
+            return await _context.Templates.Find(Template => Template.InternalId == GetInternalId(id)).FirstOrDefaultAsync();
         }
 
         // query after body text, updated time, and header image size
         //
         public async Task<IEnumerable<Template>> GetTemplate(string bodyText, DateTime updatedFrom, long headerSizeLimit)
         {
-            try
-            {
-                var query = _context.Templates.Find(Template => Template.title.Contains(bodyText) &&
-                                    Template.updatedOn >= updatedFrom);
+            var query = _context.Templates.Find(Template => Template.title.Contains(bodyText) &&
+                                Template.updatedOn >= updatedFrom);
 
-                return await query.ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
-            }
+            return await query.ToListAsync();
         }
         
         public async Task<Template> AddTemplate(Template item)
         {
-            try
-            {
-                await _context.Templates.InsertOneAsync(item);
-                return item;
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
-            }
+            await _context.Templates.InsertOneAsync(item);
+            return item;
         }
 
         public async Task<bool> RemoveTemplate(string id)
         {
             var filter = Builders<Template>.Filter.Eq(s => s.InternalId, GetInternalId(id));
-            try
-            {
-                Template art = new Template();
-                art.InternalId = GetInternalId(id);
-                // only save the data outside of the checklist, update the date
-                var currentRecord = await _context.Templates.Find(t => t.InternalId == art.InternalId).FirstOrDefaultAsync();
-                if (currentRecord != null){
-                    DeleteResult actionResult = await _context.Templates.DeleteOneAsync(Builders<Template>.Filter.Eq("_id", art.InternalId));
-                    return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
-                } 
-                else {
-                    throw new KeyNotFoundException();
-                }
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
+            Template art = new Template();
+            art.InternalId = GetInternalId(id);
+            // only save the data outside of the checklist, update the date
+            var currentRecord = await _context.Templates.Find(t => t.InternalId == art.InternalId).FirstOrDefaultAsync();
+            if (currentRecord != null){
+                DeleteResult actionResult = await _context.Templates.DeleteOneAsync(Builders<Template>.Filter.Eq("_id", art.InternalId));
+                return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
+            } 
+            else {
+                throw new KeyNotFoundException();
             }
         }
 
         public async Task<bool> RemoveSystemTemplates()
         {
-            try
-            {
-                DeleteResult actionResult 
-                    = await _context.Templates.DeleteManyAsync(Builders<Template>.Filter.Ne("templateType", "USER"));
-                return actionResult.IsAcknowledged;
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
-            }
+            DeleteResult actionResult 
+                = await _context.Templates.DeleteManyAsync(Builders<Template>.Filter.Ne("templateType", "USER"));
+            return actionResult.IsAcknowledged;
         }
 
         public async Task<bool> UpdateTemplate(string id, Template body)
         {
             var filter = Builders<Template>.Filter.Eq(s => s.InternalId, GetInternalId(id));
-
-            try
-            {
-                body.InternalId = GetInternalId(id);
-                var actionResult = await _context.Templates.ReplaceOneAsync(filter, body);
-                return actionResult.IsAcknowledged && actionResult.ModifiedCount > 0;
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
-            }
+            body.InternalId = GetInternalId(id);
+            var actionResult = await _context.Templates.ReplaceOneAsync(filter, body);
+            return actionResult.IsAcknowledged && actionResult.ModifiedCount > 0;
         }
 
         // check that the database is responding and it returns at least one collection name
@@ -157,52 +101,31 @@ namespace openrmf_templates_api.Data {
 
         // get the most recent Template record based on title, version, and release
         public async Task<Template> GetLatestTemplate(string title) {
-            try
-            {
-                var query = _context.Templates.Find(Template => Template.title == title);
-                return await query.SortByDescending(y => y.version).ThenByDescending(z => z.stigRelease).FirstOrDefaultAsync();
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
-            }
+            var filter = Builders<Template>.Filter.Regex(s => s.stigType, new BsonRegularExpression(string.Format(".*{0}.*", title), "i"));
+            filter = filter & Builders<Template>.Filter.Eq(z => z.templateType, "SYSTEM");
+            var query = _context.Templates.Find(filter);
+            return await query.SortByDescending(x => x.version).ThenByDescending(y => y.stigRelease).FirstOrDefaultAsync();
+        }
+
+        public async Task<Template> GetLatestTemplateByExactTitle(string title)
+        {
+            var query = _context.Templates.Find(t => t.stigType.Contains(title) && t.templateType == "SYSTEM");
+            return await query.SortByDescending(x => x.version).ThenByDescending(y => y.stigRelease).FirstOrDefaultAsync();
         }
 
         public async Task<long> CountTemplates(){
-            try {
-                long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Ne("templateType", ""));
-                return result;
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
-            }
+            long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Ne("templateType", ""));
+            return result;
         }
 
         public async Task<long> CountUserTemplates(){
-            try {
-                long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "USER"));
-                return result;
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
-            }
+            long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "USER"));
+            return result;
         }
 
         public async Task<long> CountSystemTemplates(){
-            try {
-                long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "SYSTEM"));
-                return result;
-            }
-            catch (Exception ex)
-            {
-                // log or manage the exception
-                throw ex;
-            }
+            long result = await _context.Templates.CountDocumentsAsync(Builders<Template>.Filter.Eq("templateType", "SYSTEM"));
+            return result;
         }
     }
 }

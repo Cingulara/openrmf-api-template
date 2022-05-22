@@ -383,9 +383,12 @@ namespace openrmf_templates_api.Controllers
                             if (stigType.StartsWith("Microsoft "))
                                 stigType = stigType.Replace("Microsoft Windows", "Windows");
                         }
-                        // if (stigType.StartsWith("Microsoft ")) 
-                        //     stigType = stigType.Replace("Microsoft Windows","Windows"); 
+
                         template = await _TemplateRepo.GetLatestTemplate(stigType.Trim());
+                        if (template == null) {
+                            template = await _TemplateRepo.GetLatestTemplateByExactTitle(stigType.Trim());
+                        }
+                        
                         if (template == null) {
                             _logger.LogWarning("GetLatestTemplate({0}, {1}) is not a valid ID", systemGroupId, artifactId);
                             return NotFound();
