@@ -367,9 +367,28 @@ namespace openrmf_templates_api.Controllers
                         // get the artifact checklists's actual checklist type from DISA
                         stigType = data.SID_DATA;
                         // server templates sometimes add Microsoft on the front
-                        if (stigType.StartsWith("Microsoft ")) 
-                            stigType = stigType.Replace("Microsoft Windows","Windows"); 
-                        template = await _TemplateRepo.GetLatestTemplate(stigType);
+                        if (!string.IsNullOrEmpty(stigType))
+                        { // undo any shortcut terms we do on the uploading
+                            if (stigType.EndsWith(" (STIG)"))
+                                stigType = stigType.Replace(" (STIG)", "");
+                            stigType = stigType.Replace("(Security Technical Implementation Guide)", "");
+                            stigType = stigType.Replace("STIG", "Security Technical Implementation Guide");
+                            stigType = stigType.Replace("WIN", "Windows");
+                            stigType = stigType.Replace("ASD", "Application Security and Development");
+                            stigType = stigType.Replace("MSIE", "Microsoft Internet Explorer");
+                            stigType = stigType.Replace("REL", "Red Hat Enterprise Linux");
+                            stigType = stigType.Replace("MSSQL", "MS SQL Server");
+                            stigType = stigType.Replace("SVR", "Server");
+                            stigType = stigType.Replace("WRK", "Workstation");
+                            if (stigType.StartsWith("Microsoft "))
+                                stigType = stigType.Replace("Microsoft Windows", "Windows");
+                        }
+
+                        template = await _TemplateRepo.GetLatestTemplate(stigType.Trim());
+                        if (template == null) {
+                            template = await _TemplateRepo.GetLatestTemplateByExactTitle(stigType.Trim());
+                        }
+                        
                         if (template == null) {
                             _logger.LogWarning("GetLatestTemplate({0}, {1}) is not a valid ID", systemGroupId, artifactId);
                             return NotFound();

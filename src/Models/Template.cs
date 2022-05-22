@@ -26,7 +26,10 @@ namespace openrmf_templates_api.Models
         // the _id from the parsed in data if any
         public string stigId { get; set; }
 
-        public string title { get ; set;}        
+        public string title { get ; set;}
+        public string fullTitle { get {
+            return title + "-V" + version + "-" + stigRelease.Replace("Release: ", "R");
+        }}
 
         public string templateType { get; set; }
         public string version {get; set;}

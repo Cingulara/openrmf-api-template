@@ -26,7 +26,7 @@ namespace openrmf_templates_api.Classes
             // make sure there are files in here
             if (!Directory.Exists(path)) return false;
             // get the list of ******Manual-xccdf.xml files in here
-            string[] filenames = Directory.GetFiles(path,"*xccdf.xml");
+            string[] filenames = Directory.GetFiles(path,"*.xml");
             string rawChecklist = "";
             Template t;
             Settings s = new Settings();
@@ -48,7 +48,6 @@ namespace openrmf_templates_api.Classes
                         t = MakeTemplateSystemRecord(rawChecklist, file.Substring(file.LastIndexOf("/")+1));
                         // save them to the database
                         _templateRepo.AddTemplate(t).Wait();
-                        Console.WriteLine("Added Template file: {0}.", file);
                     }
                     catch (Exception tempEx) {
                         Console.WriteLine("Error parsing template file: {0}. {1}", file, tempEx.Message);
@@ -83,7 +82,8 @@ namespace openrmf_templates_api.Classes
             newArtifact.updatedOn = DateTime.Now;
             // make these SYSTEM types versus the default USER type
             newArtifact.templateType = "SYSTEM";
-            newArtifact.filename = filename;
+            if (!string.IsNullOrEmpty(filename))
+                newArtifact.filename = filename.Trim();
             newArtifact.description = "SYSTEM Template loaded by default by OpenRMF for SCAP Scans and Creation Wizard.";
 
             // parse the checklist and get the data needed
@@ -100,7 +100,7 @@ namespace openrmf_templates_api.Classes
                     XmlAttributeCollection attrs = node.Attributes;
                     foreach (XmlAttribute xml in attrs) {
                         if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "id") {
-                            newArtifact.stigId = xml.Value; // get the stigid for the checklist fields
+                            newArtifact.stigId = xml.Value.Trim(); // get the stigid for the checklist fields
                         }
                     }
                 }
@@ -110,9 +110,9 @@ namespace openrmf_templates_api.Classes
             foreach (XmlNode node in nodeListing) {
                 if (node.ParentNode != null && node.ParentNode.Name == "Benchmark") {
                     if (!string.IsNullOrEmpty(node.InnerText)) {
-                        newArtifact.title = node.InnerText.Replace("STIG", "Security Technical Implementation Guide").Replace("MS Windows","Windows")
-                         .Replace("Microsoft Windows","Windows").Replace("Dot Net","DotNet");
-                        newArtifact.stigType = newArtifact.title;
+                        newArtifact.title = node.InnerText.Replace(" (STIG)","").Replace("STIG", "Security Technical Implementation Guide").Replace("MS Windows","Windows")
+                         .Replace("Microsoft Windows","Windows").Replace("Dot Net","DotNet").Trim();
+                        newArtifact.stigType = newArtifact.title.Trim();
                         break;
                     }
                 }
@@ -123,7 +123,7 @@ namespace openrmf_templates_api.Classes
             foreach (XmlNode node in nodeListing) {
                 if (node.ParentNode != null && node.ParentNode.Name == "Benchmark") {
                     if (!string.IsNullOrEmpty(node.InnerText)) {
-                        stigDescription = node.InnerText;
+                        stigDescription = node.InnerText.Trim();
                     }
                 }
             }
@@ -135,7 +135,7 @@ namespace openrmf_templates_api.Classes
                     XmlAttributeCollection attrs = node.Attributes;
                     foreach (XmlAttribute xml in attrs) {
                         if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "date") {
-                            newArtifact.stigDate = xml.Value; // get the stigid for the checklist fields
+                            newArtifact.stigDate = xml.Value.Trim(); // get the stigid for the checklist fields
                         }
                     }
                 }
@@ -145,7 +145,7 @@ namespace openrmf_templates_api.Classes
             foreach (XmlNode node in nodeListing) {
                 if (node.ParentNode != null && node.ParentNode.Name == "Benchmark") {
                     if (!string.IsNullOrEmpty(node.InnerText)) {
-                        newArtifact.version = node.InnerText;
+                        newArtifact.version = node.InnerText.Trim();
                         break;
                     }
                 }
@@ -155,7 +155,7 @@ namespace openrmf_templates_api.Classes
             foreach (XmlNode node in nodeListing) {
                 if (node.ParentNode != null && node.ParentNode.Name == "Benchmark") {
                     if (!string.IsNullOrEmpty(node.InnerText)) {
-                        newArtifact.stigRelease = node.InnerText;
+                        newArtifact.stigRelease = node.InnerText.Trim();
                         break;
                     }
                 }
@@ -165,7 +165,7 @@ namespace openrmf_templates_api.Classes
             nodeListing = xmlDoc.GetElementsByTagName("dc:identifier");
             foreach (XmlNode node in nodeListing) {
                 if (!string.IsNullOrEmpty(node.InnerText)) {
-                    newArtifact.CHECKLIST.ASSET.TARGET_KEY = node.InnerText;
+                    newArtifact.CHECKLIST.ASSET.TARGET_KEY = node.InnerText.Trim();
                     break;
                 }
             }
@@ -176,14 +176,14 @@ namespace openrmf_templates_api.Classes
             // get all the STIG_INFO stuff for the main pieces of the checklist
             STIG_INFO mainStigInfo = new STIG_INFO();
             newArtifact.CHECKLIST.STIGS.iSTIG.STIG_INFO = mainStigInfo;
-            mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "version", SID_DATA = newArtifact.version});
+            mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "version", SID_DATA = newArtifact.version.Trim()});
             mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "classification", SID_DATA = "UNCLASSIFIED"});
             mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "customname"});
-            mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "stigid", SID_DATA = newArtifact.stigId});
+            mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "stigid", SID_DATA = newArtifact.stigId.Trim()});
             mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "description", SID_DATA = stigDescription});
             mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "filename", SID_DATA = filename});
-            mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "releaseinfo", SID_DATA = newArtifact.stigRelease});
-            mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "title", SID_DATA = newArtifact.title});
+            mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "releaseinfo", SID_DATA = newArtifact.stigRelease.Trim()});
+            mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "title", SID_DATA = newArtifact.title.Trim()});
             mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "uuid", SID_DATA = stigGUID});
             mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "notice", SID_DATA = "terms-of-use"});
             mainStigInfo.SI_DATA.Add(new SI_DATA() {SID_NAME = "source"});
@@ -212,23 +212,23 @@ namespace openrmf_templates_api.Classes
                             // get all attributes
                             foreach (XmlAttribute xml in data.Attributes) {
                                 if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "id") {
-                                    vulnListing.Rule_ID = xml.Value;
+                                    vulnListing.Rule_ID = xml.Value.Trim();
                                 } else if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "severity") {
-                                    vulnListing.Severity = xml.Value;
+                                    vulnListing.Severity = xml.Value.Trim();
                                 } else if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "weight") {
-                                    vulnListing.Weight = xml.Value;
+                                    vulnListing.Weight = xml.Value.Trim();
                                 }
                             }
 
                             // cycle through the child nodes to get data from Rules also
                             foreach (XmlNode rule in data.ChildNodes) {
                                 if (rule.Name == "version") {
-                                    vulnListing.Rule_Ver = rule.InnerText;
+                                    vulnListing.Rule_Ver = rule.InnerText.Trim();
                                 } else if (rule.Name == "title") {
                                     vulnListing.Rule_Title = rule.InnerText.Trim();
                                 } else if (rule.Name == "description") {
                                     // get the data and put the tags in it from the &lt and &gt text
-                                    ruledescription = rule.InnerText.Replace("&lt;","<").Replace("&gt;",">");
+                                    ruledescription = rule.InnerText.Replace("&lt;","<").Replace("&gt;",">").Trim();
                                     // now that you have the inside tags, you can chop up the data
                                     // VulnDiscussion, which always has data
                                     vulnListing.Vuln_Discuss = ruledescription.Substring(16, ruledescription.IndexOf("VulnDiscussion",16)-18);
@@ -266,13 +266,13 @@ namespace openrmf_templates_api.Classes
                                         if (ruledescription.Substring(26, ruledescription.IndexOf("SeverityOverrideGuidance",26)-27) == "<")
                                             vulnListing.Security_Override_Guidance = ""; // empty
                                         else {
-                                            vulnListing.Security_Override_Guidance = ruledescription.Substring(26, ruledescription.IndexOf("SeverityOverrideGuidance",26)-28);
+                                            vulnListing.Security_Override_Guidance = ruledescription.Substring(26, ruledescription.IndexOf("SeverityOverrideGuidance",26)-28).Trim();
                                         }
                                     } else if (ruledescription.IndexOf("SecurityOverrideGuidance",26) >= 0) {
                                         if (ruledescription.Substring(26, ruledescription.IndexOf("SecurityOverrideGuidance",26)-27) == "<")
                                             vulnListing.Security_Override_Guidance = ""; // empty
                                         else {
-                                            vulnListing.Security_Override_Guidance = ruledescription.Substring(26, ruledescription.IndexOf("SecurityOverrideGuidance",26)-28);
+                                            vulnListing.Security_Override_Guidance = ruledescription.Substring(26, ruledescription.IndexOf("SecurityOverrideGuidance",26)-28).Trim();
                                         }
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Security_Override_Guidance.Length+53);
@@ -280,28 +280,28 @@ namespace openrmf_templates_api.Classes
                                     if (ruledescription.Substring(18, ruledescription.IndexOf("PotentialImpacts",18)-19) == "<")
                                         vulnListing.Potential_Impact = ""; // empty
                                     else {
-                                        vulnListing.Potential_Impact = ruledescription.Substring(18, ruledescription.IndexOf("PotentialImpacts",18)-20);
+                                        vulnListing.Potential_Impact = ruledescription.Substring(18, ruledescription.IndexOf("PotentialImpacts",18)-20).Trim();
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Potential_Impact.Length+37);
                                     // ThirdPartyTools
                                     if (ruledescription.Substring(17, ruledescription.IndexOf("ThirdPartyTools",17)-18) == "<")
                                         vulnListing.Third_Party_Tools = ""; // empty
                                     else {
-                                        vulnListing.Third_Party_Tools = ruledescription.Substring(17, ruledescription.IndexOf("ThirdPartyTools",17)-19);
+                                        vulnListing.Third_Party_Tools = ruledescription.Substring(17, ruledescription.IndexOf("ThirdPartyTools",17)-19).Trim();
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Third_Party_Tools.Length+35);
                                     // MitigationControl
                                     if (ruledescription.Substring(19, ruledescription.IndexOf("MitigationControl",19)-20) == "<")
                                         vulnListing.Mitigation_Control = ""; // empty
                                     else {
-                                        vulnListing.Mitigation_Control = ruledescription.Substring(19, ruledescription.IndexOf("MitigationControl",19)-21);
+                                        vulnListing.Mitigation_Control = ruledescription.Substring(19, ruledescription.IndexOf("MitigationControl",19)-21).Trim();
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Mitigation_Control.Length+39);
                                     // Responsibility
                                     if (ruledescription.Substring(16, ruledescription.IndexOf("Responsibility",16)-17) == "<")
                                         vulnListing.Responsibility = ""; // empty
                                     else {
-                                        vulnListing.Responsibility = ruledescription.Substring(16, ruledescription.IndexOf("Responsibility",16)-18);
+                                        vulnListing.Responsibility = ruledescription.Substring(16, ruledescription.IndexOf("Responsibility",16)-18).Trim();
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.Responsibility.Length+33);
                                     // in case there is another Reponsibility, trim it and then move to IAControls
@@ -310,7 +310,7 @@ namespace openrmf_templates_api.Classes
                                     if (ruledescription.Substring(12, ruledescription.IndexOf("IAControls",12)-13) == "<")
                                         vulnListing.IA_Controls = ""; // empty
                                     else {
-                                        vulnListing.IA_Controls = ruledescription.Substring(12, ruledescription.IndexOf("IAControls",12)-14);
+                                        vulnListing.IA_Controls = ruledescription.Substring(12, ruledescription.IndexOf("IAControls",12)-14).Trim();
                                     }
                                     ruledescription = ruledescription.Substring(vulnListing.IA_Controls.Length+25);
                                 } else if (rule.Name == "ident") {
@@ -328,12 +328,12 @@ namespace openrmf_templates_api.Classes
                                     foreach (XmlNode check in rule.ChildNodes){
                                         if (check.Name == "check-content") {
                                             // check content
-                                            vulnListing.Check_Content = check.InnerText; // check text for manually checking the STIG
+                                            vulnListing.Check_Content = check.InnerText.Trim(); // check text for manually checking the STIG
                                         } else if (check.Name == "check-content-ref") {
                                             // check content ref name
                                             foreach (XmlAttribute xml in check.Attributes) {
                                                 if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "name") {
-                                                    vulnListing.Check_Content_Ref = xml.Value;
+                                                    vulnListing.Check_Content_Ref = xml.Value.Trim();
                                                 }
                                             }
                                         }                           
@@ -367,7 +367,7 @@ namespace openrmf_templates_api.Classes
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Check_Content_Ref", ATTRIBUTE_DATA = vulnListing.Check_Content_Ref});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Weight", ATTRIBUTE_DATA = vulnListing.Weight});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "Class", ATTRIBUTE_DATA = vulnListing.Class});
-                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "STIGRef", ATTRIBUTE_DATA = newArtifact.title + " :: Version " + newArtifact.version + ", " + newArtifact.stigRelease});
+                vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "STIGRef", ATTRIBUTE_DATA = newArtifact.title.Trim() + " :: Version " + newArtifact.version.Trim() + ", " + newArtifact.stigRelease.Trim()});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "TargetKey", ATTRIBUTE_DATA = newArtifact.CHECKLIST.ASSET.TARGET_KEY});
                 vulnitem.STIG_DATA.Add(new STIG_DATA() {VULN_ATTRIBUTE = "STIG_UUID", ATTRIBUTE_DATA = stigGUID}); // use the same UUID throughout
                 if (vulnListing.CCI_REF != null) { //there are CCI REFs in here so get them
