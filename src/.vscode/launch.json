@@ -36,7 +36,7 @@
                 "DB": "openrmftemplate",
                 "DBTYPE": "mongo",
                 "NATSSERVERURL": "nats://127.0.0.1:4222",
-                "JWTAUTHORITY" : "http://localhost:9001/auth/realms/openrmf",
+                "JWTAUTHORITY" : "http://localhost:8080/auth/realms/openrmf",
                 "JWTCLIENT": "openrmf"
                 // "JAEGER_AGENT_HOST": "localhost",
                 // "JAEGER_AGENT_PORT": "6831",
