@@ -380,6 +380,10 @@ namespace openrmf_templates_api.Controllers
                             stigType = stigType.Replace("MSSQL", "MS SQL Server");
                             stigType = stigType.Replace("SVR", "Server");
                             stigType = stigType.Replace("WRK", "Workstation");
+                            stigType = stigType.Replace("Microsoft Windows Defender", "Microsoft Defender");
+                            stigType = stigType.Replace("Windows Defender", "Microsoft Defender");
+                            stigType = stigType.Replace("Windows Firewall with Advanced Security", "Windows Defender Firewall with Advanced Security");
+                            if (!string.IsNullOrWhiteSpace(stigType)) stigType = stigType.Trim();
                             if (stigType.StartsWith("Microsoft "))
                                 stigType = stigType.Replace("Microsoft Windows", "Windows");
                         }
