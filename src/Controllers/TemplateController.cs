@@ -40,6 +40,7 @@ namespace openrmf_templates_api.Controllers
         /// have the correct roles in your JWT.`
         /// </summary>
         /// <param name="checklistFile">The actual template CKL file uploaded</param>
+        /// <param name="title">The title of the template</param>
         /// <param name="description">A description of the template</param>
         /// <returns>
         /// HTTP Status showing it was created or that there is an error.
@@ -48,7 +49,7 @@ namespace openrmf_templates_api.Controllers
         /// <response code="400">If the item did not create correctly</response>     
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, string description = "")
+        public async Task<IActionResult> UploadNewChecklist(IFormFile checklistFile, string title, string description = "")
         {
             try {
                 _logger.LogInformation("Calling UploadNewChecklist()");
@@ -60,8 +61,11 @@ namespace openrmf_templates_api.Controllers
                 }
                 _logger.LogInformation("UploadNewChecklist() Making the template");
                 Template t = MakeTemplateRecord(rawChecklist);
+                if (!string.IsNullOrEmpty(title)) {
+                    t.title = DecodeHTML(title);
+                }
                 if (t != null && !string.IsNullOrEmpty(description)) {
-                    t.description = description;
+                    t.description = DecodeHTML(description);
                 }
                 
                 // grab the user/system ID from the token if there which is *should* always be
@@ -552,6 +556,12 @@ namespace openrmf_templates_api.Controllers
             return audit;
         }
 
+        private string DecodeHTML (string html) {
+            if (!string.IsNullOrEmpty(html))
+                return System.Web.HttpUtility.HtmlDecode(html);
+            else 
+                return "";
+        }
         #endregion
     }
 }
