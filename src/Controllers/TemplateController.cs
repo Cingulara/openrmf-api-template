@@ -227,6 +227,11 @@ namespace openrmf_templates_api.Controllers
                 _logger.LogInformation("Calling ListTemplates()");
                 IEnumerable<Template> Templates;
                 Templates = await _TemplateRepo.GetAllTemplates();
+                if (Templates != null) {
+                    foreach(Template t in Templates) {
+                        t.rawChecklist = ""; // clear out contents for the listing, we do not need these here
+                    }
+                }
                 _logger.LogInformation("Called ListTemplates() successfully");
                 return Ok(Templates);
             }
