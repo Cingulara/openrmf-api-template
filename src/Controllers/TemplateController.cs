@@ -380,18 +380,26 @@ namespace openrmf_templates_api.Controllers
                         { // undo any shortcut terms we do on the uploading
                             if (stigType.EndsWith(" (STIG)"))
                                 stigType = stigType.Replace(" (STIG)", "");
-                            stigType = stigType.Replace("(Security Technical Implementation Guide)", "");
-                            stigType = stigType.Replace("STIG", "Security Technical Implementation Guide");
-                            stigType = stigType.Replace("WIN", "Windows");
-                            stigType = stigType.Replace("ASD", "Application Security and Development");
-                            stigType = stigType.Replace("MSIE", "Microsoft Internet Explorer");
-                            stigType = stigType.Replace("REL", "Red Hat Enterprise Linux");
-                            stigType = stigType.Replace("MSSQL", "MS SQL Server");
-                            stigType = stigType.Replace("SVR", "Server");
-                            stigType = stigType.Replace("WRK", "Workstation");
-                            stigType = stigType.Replace("Microsoft Windows Defender", "Microsoft Defender");
-                            stigType = stigType.Replace("Windows Defender", "Microsoft Defender");
-                            stigType = stigType.Replace("Windows Firewall with Advanced Security", "Windows Defender Firewall with Advanced Security");
+                            stigType = stigType.Replace("(Security Technical Implementation Guide)", "")
+                            .Replace("STIG", "Security Technical Implementation Guide")
+                            .Replace("WIN", "Windows")
+                            .Replace("MS Windows","Windows")
+                            .Replace("SCAP Benchmark","").Replace(" SCAP","").Replace("Cisco IOS-XE","Cisco IOS XE").Replace("Cisco NX-OS", "Cisco NX OS")
+                            .Replace("Cisco IOS-XR","Cisco IOS XR")
+                            .Replace("Microsoft Windows","Windows").Replace("Dot Net","DotNet")
+                            .Replace("ASD", "Application Security and Development")
+                            .Replace("MSIE", "Microsoft Internet Explorer").Replace("REL", "Red Hat Enterprise Linux")
+                            .Replace("MSSQL", "MS SQL Server").Replace("SVR", "Server").Replace("WRK", "Workstation")
+                            .Replace("Windows Server 2012 MS", "Windows Server 2012/2012 R2 Member Server")
+                            .Replace("Microsoft Windows Defender", "Microsoft Defender")
+                            .Replace("Windows Defender", "Microsoft Defender").Replace("Windows Server 2012 MS", "Windows Server 2012/2012 R2 Member Server")
+                            .Replace("Windows Firewall with Advanced Security", "Windows Defender Firewall with Advanced Security")
+                            .Replace("Microsoft Windows Defender Firewall with Advanced Security", "Windows Defender Firewall with Advanced Security")
+                            .Replace("Microsoft Defender Firewall with Advanced Security", "Windows Defender Firewall with Advanced Security")
+                            .Replace("Mozilla Firefox for Windows", "Mozilla Firefox").Replace("Mozilla Firefox for Linux", "Mozilla Firefox")
+                            .Replace("Mozilla Firefox for Unix", "Mozilla Firefox").Replace("IIS 10.0 Web Server","IIS 10.0 Server")
+                            .Replace("IIS 10.0 Web Site","IIS 10.0 Site");
+
                             if (!string.IsNullOrWhiteSpace(stigType)) stigType = stigType.Trim();
                             if (stigType.StartsWith("Microsoft "))
                                 stigType = stigType.Replace("Microsoft Windows", "Windows");
