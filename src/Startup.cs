@@ -13,9 +13,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Prometheus;
-using OpenTracing;
-using OpenTracing.Util;
 using NATS.Client;
+using NLog.Web;
+using NLog;
 
 using openrmf_templates_api.Models;
 using openrmf_templates_api.Data;
@@ -37,7 +37,8 @@ namespace openrmf_templates_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            NLog.LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration("nlog.config");
+            var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
             // Register the database components
             if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DBTYPE")) || Environment.GetEnvironmentVariable("DBTYPE").ToLower() == "mongo") {
@@ -46,24 +47,6 @@ namespace openrmf_templates_api
                     options.ConnectionString = Environment.GetEnvironmentVariable("DBCONNECTION");
                     options.Database = Environment.GetEnvironmentVariable("DB");
                 });
-            }
-            
-            if (Environment.GetEnvironmentVariable("JAEGER_AGENT_HOST") != null && 
-                !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("JAEGER_AGENT_HOST"))) {
-            
-                // Use "OpenTracing.Contrib.NetCore" to automatically generate spans for ASP.NET Core
-                services.AddSingleton<ITracer>(serviceProvider =>  
-                {                
-                    var loggerFactory = new LoggerFactory();
-                    // use the environment variables to setup the Jaeger endpoints
-                    var config = Jaeger.Configuration.FromEnv(loggerFactory);
-                    var tracer = config.GetTracer();
-                
-                    GlobalTracer.Register(tracer);  
-                
-                    return tracer;  
-                });
-                services.AddOpenTracing();
             }
 
             // Create a new connection factory to create a connection.
