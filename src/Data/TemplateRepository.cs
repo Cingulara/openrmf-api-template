@@ -60,6 +60,12 @@ namespace openrmf_templates_api.Data {
             return item;
         }
 
+        public List<Template> AddTemplateBulk(List<Template> items)
+        {
+            _context.Templates.InsertMany(items);
+            return items;
+        }
+
         public async Task<bool> RemoveTemplate(string id)
         {
             var filter = Builders<Template>.Filter.Eq(s => s.InternalId, GetInternalId(id));

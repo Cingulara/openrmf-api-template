@@ -14,16 +14,18 @@ namespace openrmf_templates_api.Data {
         // query after multiple parameters
         Task<IEnumerable<Template>> GetTemplate(string bodyText, DateTime updatedFrom, long headerSizeLimit);
 
-        // add new note document
+        // add new note templates
         Task<Template> AddTemplate(Template item);
+        // add templates in bulk
+        List<Template> AddTemplateBulk(List<Template> items);
 
-        // remove a single document
+        // remove a single templates
         Task<bool> RemoveTemplate(string id);
 
-        // remove a single document
+        // remove system templates
         Task<bool> RemoveSystemTemplates();
 
-        // update just a single document
+        // update just a single templates
         Task<bool> UpdateTemplate(string id, Template body);
 
         // see what the most recent Template is by version and release
