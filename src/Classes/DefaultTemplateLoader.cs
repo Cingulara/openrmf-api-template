@@ -222,7 +222,10 @@ namespace openrmf_templates_api.Classes
                                 if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "id") {
                                     vulnListing.Rule_ID = xml.Value.Trim();
                                 } else if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "severity") {
-                                    vulnListing.Severity = xml.Value.Trim();
+                                    if (xml.Value.ToLower() == "info")
+                                        vulnListing.Severity = "low";
+                                    else
+                                        vulnListing.Severity = xml.Value;
                                 } else if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "weight") {
                                     vulnListing.Weight = xml.Value.Trim();
                                 }
