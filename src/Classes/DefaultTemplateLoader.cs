@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace openrmf_templates_api.Classes
 {
@@ -40,6 +41,7 @@ namespace openrmf_templates_api.Classes
             if (filenames.Length > 0) _templateRepo.RemoveSystemTemplates().Wait();
             // cycle through the files
             try {
+                List<Template> templates = new List<Template>();
                 foreach (string file in filenames) {
                     // read in the file
                     rawChecklist = File.ReadAllText(file);
@@ -47,11 +49,17 @@ namespace openrmf_templates_api.Classes
                     try {
                         t = MakeTemplateSystemRecord(rawChecklist, file.Substring(file.LastIndexOf("/")+1));
                         // save them to the database
-                        _templateRepo.AddTemplate(t).Wait();
+                        templates.Add(t);
                     }
                     catch (Exception tempEx) {
                         Console.WriteLine("Error parsing template file: {0}. {1}", file, tempEx.Message);
                     }
+                }
+                if (templates != null && templates.Count > 0) {
+                    var result = _templateRepo.AddTemplateBulk(templates);
+                    Console.WriteLine("Loaded default DISA templates successfully");
+                } else {
+                    Console.WriteLine("Default DISA templates were NOT loaded successfully");
                 }
             }
             catch (Exception ex) {
@@ -214,7 +222,10 @@ namespace openrmf_templates_api.Classes
                                 if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "id") {
                                     vulnListing.Rule_ID = xml.Value.Trim();
                                 } else if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "severity") {
-                                    vulnListing.Severity = xml.Value.Trim();
+                                    if (xml.Value.ToLower() == "info")
+                                        vulnListing.Severity = "low";
+                                    else
+                                        vulnListing.Severity = xml.Value;
                                 } else if (!string.IsNullOrEmpty(xml.Name) && xml.Name == "weight") {
                                     vulnListing.Weight = xml.Value.Trim();
                                 }

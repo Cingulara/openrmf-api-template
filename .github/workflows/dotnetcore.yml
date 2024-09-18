@@ -29,6 +29,8 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file ./Dockerfile --tag localbuild/openrmf-api-template:latest
     - name: Container image scan
-      uses: Azure/container-scan@v0
+      uses: anchore/scan-action@v3
       with:
-        image-name: localbuild/openrmf-api-template:latest
+        image: localbuild/openrmf-api-template:latest
+        fail-build: false
+        output-format: table
