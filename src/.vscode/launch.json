@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/net6.0/openrmf-api-template.dll",
+            "program": "${workspaceFolder}/bin/Debug/net8.0/openrmf-api-template.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -39,10 +39,6 @@
                 "JWTAUTHORITY" : "http://localhost:8080/auth/realms/openrmf",
                 "JWTINTERNALAUTHORITY" : "http://localhost:8080/auth/",
                 "JWTCLIENT": "openrmf"
-                // "JAEGER_AGENT_HOST": "localhost",
-                // "JAEGER_AGENT_PORT": "6831",
-                // "JAEGER_SERVICE_NAME": "openrmf-api-template",
-                // "JAEGER_SAMPLER_TYPE": "const"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
