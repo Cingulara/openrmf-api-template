@@ -121,7 +121,7 @@ namespace openrmf_templates_api
 
             foreach(string jwtServer in Environment.GetEnvironmentVariable("JWTAUTHORITY").Split(',')) {
                 if (jwtServer.EndsWith('/'))
-                    jwtAuthorities.Add((jwtServer + "realms/openrmf").Trim().ToLower());
+                    jwtAuthorities.Add((jwtServer).Trim().ToLower());
                 else 
                     jwtAuthorities.Add((jwtServer + "/").Trim().ToLower());
             }
