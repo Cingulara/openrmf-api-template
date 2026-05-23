@@ -1,43 +1,60 @@
 using System;
-using Xunit;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Moq;
 using openrmf_templates_api.Controllers;
 using openrmf_templates_api.Data;
-using Moq;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Cors.Infrastructure;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Http;
+using Xunit;
 
-namespace tests.Controllers
+namespace tests.Controllers;
+
+public class HealthControllerTests
 {
-
-    public class HealthControllerTests
+    [Fact]
+    public void Get_ReturnsOk_WhenRepositoryIsHealthy()
     {
-        private readonly Mock<ILogger<HealthController>> _mockLogger;
-        private readonly HealthController _healthController; 
-        private readonly Mock<ITemplateRepository> _mockTemplateRepo;
+        var logger = new Mock<ILogger<HealthController>>();
+        var repo = new Mock<ITemplateRepository>();
+        repo.Setup(x => x.HealthStatus()).Returns(true);
 
-        public HealthControllerTests() {
-            _mockLogger = new Mock<ILogger<HealthController>>();
-            _mockTemplateRepo = new Mock<ITemplateRepository>();
-            _healthController = new HealthController(_mockTemplateRepo.Object, _mockLogger.Object);
-        }
+        var controller = new HealthController(repo.Object, logger.Object);
 
-        [Fact]
-        public void Test_HealthControllerIsValid()
-        {
-            Assert.True(_healthController != null);
-        }
+        var result = controller.Get();
 
-        [Fact]
-        public void Test_HealthControllerGetIsValid()
-        {
-            var result = _healthController.Get();
-            Assert.True(_healthController != null);
-            //Assert.Equal(200, ((Microsoft.AspNetCore.Mvc.ObjectResult)result.Result).StatusCode); // returns a status code HTTP 200
-        }
+        var ok = Assert.IsType<OkObjectResult>(result.Result);
+        Assert.Equal("ok", ok.Value);
+        repo.Verify(x => x.HealthStatus(), Times.Once);
+    }
+
+    [Fact]
+    public void Get_ReturnsBadRequest_WhenRepositoryIsUnhealthy()
+    {
+        var logger = new Mock<ILogger<HealthController>>();
+        var repo = new Mock<ITemplateRepository>();
+        repo.Setup(x => x.HealthStatus()).Returns(false);
+
+        var controller = new HealthController(repo.Object, logger.Object);
+
+        var result = controller.Get();
+
+        var badRequest = Assert.IsType<BadRequestObjectResult>(result.Result);
+        Assert.Equal("database error", badRequest.Value);
+        repo.Verify(x => x.HealthStatus(), Times.Once);
+    }
+
+    [Fact]
+    public void Get_ReturnsBadRequest_WhenRepositoryThrows()
+    {
+        var logger = new Mock<ILogger<HealthController>>();
+        var repo = new Mock<ITemplateRepository>();
+        repo.Setup(x => x.HealthStatus()).Throws(new InvalidOperationException("boom"));
+
+        var controller = new HealthController(repo.Object, logger.Object);
+
+        var result = controller.Get();
+
+        var badRequest = Assert.IsType<BadRequestObjectResult>(result.Result);
+        Assert.Equal("Improper API configuration", badRequest.Value);
+        repo.Verify(x => x.HealthStatus(), Times.Once);
     }
 }
