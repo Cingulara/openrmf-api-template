@@ -1,4 +1,4 @@
-// Copyright (c) Cingulara LLC 2019 and Tutela LLC 2019. All rights reserved.
+// Copyright (c) Cingulara LLC 2025 and Tutela LLC 2025. All rights reserved.
 // Licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 license. See LICENSE file in the project root for full license information.
 
 namespace openrmf_templates_api.Models
@@ -10,6 +10,7 @@ namespace openrmf_templates_api.Models
 			// setup for these to at least print out when you generate XML
 			ROLE = "";
 			ASSET_TYPE = "";
+			MARKING = "";
 			HOST_NAME = "";
 			HOST_IP = "";
 			HOST_MAC = "";
@@ -23,6 +24,7 @@ namespace openrmf_templates_api.Models
 
 		public string ROLE { get; set; }
 		public string ASSET_TYPE { get; set; }
+        public string MARKING { get; set; }
 		public string HOST_NAME { get; set; }
 		public string HOST_IP { get; set; }
 		public string HOST_MAC { get; set; }

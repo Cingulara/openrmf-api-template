@@ -67,6 +67,9 @@ namespace openrmf_templates_api.Classes
                     case "ASSET_TYPE":
                         asset.ASSET_TYPE = child.InnerText;
                         break;
+                    case "MARKING": 
+                        asset.MARKING = child.InnerText;
+                        break;
                     case "HOST_NAME":
                         asset.HOST_NAME = child.InnerText;
                         break;

@@ -1,4 +1,4 @@
-// Copyright (c) Cingulara LLC 2019 and Tutela LLC 2019. All rights reserved.
+// Copyright (c) Cingulara LLC 2025 and Tutela LLC 2025. All rights reserved.
 // Licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 license. See LICENSE file in the project root for full license information.
 using openrmf_templates_api.Models;
 using System.Collections.Generic;
@@ -14,16 +14,18 @@ namespace openrmf_templates_api.Data {
         // query after multiple parameters
         Task<IEnumerable<Template>> GetTemplate(string bodyText, DateTime updatedFrom, long headerSizeLimit);
 
-        // add new note document
+        // add new note templates
         Task<Template> AddTemplate(Template item);
+        // add templates in bulk
+        List<Template> AddTemplateBulk(List<Template> items);
 
-        // remove a single document
+        // remove a single templates
         Task<bool> RemoveTemplate(string id);
 
-        // remove a single document
+        // remove system templates
         Task<bool> RemoveSystemTemplates();
 
-        // update just a single document
+        // update just a single templates
         Task<bool> UpdateTemplate(string id, Template body);
 
         // see what the most recent Template is by version and release

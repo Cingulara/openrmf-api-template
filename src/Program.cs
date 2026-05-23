@@ -1,10 +1,11 @@
-﻿// Copyright (c) Cingulara LLC 2019 and Tutela LLC 2019. All rights reserved.
+﻿// Copyright (c) Cingulara LLC 2025 and Tutela LLC 2025. All rights reserved.
 // Licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 license. See LICENSE file in the project root for full license information.
 using System;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
+using NLog;
 
 namespace openrmf_templates_api
 {
@@ -12,7 +13,8 @@ namespace openrmf_templates_api
     {
         public static void Main(string[] args)
         {
-            var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            NLog.LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration("nlog.config");
+            var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
             if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("LOGLEVEL"))) // default
                 NLog.LogManager.Configuration.Variables["logLevel"] = "Warn";
             else {
@@ -68,7 +70,7 @@ namespace openrmf_templates_api
                     {
                         // Set properties and call methods on options
                         // make the timeout 6 minutes for longer running processes
-                        serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(6);
+                        serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(10);
                     })                        
                     .ConfigureLogging(logging =>
                     {

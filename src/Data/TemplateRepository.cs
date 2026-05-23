@@ -1,4 +1,4 @@
-// Copyright (c) Cingulara LLC 2019 and Tutela LLC 2019. All rights reserved.
+// Copyright (c) Cingulara LLC 2025 and Tutela LLC 2025. All rights reserved.
 // Licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 license. See LICENSE file in the project root for full license information.
 using openrmf_templates_api.Models;
 using System.Collections.Generic;
@@ -58,6 +58,12 @@ namespace openrmf_templates_api.Data {
         {
             await _context.Templates.InsertOneAsync(item);
             return item;
+        }
+
+        public List<Template> AddTemplateBulk(List<Template> items)
+        {
+            _context.Templates.InsertMany(items);
+            return items;
         }
 
         public async Task<bool> RemoveTemplate(string id)

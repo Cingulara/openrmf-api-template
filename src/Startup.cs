@@ -1,6 +1,7 @@
-﻿// Copyright (c) Cingulara LLC 2019 and Tutela LLC 2019. All rights reserved.
+﻿// Copyright (c) Cingulara LLC 2025 and Tutela LLC 2025. All rights reserved.
 // Licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 license. See LICENSE file in the project root for full license information.
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +14,12 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Prometheus;
-using OpenTracing;
-using OpenTracing.Util;
 using NATS.Client;
+using NLog.Web;
+using NLog;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 
 using openrmf_templates_api.Models;
 using openrmf_templates_api.Data;
@@ -37,7 +41,11 @@ namespace openrmf_templates_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            // Configure MongoDB GUID serialization for legacy compatibility
+            BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.CSharpLegacy));
+
+            NLog.LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration("nlog.config");
+            var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
             // Register the database components
             if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("DBTYPE")) || Environment.GetEnvironmentVariable("DBTYPE").ToLower() == "mongo") {
@@ -46,24 +54,6 @@ namespace openrmf_templates_api
                     options.ConnectionString = Environment.GetEnvironmentVariable("DBCONNECTION");
                     options.Database = Environment.GetEnvironmentVariable("DB");
                 });
-            }
-            
-            if (Environment.GetEnvironmentVariable("JAEGER_AGENT_HOST") != null && 
-                !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("JAEGER_AGENT_HOST"))) {
-            
-                // Use "OpenTracing.Contrib.NetCore" to automatically generate spans for ASP.NET Core
-                services.AddSingleton<ITracer>(serviceProvider =>  
-                {                
-                    var loggerFactory = new LoggerFactory();
-                    // use the environment variables to setup the Jaeger endpoints
-                    var config = Jaeger.Configuration.FromEnv(loggerFactory);
-                    var tracer = config.GetTracer();
-                
-                    GlobalTracer.Register(tracer);  
-                
-                    return tracer;  
-                });
-                services.AddOpenTracing();
             }
 
             // Create a new connection factory to create a connection.
@@ -126,8 +116,14 @@ namespace openrmf_templates_api
             });
 
             string jwtAuthorityServer = "http://openrmf-keycloak:8080/auth/"; // this is by default the internal keycloak setup
+            List<string> jwtAuthorities = new List<string>();
+
+            foreach(string jwtServer in Environment.GetEnvironmentVariable("JWTAUTHORITY").Split(',')) {
+                jwtAuthorities.Add((jwtServer).Trim().ToLower());
+            }
+
             if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("JWTINTERNALAUTHORITY"))) {
-                jwtAuthorityServer = Environment.GetEnvironmentVariable("JWTINTERNALAUTHORITY").ToLower();
+                jwtAuthorityServer = Environment.GetEnvironmentVariable("JWTINTERNALAUTHORITY").Trim();
             }
             // Validate the JWT token sent with the request to make sure it is right
             // use the internal jwtAuthority server so you do not have to go outside the container network
@@ -147,7 +143,7 @@ namespace openrmf_templates_api
                     ValidateAudience = false,
                     ValidateIssuerSigningKey = true,
                     ValidateIssuer = true,
-                    ValidIssuer = Environment.GetEnvironmentVariable("JWTAUTHORITY").ToLower(),
+                    ValidIssuers = jwtAuthorities,
                     ValidateLifetime = true
                 };
 
@@ -159,7 +155,7 @@ namespace openrmf_templates_api
                         c.Response.StatusCode = 401;
                         c.Response.ContentType = "text/plain";
 
-                        Console.WriteLine("openrmf-api-template JWT Error: " + c.Exception.ToString());
+                        Console.WriteLine("openrmf-api-read JWT Error: " + c.Exception.ToString());
 
                         return c.Response.WriteAsync("The JWT validation with the server did not return correctly. Please check with your Application Administrator.");
                     }
