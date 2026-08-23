@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?><Benchmark xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" id="Nokia_SR_OS_25-x_NDM_STIG" xml:lang="en" xmlns="http://checklists.nist.gov/xccdf/1.1"><status date="2026-06-15">accepted</status><title>Nokia Service Router OS 25.x Network Device Management Security Technical Implementation Guide</title><description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of War (DoW) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description><notice id="terms-of-use" xml:lang="en"></notice><front-matter xml:lang="en"></front-matter><rear-matter xml:lang="en"></rear-matter><reference href="https://cyber.mil"><dc:publisher>DISA</dc:publisher><dc:source>STIG.DOD.MIL</dc:source></reference><plain-text id="release-info">Release: 1 Benchmark Date: 28 Apr 2026</plain-text><plain-text id="generator">3.5.2</plain-text><plain-text id="conventionsVersion">1.10.0</plain-text><version>1</version><Profile id="MAC-1_Classified"><title>I - Mission Critical Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-283760" selected="true" /><select idref="V-283761" selected="true" /><select idref="V-283762" selected="true" /><select idref="V-283763" selected="true" /><select idref="V-283764" selected="true" /><select idref="V-283765" selected="true" /><select idref="V-283766" selected="true" /><select idref="V-283767" selected="true" /><select idref="V-283768" selected="true" /><select idref="V-283769" selected="true" /><select idref="V-283770" selected="true" /><select idref="V-283771" selected="true" /><select idref="V-283772" selected="true" /><select idref="V-283773" selected="true" /><select idref="V-283774" selected="true" /><select idref="V-283775" selected="true" /><select idref="V-283776" selected="true" /><select idref="V-283777" selected="true" /><select idref="V-283778" selected="true" /><select idref="V-283779" selected="true" /><select idref="V-283780" selected="true" /><select idref="V-283781" selected="true" /><select idref="V-283782" selected="true" /><select idref="V-283783" selected="true" /><select idref="V-283784" selected="true" /><select idref="V-283785" selected="true" /><select idref="V-283786" selected="true" /><select idref="V-283787" selected="true" /><select idref="V-283788" selected="true" /><select idref="V-283789" selected="true" /><select idref="V-283790" selected="true" /><select idref="V-283791" selected="true" /><select idref="V-283792" selected="true" /><select idref="V-283793" selected="true" /><select idref="V-283794" selected="true" /><select idref="V-283795" selected="true" /><select idref="V-283799" selected="true" /></Profile><Profile id="MAC-1_Public"><title>I - Mission Critical Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-283760" selected="true" /><select idref="V-283761" selected="true" /><select idref="V-283762" selected="true" /><select idref="V-283763" selected="true" /><select idref="V-283764" selected="true" /><select idref="V-283765" selected="true" /><select idref="V-283766" selected="true" /><select idref="V-283767" selected="true" /><select idref="V-283768" selected="true" /><select idref="V-283769" selected="true" /><select idref="V-283770" selected="true" /><select idref="V-283771" selected="true" /><select idref="V-283772" selected="true" /><select idref="V-283773" selected="true" /><select idref="V-283774" selected="true" /><select idref="V-283775" selected="true" /><select idref="V-283776" selected="true" /><select idref="V-283777" selected="true" /><select idref="V-283778" selected="true" /><select idref="V-283779" selected="true" /><select idref="V-283780" selected="true" /><select idref="V-283781" selected="true" /><select idref="V-283782" selected="true" /><select idref="V-283783" selected="true" /><select idref="V-283784" selected="true" /><select idref="V-283785" selected="true" /><select idref="V-283786" selected="true" /><select idref="V-283787" selected="true" /><select idref="V-283788" selected="true" /><select idref="V-283789" selected="true" /><select idref="V-283790" selected="true" /><select idref="V-283791" selected="true" /><select idref="V-283792" selected="true" /><select idref="V-283793" selected="true" /><select idref="V-283794" selected="true" /><select idref="V-283795" selected="true" /><select idref="V-283799" selected="true" /></Profile><Profile id="MAC-1_Sensitive"><title>I - Mission Critical Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-283760" selected="true" /><select idref="V-283761" selected="true" /><select idref="V-283762" selected="true" /><select idref="V-283763" selected="true" /><select idref="V-283764" selected="true" /><select idref="V-283765" selected="true" /><select idref="V-283766" selected="true" /><select idref="V-283767" selected="true" /><select idref="V-283768" selected="true" /><select idref="V-283769" selected="true" /><select idref="V-283770" selected="true" /><select idref="V-283771" selected="true" /><select idref="V-283772" selected="true" /><select idref="V-283773" selected="true" /><select idref="V-283774" selected="true" /><select idref="V-283775" selected="true" /><select idref="V-283776" selected="true" /><select idref="V-283777" selected="true" /><select idref="V-283778" selected="true" /><select idref="V-283779" selected="true" /><select idref="V-283780" selected="true" /><select idref="V-283781" selected="true" /><select idref="V-283782" selected="true" /><select idref="V-283783" selected="true" /><select idref="V-283784" selected="true" /><select idref="V-283785" selected="true" /><select idref="V-283786" selected="true" /><select idref="V-283787" selected="true" /><select idref="V-283788" selected="true" /><select idref="V-283789" selected="true" /><select idref="V-283790" selected="true" /><select idref="V-283791" selected="true" /><select idref="V-283792" selected="true" /><select idref="V-283793" selected="true" /><select idref="V-283794" selected="true" /><select idref="V-283795" selected="true" /><select idref="V-283799" selected="true" /></Profile><Profile id="MAC-2_Classified"><title>II - Mission Support Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-283760" selected="true" /><select idref="V-283761" selected="true" /><select idref="V-283762" selected="true" /><select idref="V-283763" selected="true" /><select idref="V-283764" selected="true" /><select idref="V-283765" selected="true" /><select idref="V-283766" selected="true" /><select idref="V-283767" selected="true" /><select idref="V-283768" selected="true" /><select idref="V-283769" selected="true" /><select idref="V-283770" selected="true" /><select idref="V-283771" selected="true" /><select idref="V-283772" selected="true" /><select idref="V-283773" selected="true" /><select idref="V-283774" selected="true" /><select idref="V-283775" selected="true" /><select idref="V-283776" selected="true" /><select idref="V-283777" selected="true" /><select idref="V-283778" selected="true" /><select idref="V-283779" selected="true" /><select idref="V-283780" selected="true" /><select idref="V-283781" selected="true" /><select idref="V-283782" selected="true" /><select idref="V-283783" selected="true" /><select idref="V-283784" selected="true" /><select idref="V-283785" selected="true" /><select idref="V-283786" selected="true" /><select idref="V-283787" selected="true" /><select idref="V-283788" selected="true" /><select idref="V-283789" selected="true" /><select idref="V-283790" selected="true" /><select idref="V-283791" selected="true" /><select idref="V-283792" selected="true" /><select idref="V-283793" selected="true" /><select idref="V-283794" selected="true" /><select idref="V-283795" selected="true" /><select idref="V-283799" selected="true" /></Profile><Profile id="MAC-2_Public"><title>II - Mission Support Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-283760" selected="true" /><select idref="V-283761" selected="true" /><select idref="V-283762" selected="true" /><select idref="V-283763" selected="true" /><select idref="V-283764" selected="true" /><select idref="V-283765" selected="true" /><select idref="V-283766" selected="true" /><select idref="V-283767" selected="true" /><select idref="V-283768" selected="true" /><select idref="V-283769" selected="true" /><select idref="V-283770" selected="true" /><select idref="V-283771" selected="true" /><select idref="V-283772" selected="true" /><select idref="V-283773" selected="true" /><select idref="V-283774" selected="true" /><select idref="V-283775" selected="true" /><select idref="V-283776" selected="true" /><select idref="V-283777" selected="true" /><select idref="V-283778" selected="true" /><select idref="V-283779" selected="true" /><select idref="V-283780" selected="true" /><select idref="V-283781" selected="true" /><select idref="V-283782" selected="true" /><select idref="V-283783" selected="true" /><select idref="V-283784" selected="true" /><select idref="V-283785" selected="true" /><select idref="V-283786" selected="true" /><select idref="V-283787" selected="true" /><select idref="V-283788" selected="true" /><select idref="V-283789" selected="true" /><select idref="V-283790" selected="true" /><select idref="V-283791" selected="true" /><select idref="V-283792" selected="true" /><select idref="V-283793" selected="true" /><select idref="V-283794" selected="true" /><select idref="V-283795" selected="true" /><select idref="V-283799" selected="true" /></Profile><Profile id="MAC-2_Sensitive"><title>II - Mission Support Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-283760" selected="true" /><select idref="V-283761" selected="true" /><select idref="V-283762" selected="true" /><select idref="V-283763" selected="true" /><select idref="V-283764" selected="true" /><select idref="V-283765" selected="true" /><select idref="V-283766" selected="true" /><select idref="V-283767" selected="true" /><select idref="V-283768" selected="true" /><select idref="V-283769" selected="true" /><select idref="V-283770" selected="true" /><select idref="V-283771" selected="true" /><select idref="V-283772" selected="true" /><select idref="V-283773" selected="true" /><select idref="V-283774" selected="true" /><select idref="V-283775" selected="true" /><select idref="V-283776" selected="true" /><select idref="V-283777" selected="true" /><select idref="V-283778" selected="true" /><select idref="V-283779" selected="true" /><select idref="V-283780" selected="true" /><select idref="V-283781" selected="true" /><select idref="V-283782" selected="true" /><select idref="V-283783" selected="true" /><select idref="V-283784" selected="true" /><select idref="V-283785" selected="true" /><select idref="V-283786" selected="true" /><select idref="V-283787" selected="true" /><select idref="V-283788" selected="true" /><select idref="V-283789" selected="true" /><select idref="V-283790" selected="true" /><select idref="V-283791" selected="true" /><select idref="V-283792" selected="true" /><select idref="V-283793" selected="true" /><select idref="V-283794" selected="true" /><select idref="V-283795" selected="true" /><select idref="V-283799" selected="true" /></Profile><Profile id="MAC-3_Classified"><title>III - Administrative Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-283760" selected="true" /><select idref="V-283761" selected="true" /><select idref="V-283762" selected="true" /><select idref="V-283763" selected="true" /><select idref="V-283764" selected="true" /><select idref="V-283765" selected="true" /><select idref="V-283766" selected="true" /><select idref="V-283767" selected="true" /><select idref="V-283768" selected="true" /><select idref="V-283769" selected="true" /><select idref="V-283770" selected="true" /><select idref="V-283771" selected="true" /><select idref="V-283772" selected="true" /><select idref="V-283773" selected="true" /><select idref="V-283774" selected="true" /><select idref="V-283775" selected="true" /><select idref="V-283776" selected="true" /><select idref="V-283777" selected="true" /><select idref="V-283778" selected="true" /><select idref="V-283779" selected="true" /><select idref="V-283780" selected="true" /><select idref="V-283781" selected="true" /><select idref="V-283782" selected="true" /><select idref="V-283783" selected="true" /><select idref="V-283784" selected="true" /><select idref="V-283785" selected="true" /><select idref="V-283786" selected="true" /><select idref="V-283787" selected="true" /><select idref="V-283788" selected="true" /><select idref="V-283789" selected="true" /><select idref="V-283790" selected="true" /><select idref="V-283791" selected="true" /><select idref="V-283792" selected="true" /><select idref="V-283793" selected="true" /><select idref="V-283794" selected="true" /><select idref="V-283795" selected="true" /><select idref="V-283799" selected="true" /></Profile><Profile id="MAC-3_Public"><title>III - Administrative Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-283760" selected="true" /><select idref="V-283761" selected="true" /><select idref="V-283762" selected="true" /><select idref="V-283763" selected="true" /><select idref="V-283764" selected="true" /><select idref="V-283765" selected="true" /><select idref="V-283766" selected="true" /><select idref="V-283767" selected="true" /><select idref="V-283768" selected="true" /><select idref="V-283769" selected="true" /><select idref="V-283770" selected="true" /><select idref="V-283771" selected="true" /><select idref="V-283772" selected="true" /><select idref="V-283773" selected="true" /><select idref="V-283774" selected="true" /><select idref="V-283775" selected="true" /><select idref="V-283776" selected="true" /><select idref="V-283777" selected="true" /><select idref="V-283778" selected="true" /><select idref="V-283779" selected="true" /><select idref="V-283780" selected="true" /><select idref="V-283781" selected="true" /><select idref="V-283782" selected="true" /><select idref="V-283783" selected="true" /><select idref="V-283784" selected="true" /><select idref="V-283785" selected="true" /><select idref="V-283786" selected="true" /><select idref="V-283787" selected="true" /><select idref="V-283788" selected="true" /><select idref="V-283789" selected="true" /><select idref="V-283790" selected="true" /><select idref="V-283791" selected="true" /><select idref="V-283792" selected="true" /><select idref="V-283793" selected="true" /><select idref="V-283794" selected="true" /><select idref="V-283795" selected="true" /><select idref="V-283799" selected="true" /></Profile><Profile id="MAC-3_Sensitive"><title>III - Administrative Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-283760" selected="true" /><select idref="V-283761" selected="true" /><select idref="V-283762" selected="true" /><select idref="V-283763" selected="true" /><select idref="V-283764" selected="true" /><select idref="V-283765" selected="true" /><select idref="V-283766" selected="true" /><select idref="V-283767" selected="true" /><select idref="V-283768" selected="true" /><select idref="V-283769" selected="true" /><select idref="V-283770" selected="true" /><select idref="V-283771" selected="true" /><select idref="V-283772" selected="true" /><select idref="V-283773" selected="true" /><select idref="V-283774" selected="true" /><select idref="V-283775" selected="true" /><select idref="V-283776" selected="true" /><select idref="V-283777" selected="true" /><select idref="V-283778" selected="true" /><select idref="V-283779" selected="true" /><select idref="V-283780" selected="true" /><select idref="V-283781" selected="true" /><select idref="V-283782" selected="true" /><select idref="V-283783" selected="true" /><select idref="V-283784" selected="true" /><select idref="V-283785" selected="true" /><select idref="V-283786" selected="true" /><select idref="V-283787" selected="true" /><select idref="V-283788" selected="true" /><select idref="V-283789" selected="true" /><select idref="V-283790" selected="true" /><select idref="V-283791" selected="true" /><select idref="V-283792" selected="true" /><select idref="V-283793" selected="true" /><select idref="V-283794" selected="true" /><select idref="V-283795" selected="true" /><select idref="V-283799" selected="true" /></Profile><Group id="V-283760"><title>SRG-APP-000001-NDM-000200</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283760r1203325_rule" weight="10.0" severity="medium"><version>NOKI-ND-000010</version><title>The Nokia router must limit the number of concurrent management sessions to a maximum of three for each administrator account and/or administrator account type.</title><description>&lt;VulnDiscussion&gt;Device management includes the ability to control the number of administrators and management sessions that manage a device. Limiting the number of allowed administrators and sessions per administrator based on account type, role, or access type is helpful in limiting risks related to denial-of-service (DoS) attacks.
+
+This requirement addresses concurrent sessions for administrative accounts and does not address concurrent sessions by a single administrator via multiple administrative accounts. The maximum number of concurrent sessions should be defined based on mission needs and the operational environment for each system. At a minimum, limits must be set for SSH, HTTPS, account of last resort, and root account sessions.
+
+Nokia routers apply session limits for both inbound and outbound sessions per access method.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000054</ident><fixtext fixref="F-88230r1203324_fix">Configure the Nokia router to limit the number of concurrent management sessions to a maximum of "3" sessions, as shown in the example below:
+
+SSH example:
+- configure system login-control ssh inbound-max-sessions 3
+
+- configure system login-control ssh outbound-max-sessions 3</fixtext><fix id="F-88230r1203324_fix" /><check system="C-88325r1203323_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Review the Nokia router configuration to determine if concurrent management sessions are limited, as shown in the example below:
+
+SSH example:
+Use the command below to get into the correct configuration context:
+
+- exit all
+- configure system login-control ssh 
+- info detail | match inbound-max-sessions
+
+                inbound-max-sessions 3
+
+- info detail | match outbound-max-sessions
+
+                outbound-max-sessions 3
+
+If "inbound-max-sessions" is not set to "3" or less, this is a finding.
+
+If "outbound-max-sessions" is not set to "3" or less, this is a finding.</check-content></check></Rule></Group><Group id="V-283761"><title>SRG-APP-000033-NDM-000212</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283761r1223367_rule" weight="10.0" severity="high"><version>NOKI-ND-000100</version><title>The Nokia router must be configured to assign appropriate user roles or access levels to authenticated users.</title><description>&lt;VulnDiscussion&gt;Successful identification and authentication must not automatically give an entity full access to a network device or security domain. The lack of authorization-based access control could result in the immediate compromise of, and unauthorized access to, sensitive information. All DoW systems must be properly configured to incorporate access control methods that do not rely solely on authentication for authorized access.
+
+Authorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset or set of resources. Information systems use access control policies and enforcement mechanisms to implement this requirement. Authorization procedures and controls must be implemented to ensure each authenticated entity also has a validated and current authorization.
+
+Some network devices are preconfigured with security groups. Other network devices enable operators to create custom security groups with custom permissions. For example, an information system security manager (ISSM) may require read-only access to audit the network device. Operators may create an audit security group, define permissions and access levels for members of the group, and then assign the ISSM's user persona to the audit security group. This is still considered privileged access, but the ISSM's security group is more restrictive than the network administrator's security group.
+
+Network devices that rely on Authentication, Authorization, and Accounting (AAA) brokers for authentication and authorization services may need to identify the available security groups or access levels available on the network devices and convey that information to the AAA operator. Once the AAA broker identifies the user persona on the centralized directory service, the user's security group memberships can be retrieved. The AAA operator may need to create a mapping that links target security groups from the directory service to the appropriate security groups or access levels on the network device. Once these mappings are configured, authorizations can happen dynamically based on each user's directory service group membership.
+
+Satisfies: SRG-APP-000033-NDM-000212, SRG-APP-000120-NDM-000237, SRG-APP-000121-NDM-000238, SRG-APP-000122-NDM-000239, SRG-APP-000123-NDM-000240, SRG-APP-000231-NDM-000271, SRG-APP-000329-NDM-000287, SRG-APP-000378-NDM-000302, SRG-APP-000380-NDM-000304, SRG-APP-000516-NDM-000335&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000213</ident><ident system="http://cyber.mil/cci">CCI-000164</ident><ident system="http://cyber.mil/cci">CCI-001493</ident><ident system="http://cyber.mil/cci">CCI-001494</ident><ident system="http://cyber.mil/cci">CCI-001495</ident><ident system="http://cyber.mil/cci">CCI-001199</ident><ident system="http://cyber.mil/cci">CCI-002169</ident><ident system="http://cyber.mil/cci">CCI-000366</ident><ident system="http://cyber.mil/cci">CCI-003980</ident><ident system="http://cyber.mil/cci">CCI-001813</ident><ident system="http://cyber.mil/cci">CCI-000345</ident><fixtext fixref="F-88231r1203327_fix">Administrative profiles exist by default. Other profiles should be created based on user roles and access levels.
+
+Create a new profile and add as many entries as needed:
+
+- configure system security profile &lt;profile name&gt;
+- default-action &lt;deny-all or permit-all or none or read-only-all&gt;
+- entry &lt;entry id&gt;
+- match &lt;command string&gt;
+- action &lt; permit or deny or read-only or none&gt;
+
+Apply the correct profile to each user:
+
+- configure system security user &lt;user name&gt; console member &lt;profile name&gt;</fixtext><fix id="F-88231r1203327_fix" /><check system="C-88326r1203592_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>For local accounts, role-based access control is configured through the user profile. 
+
+Verify the "profile" assigned to each user using the command below:
+
+- show system security user &lt;user name&gt; detail
+- show system security user "admin" detail | match profile
+profile            : administrative
+
+In this example, user "admin" is configured with user profile "administrative". 
+
+Verify the user-assigned profile matches the user roles and responsibilities: 
+
+- show system security profile &lt;profile name&gt; 
+- show system security profile "administrative"
+
+User Profile          : administrative
+Def. Action           : permit-all
+LI                    : no
+
+NETCONF RPC
+
+NETCONF Kill RPC Authorization                            : yes
+NETCONF Lock RPC Authorization                            : yes
+NETCONF Close-Session RPC Authorization                   : yes
+NETCONF Get RPC Authorization                             : yes
+NETCONF Get-Config RPC Authorization                      : yes
+NETCONF Get-Data RPC Authorization                        : yes
+NETCONF Edit-Config RPC Authorization                     : yes
+NETCONF Copy-Config RPC Authorization                     : yes
+NETCONF Delete-Config RPC Authorization                   : yes
+NETCONF Discard-Changes RPC Authorization                 : yes
+NETCONF Validate RPC Authorization                        : yes
+NETCONF Commit RPC Authorization                          : yes
+.... 
+
+For external AAA servers, access levels are available per command. Nokia routers support TACACS+ and RADIUS authentication servers. 
+
+If the Nokia router does not enforce the assigned privilege level for each administrator and authorizations for access to all commands relative to the privilege level, this is a finding.</check-content></check></Rule></Group><Group id="V-283762"><title>SRG-APP-000038-NDM-000213</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283762r1203331_rule" weight="10.0" severity="medium"><version>NOKI-ND-000110</version><title>The Nokia router must enforce approved authorizations for controlling the flow of management information within the network device based on information flow control policies.</title><description>&lt;VulnDiscussion&gt;A mechanism to detect and prevent unauthorized communication flow must be configured or provided as part of the system design. If management information flow is not enforced based on approved authorizations, the network device may become compromised. Information flow control regulates where management information is allowed to travel within a network device. The flow of all management information must be monitored and controlled so it does not introduce any unacceptable risk to the network device or data. 
+
+Application-specific examples of enforcement occur in systems that employ rule sets or establish configuration settings that restrict information system services or message-filtering capability based on message content (e.g., implementing key word searches or using document characteristics).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001368</ident><fixtext fixref="F-88232r1203330_fix">Each of the management-access-filters and cpm-filters supports the IPv4 filter (ip-filter), IPv6 filter, and MAC filters. Configure each filter using the examples below: 
+
+Configure the entry match criteria based on IPv4, IPv6, or MAC match criteria. 
+
+Example of management-access-filter ipv4 filter configuration:
+
+- configure system security management-access-filter ip-filter
+- default-action &lt;permit | deny| deny-host-unreachable&gt;
+- entry &lt;entry id&gt;
+- &lt;match criteria&gt; &lt;match value&gt;
+- action &lt;permit | deny| deny-host-unreachable&gt;
+
+Enable the management access ip filter: 
+
+- configure system security management-access-filter ip-filter no shutdown
+
+Example of management-access-filter ipv6 filter configuration:
+
+- configure system security management-access-filter ipv6-filter
+- default-action &lt;permit | deny| deny-host-unreachable&gt;
+- entry &lt;entry id&gt;
+- &lt;match criteria&gt; &lt;match value&gt;
+- action &lt;permit | deny| deny-host-unreachable&gt;
+
+Enable the management access ipv6 filter: 
+
+- configure system security management-access-filter ipv6-filter no shutdown
+
+Example of cpm ipv6 filter configuration:
+
+- configure system security cpm-filter ipv6-filter
+- entry &lt;id&gt; create
+- match &lt;match criteria&gt; &lt;match value&gt;
+- action &lt;action&gt;
+
+Enable the cpm ipv6 filter:
+
+- configure system security cpm-filter ipv6-filter no shutdown
+
+Example of cpm ipv4 filter configuration:
+
+- configure system security cpm-filter ip-filter
+- entry &lt;id&gt; create
+- match &lt;match criteria&gt; &lt;match value&gt;
+- action &lt;action&gt;
+
+Enable the cpm ipv4 filter:
+
+- configure system security cpm-filter ip-filter no shutdown</fixtext><fix id="F-88232r1203330_fix" /><check system="C-88327r1203329_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify at least one IPv4, IPv6, or MAC for management-access-filter or cpm-filter is configured to control the flow of management information within the Nokia router.
+
+Verify entries meet the approved authorization for controlling the flow of management information, as shown in the examples below: 
+
+- show system security management-access-filter ip-filter
+- show system security management-access-filter ipv6-filter
+- show system security management-access-filter mac-filter
+- show system security cpm-filter ip-filter
+- show system security cpm-filter ipv6-filter
+- show system security cpm-filter mac-filter
+
+If at least one of these filters is not configured to enforce the approved authorizations, this is a finding.</check-content></check></Rule></Group><Group id="V-283763"><title>SRG-APP-000065-NDM-000214</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283763r1203595_rule" weight="10.0" severity="medium"><version>NOKI-ND-000120</version><title>The Nokia router must be configured to enforce the limit of three consecutive invalid logon attempts, after which time it must block any login attempt for 15 minutes.</title><description>&lt;VulnDiscussion&gt;By limiting the number of failed login attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-forcing, is reduced.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000044</ident><fixtext fixref="F-88233r1203333_fix">Configure the Nokia router using the command below:
+
+- configure system security password attempts 3 lockout 15</fixtext><fix id="F-88233r1203333_fix" /><check system="C-88328r1203594_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify that "Number of invalid attempts permitted per login" is set to "3", and "Lockout period (when threshold breached)" is set to "15", as shown in the example below:
+
+- show system security password-options
+
+Number of invalid attempts permitted per login   : 3
+Lockout period (when threshold breached)         : 15
+
+If the "Number of invalid attempts permitted per login" is not set to "3", this is a finding.
+
+If the "Lockout period (when threshold breached)" is not set to "15", this is a finding.</check-content></check></Rule></Group><Group id="V-283764"><title>SRG-APP-000068-NDM-000215</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283764r1223368_rule" weight="10.0" severity="medium"><version>NOKI-ND-000130</version><title>The Nokia router must display the Standard Mandatory DoW Notice and Consent Banner before granting access to the device, and it must remain until the administrator acknowledges the usage conditions and takes explicit action to log on for further access.</title><description>&lt;VulnDiscussion&gt;Display of the DoW-approved use notification before granting access to the network device ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.
+
+System use notifications are required only for access via logon interfaces with human users.
+
+Satisfies: SRG-APP-000068-NDM-000215, SRG-APP-000069-NDM-000216&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000048</ident><ident system="http://cyber.mil/cci">CCI-000050</ident><fixtext fixref="F-88234r1203336_fix">Configure the Nokia router to display the Standard Mandatory DOD Notice and Consent Banner before granting access, as shown in the example below:
+
+- exit all
+- configure system login-control pre-login-message "I've read &amp; consent to terms in IS user agreem't."</fixtext><fix id="F-88234r1203336_fix" /><check system="C-88329r1203335_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Determine if the Nokia router is configured to present a DOD-approved banner that is formatted in accordance with DTM-08-060. Entering the username, viewing the banner, and then entering the password is considered an explicit action of acknowledgement.
+
+Use the verbiage below for operating systems that have severe limitations on the number of characters that can be displayed in the banner:
+
+"I've read &amp; consent to terms in IS user agreem't."
+
+If the Nokia router is not configured to display the Standard Mandatory DOD Notice and Consent Banner before granting access to the device, this is a finding.
+
+If the Nokia router does not retain the banner on the screen until the administrator acknowledges the usage conditions and takes explicit action of entering the username and password to log on for further access, this is a finding.</check-content></check></Rule></Group><Group id="V-283765"><title>SRG-APP-000092-NDM-000224</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283765r1203340_rule" weight="10.0" severity="medium"><version>NOKI-ND-000170</version><title>The Nokia router must initiate session auditing upon startup.</title><description>&lt;VulnDiscussion&gt;If auditing is enabled late in the startup process, the actions of some startup processes may not be audited. Some audit systems also maintain state information only available if auditing is enabled before a given process is created.
+
+Satisfies: SRG-APP-000092-NDM-000224, SRG-APP-000026-NDM-000208, SRG-APP-000027-NDM-000209, SRG-APP-000028-NDM-000210, SRG-APP-000029-NDM-000211, SRG-APP-000080-NDM-000220, SRG-APP-000091-NDM-000223, SRG-APP-000095-NDM-000225, SRG-APP-000096-NDM-000226, SRG-APP-000097-NDM-000227, SRG-APP-000098-NDM-000228, SRG-APP-000099-NDM-000229, SRG-APP-000100-NDM-000230, SRG-APP-000101-NDM-000231, SRG-APP-000319-NDM-000283, SRG-APP-000343-NDM-000289, SRG-APP-000381-NDM-000305, SRG-APP-000495-NDM-000318, SRG-APP-000499-NDM-000319, SRG-APP-000503-NDM-000320, SRG-APP-000504-NDM-000321, SRG-APP-000505-NDM-000322, SRG-APP-000506-NDM-000323, SRG-APP-000516-NDM-000334&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001464</ident><ident system="http://cyber.mil/cci">CCI-000018</ident><ident system="http://cyber.mil/cci">CCI-001403</ident><ident system="http://cyber.mil/cci">CCI-001404</ident><ident system="http://cyber.mil/cci">CCI-001405</ident><ident system="http://cyber.mil/cci">CCI-000166</ident><ident system="http://cyber.mil/cci">CCI-000172</ident><ident system="http://cyber.mil/cci">CCI-000130</ident><ident system="http://cyber.mil/cci">CCI-000131</ident><ident system="http://cyber.mil/cci">CCI-000132</ident><ident system="http://cyber.mil/cci">CCI-000133</ident><ident system="http://cyber.mil/cci">CCI-000134</ident><ident system="http://cyber.mil/cci">CCI-001487</ident><ident system="http://cyber.mil/cci">CCI-000135</ident><ident system="http://cyber.mil/cci">CCI-002130</ident><ident system="http://cyber.mil/cci">CCI-002234</ident><ident system="http://cyber.mil/cci">CCI-003938</ident><ident system="http://cyber.mil/cci">CCI-000169</ident><ident system="http://cyber.mil/cci">CCI-000366</ident><fixtext fixref="F-88235r1203339_fix">Configure appropriate logs:
+
+- exit all
+- configure log log-id &lt;id&gt;
+- from main, security, and change
+- to &lt;console, syslog-id, snmp, log-file-id, memory, session, netconf, cli&gt;
+
+Note: Select the appropriate location for the log event data from the options above.</fixtext><fix id="F-88235r1203339_fix" /><check system="C-88330r1203338_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify at least one log file has been created with the "Source" field set to main, security, and change:
+
+show log log-id
+
+Event Logs
+
+Name
+Log     Source     Filter     Admin     Oper     Logged     Dropped     Dest            Dest Size
+Id        Id                              State         State                        Type             Id
+
+101     M S C         N/A       up              up          1420         0                    netconf      500
+
+If no log file has been created with "Source" including "M", "S", and "C" for main, security, and change events, this is a finding.
+
+If "Admin State" and "Oper State" are "down", this is a finding.</check-content></check></Rule></Group><Group id="V-283766"><title>SRG-APP-000119-NDM-000236</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283766r1203597_rule" weight="10.0" severity="medium"><version>NOKI-ND-000260</version><title>The Nokia router must protect audit information from unauthorized modification.</title><description>&lt;VulnDiscussion&gt;Audit information includes all information (e.g., audit records, audit settings, and audit reports) needed to successfully audit network device activity.
+
+If audit data were to become compromised, forensic analysis and discovery of the true source of potentially malicious system activity would be impossible to achieve. 
+
+To ensure the veracity of audit data, the network device must protect audit information from unauthorized modification. 
+
+This requirement can be achieved through multiple methods, which will depend on system architecture and design. Some commonly employed methods include ensuring log files receive the proper file system permissions and limiting log data locations. 
+
+Network devices providing a user interface to audit data will leverage user permissions and roles identifying the user accessing the data, along with the corresponding user rights, to make access decisions regarding the modification of audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000163</ident><fixtext fixref="F-88236r1203596_fix">Configure the Nokia router to protect audit information from unauthorized modification by configuring authentication servers and applying correct authorization privileges for each user. 
+
+Multiple RADIUS servers can be configured per the configuration below:
+
+- configure system security radius
+- accounting
+- authorization
+
+- server &lt;radius server ip address&gt;
+
+For local accounts, assign the correct user profile to each user:
+
+- configure system security user &lt;user name&gt; console member &lt;profile name&gt;
+
+Users can also be restricted to the user's home directory. If the home directory for the user is not configured, the user does not have access to any directory:
+
+- configure system security user &lt;user name&gt;
+- restricted-to-home
+
+If the user requires a directory, it can be configured using the command below:
+
+- home-directory &lt;directory &gt;</fixtext><fix id="F-88236r1203596_fix" /><check system="C-88331r1203571_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Determine if the Nokia router protects audit information from any type of unauthorized modification with such methods as ensuring log files receive the proper file system permissions, limiting log data locations, and leveraging user permissions and roles to identify the user accessing the data and the corresponding user rights. 
+
+Verify the authentication server is configured using the command below:
+
+- show system security authentication
+
+Verify authentication servers are configured with correct user privileges to restrict access to the router file system. 
+
+Verify each local user has the correct "profile" assigned, the user is "restricted to home", and the "home directory" is defined:
+
+- show system security user detail
+
+If the Nokia router is not configured with external authentication servers, this is a finding.</check-content></check></Rule></Group><Group id="V-283767"><title>SRG-APP-000131-NDM-000243</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283767r1223369_rule" weight="10.0" severity="medium"><version>NOKI-ND-000310</version><title>The Nokia router must prevent the installation of patches, service packs, or application components without verification the software component has been digitally signed using a certificate that is recognized and approved by the organization.</title><description>&lt;VulnDiscussion&gt;Changes to any software components can have significant effects on the overall security of the Nokia router. Verifying software components have been digitally signed using a certificate that is recognized and approved by the organization ensures the software has not been tampered with and has been provided by a trusted vendor. 
+
+Accordingly, patches, service packs, or application components must be signed with a certificate recognized and approved by the organization. 
+
+Verifying the authenticity of the software prior to installation validates the integrity of the patch or upgrade received from a vendor. This ensures the software has not been tampered with and has been provided by a trusted vendor. Self-signed certificates are disallowed by this requirement. The device should not have to verify the software again. This requirement does not mandate DoW certificates for this purpose; however, the certificate used to verify the software must be from an approved Certificate Authority.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-003992</ident><fixtext fixref="F-88237r1203345_fix">Configure the Nokia router to prevent the installation of patches, service packs, or application components without verification the software component has been digitally signed using a certificate that is recognized and approved by the organization. 
+
+Activate secure boot on control card "A" and/or card "B" (card B for redundant control systems):
+
+- admin system security secure-boot activate card "A" serial-number &lt;CPM card A serial number&gt; confirmation-code &lt;code&gt;</fixtext><fix id="F-88237r1203345_fix" /><check system="C-88332r1203344_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Determine if the Nokia router prevents the installation of patches, service packs, or application components without verification the software component has been digitally signed using a certificate that is recognized and approved by the organization. This requirement may be verified by demonstration, configuration review, or validated test results. 
+
+Verify secure boot is enabled for Control card "A" and/or card "B" (card B for redundant control systems):
+
+- show card "A" detail | match "Secure boot"
+    Secure boot status            : enabled
+
+If the Nokia router does not prevent the installation of patches, service packs, or application components without verification the software component has been digitally signed using a certificate that is recognized and approved by the organization, this is a finding.</check-content></check></Rule></Group><Group id="V-283768"><title>SRG-APP-000142-NDM-000245</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283768r1203574_rule" weight="10.0" severity="high"><version>NOKI-ND-000330</version><title>The Nokia router must be configured to prohibit the use of all unnecessary and/or nonsecure functions, ports, protocols, and/or services.</title><description>&lt;VulnDiscussion&gt;To prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable unused or unnecessary physical and logical ports/protocols on information systems.
+
+Network devices are capable of providing a wide variety of functions and services. Some of the functions and services provided by default may not be necessary to support essential organizational operations. Additionally, it is sometimes convenient to provide multiple services from a single component (e.g., email and web services); however, doing so increases risk over limiting the services provided by any one component. 
+
+To support the requirements and principles of least functionality, the network device must support the organizational requirements, providing only essential capabilities and limiting the use of ports, protocols, and/or services to only those required, authorized, and approved. Some network devices have capabilities enabled by default; if these capabilities are not necessary, they must be disabled. If a particular capability is used, it must be documented and approved.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000382</ident><fixtext fixref="F-88238r1203573_fix">Configure the Nokia router to prohibit the use of all unnecessary and/or nonsecure functions, ports, protocols, and/or services.
+
+Disable FTP:
+
+- configure system security no ftp-server
+- configure system security no allow-ftp
+
+Disable telnet:
+
+- configure system security no telnet-server
+- configure system security no allow-telnet
+- configure system security no telnet6-server
+- configure system security no allow-telnet6
+
+Disable any other port/protocol using the management access filter:
+
+- configure system security management-access-filter ip-filter
+- default-action &lt;permit | deny| deny-host-unreachable&gt;
+- entry &lt;entry id&gt;
+- &lt;match criteria&gt; &lt;match value&gt;
+- action &lt;permit | deny| deny-host-unreachable&gt;
+
+Enable the management access ip filter: 
+
+- configure system security management-access-filter ip-filter no shutdown
+
+Example of management-access-filter ipv6 filter configuration:
+
+- configure system security management-access-filter ipv6-filter
+- default-action &lt;permit | deny| deny-host-unreachable&gt;
+- entry &lt;entry id&gt;
+- &lt;match criteria&gt; &lt;match value&gt;
+- action &lt;permit | deny| deny-host-unreachable&gt;
+
+Enable the management access ipv6 filter:
+ 
+- configure system security management-access-filter ipv6-filter no shutdown
+
+Disable any other port/protocol using the CPM filter:
+
+Example of cpm ipv6 filter configuration:
+
+- configure system security cpm-filter ipv6-filter
+- entry &lt;id&gt; create
+- match &lt;match criteria&gt; &lt;match value&gt;
+- action &lt;action&gt;
+
+Enable the cpm ipv6 filter:
+
+- configure system security cpm-filter ipv6-filter no shutdown
+
+Example of cpm ipv4 filter configuration:
+
+- configure system security cpm-filter ip-filter
+- entry &lt;id&gt; create
+- match &lt;match criteria&gt; &lt;match value&gt;
+- action &lt;action&gt;
+
+Enable the cpm ipv4 filter:
+
+- configure system security cpm-filter ip-filter no shutdown
+
+Example of ipv4 cpm filter to block HTTP:
+
+- configure system security cpm-filter ip-filter
+- entry 1 create
+- match protocol tcp port 80
+- action drop</fixtext><fix id="F-88238r1203573_fix" /><check system="C-88333r1203347_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the router does not have any unnecessary or nonsecure functions, ports, protocols, and services enabled. 
+
+For example, verify that Telnet and FTP are disabled:
+
+- show system information | match Tel
+Tel/Tel6/SSH/FTP Admin : Disabled/Disabled/Enabled/Disabled
+Tel/Tel6/SSH/FTP Oper  : Down/Down/Up/Down
+
+Any other TCP/UDP port can be disallowed using CPM and/or management filters.
+
+Verify nonsecure functions and services are disabled by using the command below: 
+
+- show system security management-access-filter ip-filter
+- show system security management-access-filter ipv6-filter
+- show system security cpm-filter ip-filter
+- show system security cpm-filter ipv6-filter
+
+If any unnecessary or nonsecure functions, ports, protocols, or services are permitted, this is a finding.</check-content></check></Rule></Group><Group id="V-283769"><title>SRG-APP-000148-NDM-000346</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283769r1203576_rule" weight="10.0" severity="medium"><version>NOKI-ND-000340</version><title>The Nokia router must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable.</title><description>&lt;VulnDiscussion&gt;Authentication for administrative (privileged-level) access to the device is required at all times. An account can be created on the device's local database for use when the authentication server is down or connectivity between the device and the authentication server is not operable. This account is referred to as the account of last resort because it is intended to be used as a last resort and when immediate administrative access is absolutely necessary.
+
+The account of last resort logon credentials must be stored in a sealed envelope and kept in a safe. The safe must be periodically audited to verify the envelope remains sealed. The signature of the auditor and the date of the audit should be added to the envelope as a record. Administrators should secure the credentials and disable the root account (if possible) when not needed for system administration functions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001358</ident><ident system="http://cyber.mil/cci">CCI-002111</ident><fixtext fixref="F-88239r1203575_fix">Configure one  local account to be used as the account of last resort and remove all other local accounts.
+
+For each unnecessary local user, first shut down the account and then remove it completely as shown in the example below:
+
+- configure system security user "unnecessary_acct" shutdown
+- no configure system security user "unnecessary_acct"
+
+Configure account of last resort as shown in the example below:
+
+- configure system security user "admin" password
+Enter New Password:
+Re-enter New Password:
+
+- configure system security user "admin" access console ftp
+- configure system security user "admin" no shutdown</fixtext><fix id="F-88239r1203575_fix" /><check system="C-88334r1203350_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Review the Nokia router configuration to verify a local account for last resort has been configured. 
+
+Verify only one user (user of last resort) is listed in the response for this command:
+
+- show system security user 
+
+Users
+
+User ID      New Access                           Password Login   Failed Local
+             Pwd Permissions                      Expires  Attempt Logins Conf
+
+admin        n   bt cc fp -- -- -- sp -- sc tc    02/08/26 66      5      y
+snmpv3       n   bt cc -- -- -- -- sp sn sc tc    02/08/26 0       0      y
+
+Number of users : 2
+
+If the Nokia router is not configured with only one local account to be used as the account of last resort in the event the authentication server is not available, this is a finding.</check-content></check></Rule></Group><Group id="V-283770"><title>SRG-APP-000164-NDM-000252</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283770r1203355_rule" weight="10.0" severity="medium"><version>NOKI-ND-000380</version><title>The Nokia router must enforce a minimum 15-character password length.</title><description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. Password length is one factor of several that helps to determine strength and how long it takes to crack a password.
+
+The shorter the password, the lower the number of possible combinations that must be tested before the password is compromised. Use of more characters in a password helps to exponentially increase the time and/or resources required to compromise the password.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-004066</ident><fixtext fixref="F-88240r1203354_fix">Configure the Nokia router with a minimum 15-character password length using the command below:
+
+- configure system security password complexity-rules minimum-length 15</fixtext><fix id="F-88240r1203354_fix" /><check system="C-88335r1203353_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify "Accepted password length" is set to a minimum of 15 characters using the command below:
+
+- show system security password-options | match length
+
+User password history length                     : disabled
+Accepted password length                         : 15..56 characters
+
+If the Nokia router or its associated authentication server does not enforce a minimum 15-character password length, this is a finding.</check-content></check></Rule></Group><Group id="V-283771"><title>SRG-APP-000166-NDM-000254</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283771r1203358_rule" weight="10.0" severity="medium"><version>NOKI-ND-000390</version><title>The Nokia router must enforce password complexity.</title><description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
+
+Password complexity is one factor of several that determine how long it takes to crack a password. The more complex the password is, the greater the number of possible combinations that must be tested before the password is compromised.
+
+Multifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords should only be used when MFA using Public Key Infrastructure (PKI) is not available and for the account of last resort and root account.
+
+Satisfies: SRG-APP-000166-NDM-000254, SRG-APP-000167-NDM-000255, SRG-APP-000168-NDM-000256, SRG-APP-000169-NDM-000257, SRG-APP-000845-NDM-000220&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-004066</ident><ident system="http://cyber.mil/cci">CCI-004061</ident><fixtext fixref="F-88241r1203357_fix">Configure the Nokia router using the command below:
+
+- configure system security password complexity-rules required uppercase 1 lowercase 1 numeric 1 special-character 1</fixtext><fix id="F-88241r1203357_fix" /><check system="C-88336r1203356_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Review the Nokia router password options to verify they comply with this requirement, as shown in the example below:
+
+- show system security password-options | match "required characters"
+
+Number of required characters per class          : 1 digits, 1 lowercase, 1
+                                                   uppercase, 1 special
+
+If the Nokia router does not require that at least one uppercase character, one lowercase character, one numeric character, and one special character be used in each password, this is a finding.</check-content></check></Rule></Group><Group id="V-283772"><title>SRG-APP-000170-NDM-000329</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283772r1203361_rule" weight="10.0" severity="medium"><version>NOKI-ND-000430</version><title>The Nokia router must require that when a password is changed, the characters are changed in at least eight of the positions within the password.</title><description>&lt;VulnDiscussion&gt;If the application allows the user to consecutively reuse extensive portions of passwords, this increases the chances of password compromise by increasing the window of opportunity for attempts at guessing and brute-force attacks.
+
+The number of changed characters refers to the number of changes required with respect to the total number of positions in the current password. In other words, characters may be the same within the two passwords; however, the positions of the like characters must be different.
+
+Multifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords should only be used when MFA using Public Key Infrastructure (PKI) is not available and for the account of last resort and root account.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-004066</ident><fixtext fixref="F-88242r1203360_fix">Configure the Nokia router to enforce password complexity by requiring that when a password is changed, the characters are changed in at least eight of the positions within the password, using the command below:
+
+- configure system security password minimum-change 8</fixtext><fix id="F-88242r1203360_fix" /><check system="C-88337r1203359_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Review the Nokia router configuration to verify it complies with this requirement, as shown in the example below:
+
+- show system security password-options | match distance
+
+Required distance with previous password         : 8
+
+If "Required distance with previous password" is not set to a minimum of "8", this is a finding.</check-content></check></Rule></Group><Group id="V-283773"><title>SRG-APP-000171-NDM-000258</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283773r1203364_rule" weight="10.0" severity="high"><version>NOKI-ND-000440</version><title>The Nokia router must only store cryptographic representations of passwords.</title><description>&lt;VulnDiscussion&gt;Passwords must be protected at all times, and encryption is the standard method of protecting passwords. If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised. 
+
+Network devices must enforce cryptographic representations of passwords when storing passwords in databases, configuration files, and log files. Passwords must be protected at all times; using a strong one-way hashing encryption algorithm with a salt is the standard method for providing a means to validate a password without having to store the actual password.
+
+Performance and time required to access are factors that must be considered, and the one-way hash is the most feasible means of securing the password and providing an acceptable measure of password security. If passwords are stored in clear text, they can be plainly read and easily compromised. 
+
+In many instances, a password verifier is used to confirm the user knows the password. In its simplest form, a password verifier is a computational function that can create a hash of a password and determine if the value provided by the user matches the stored hash.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-004062</ident><fixtext fixref="F-88243r1203363_fix">Configure the Nokia router to encrypt all passwords using the command below: 
+
+- configure system security password hashing sha2-pbkdf2</fixtext><fix id="F-88243r1203363_fix" /><check system="C-88338r1203362_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Review the Nokia router configuration to determine if passwords are encrypted, as shown in the example below:
+
+- show system security password-options | match hashing
+
+Password hashing                                 : sha2-pbkdf2
+
+If "Password hashing" is not set to "sha2-pbkdf2" or "sha3-pbkdf2", this is a finding.</check-content></check></Rule></Group><Group id="V-283774"><title>SRG-APP-000179-NDM-000265</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283774r1223370_rule" weight="10.0" severity="high"><version>NOKI-ND-000490</version><title>The Nokia router must use Federal Information Processing Standard (FIPS) 140-3-approved algorithms for authentication to a cryptographic module.</title><description>&lt;VulnDiscussion&gt;Unapproved mechanisms that are used for authentication to the cryptographic module are not validated and therefore cannot be relied on to provide confidentiality or integrity, and DoW data may be compromised.
+
+Network devices using encryption are required to use FIPS-compliant mechanisms for authenticating to cryptographic modules.
+
+FIPS 140-3 is the current standard for validating that mechanisms used to access cryptographic modules use authentication that meets DoW requirements. However, authentication algorithms must configure security processes to use only FIPS-approved and National Institute of Standards and Technology (NIST)-recommended authentication algorithms.
+
+Satisfies: SRG-APP-000179-NDM-000265, SRG-APP-000224-NDM-000270&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000803</ident><ident system="http://cyber.mil/cci">CCI-001188</ident><fixtext fixref="F-88244r1203366_fix">Configure the Nokia router to use FIPS 140-3-approved algorithms for authentication to a cryptographic module using the commands below:
+
+- bof fips-140
+- bof save
+- admin save
+- reboot</fixtext><fix id="F-88244r1203366_fix" /><check system="C-88339r1203365_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify FIPS has been enabled using the command below:
+
+- show bof | match fips
+
+    fips-140
+
+If the command does not return "fips-140" as shown above, this is a finding.</check-content></check></Rule></Group><Group id="V-283775"><title>SRG-APP-000190-NDM-000267</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283775r1203370_rule" weight="10.0" severity="high"><version>NOKI-ND-000500</version><title>The Nokia router must terminate all network connections associated with a device management session at the end of the session, or the session must be terminated after five minutes of inactivity except to fulfill documented and validated mission requirements.</title><description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. Quickly terminating an idle session will also free up resources committed by the managed network element. 
+
+Terminating network connections associated with communications sessions includes, for example, deallocating associated Transmission Control Protocol/Internet Protocol (TCP/IP) address/port pairs at the operating system level or deallocating networking assignments at the application level if multiple application sessions are using a single, operating system-level network connection. This does not mean the device terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001133</ident><fixtext fixref="F-88245r1203369_fix">Configure the Nokia router to terminate the connection associated with a device management session at the end of the session or after five minutes of inactivity using the command below:
+
+- configure system login-control idle-timeout 5</fixtext><fix id="F-88245r1203369_fix" /><check system="C-88340r1203368_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Review the Nokia router configuration to verify all network connections associated with a device management session have an idle timeout value set to five minutes or less, as shown in the example below:
+
+- configure system login-control
+- info detail | match idle-timeout
+
+            idle-timeout 5
+
+If the Nokia router does not terminate the connection associated with a device management session after five minutes of inactivity, this is a finding.</check-content></check></Rule></Group><Group id="V-283776"><title>SRG-APP-000357-NDM-000293</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283776r1203373_rule" weight="10.0" severity="medium"><version>NOKI-ND-000630</version><title>The Nokia router must allocate audit record storage capacity in accordance with organization-defined audit record storage requirements.</title><description>&lt;VulnDiscussion&gt;To ensure network devices have a sufficient storage capacity in which to write the audit logs, they must be able to allocate audit record storage capacity. The task of allocating audit record storage capacity is usually performed during initial device setup if it can be modified. 
+
+The value for the organization-defined audit record storage requirement will depend on the amount of storage available on the network device, the anticipated volume of logs, the frequency of transfer from the network device to centralized log servers, and other factors.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001849</ident><fixtext fixref="F-88246r1203372_fix">Configure the Nokia router to allocate audit record storage capacity in accordance with organization-defined audit record storage requirements.
+
+Create a log file for audit purposes. If the file destination is "memory", the size of the file can also be configured:
+
+- configure log log-id &lt;log id&gt;
+- from &lt;main, security, change, debug-trace&gt;
+- to &lt;syslog or console or memory or session or NETCONF, ....&gt;
+- size &lt;50 to 3000 bytes&gt;</fixtext><fix id="F-88246r1203372_fix" /><check system="C-88341r1203371_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the log size complies with organization-defined audit record storage using the command below:
+
+- show log log-id
+
+Event Logs
+
+Name
+Log     Source     Filter     Admin     Oper     Logged     Dropped     Dest            Dest Size
+Id        Id                              State         State                        Type             Id
+
+101     M S C         N/A       up              up          1420         0                    netconf      500
+
+If the log size does not meet organization-defined audit record storage requirements, this is a finding.</check-content></check></Rule></Group><Group id="V-283777"><title>SRG-APP-000360-NDM-000295</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283777r1203376_rule" weight="10.0" severity="medium"><version>NOKI-ND-000640</version><title>The Nokia router must generate an immediate real-time alert for all audit failure events requiring real-time alerts.</title><description>&lt;VulnDiscussion&gt;It is critical for the appropriate personnel to be aware if a system is at risk of failing to process audit logs as required. Without a real-time alert, security personnel may be unaware of an impending failure of the audit capability, and system operation may be adversely affected. 
+
+Alerts provide organizations with urgent messages. Real-time alerts provide these messages immediately (i.e., the time from event detection to alert occurs in seconds or less).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001858</ident><fixtext fixref="F-88247r1203375_fix">Configure the Nokia router to generate an immediate real-time alert of all audit failure events requiring real-time alerts into a syslog server. 
+
+Configure a log file:
+
+- exit all
+- configure log log-id &lt;id&gt;
+- from main, security, and change
+- to syslog &lt;syslog id&gt;
+
+Configure a syslog:
+
+- exit all
+- configure log syslog &lt;syslog id&gt;
+- address &lt;syslog server ip address&gt;
+- level info
+- log-prefix &lt;log prefix to be shown in syslog server&gt;
+- port &lt;UDP port #&gt;
+- timestamp-format millisecond
+
+Configure the syslog server to notify the appropriate personnel.</fixtext><fix id="F-88247r1203375_fix" /><check system="C-88342r1203374_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the external syslog server is configured and online, as shown in the example below:
+
+- show log syslog
+# show log syslog
+
+Syslog Target Hosts
+
+Syslog Name
+Id     Ip Address                                      Port        Sev Level
+         Below Level Drop                                Facility    Prefix
+           TLS Profile
+
+1
+1      1.1.1.1                                         514         info
+         0                                               local7      yes
+
+Verify syslog operation by a configuration change and verify the syslog server has received the entry. 
+
+If the syslog server does not receive the configuration change, this is a finding.
+
+If an immediate alert of all audit failure events requiring real-time alerts is not generated, this is a finding.</check-content></check></Rule></Group><Group id="V-283778"><title>SRG-APP-000374-NDM-000299</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283778r1203581_rule" weight="10.0" severity="medium"><version>NOKI-ND-000650</version><title>The Nokia router must record time stamps for audit records that can be mapped to Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT).</title><description>&lt;VulnDiscussion&gt;If time stamps are not consistently applied and there is no common time reference, it is difficult to perform forensic analysis.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001890</ident><fixtext fixref="F-88248r1203378_fix">Configure the Nokia router to record time stamps for audit records that can be mapped to UTC or GMT using the commands below:
+
+- configure log log-id &lt;log id&gt;
+- time-format utc</fixtext><fix id="F-88248r1203378_fix" /><check system="C-88343r1203580_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify a time zone is configured on the device, as shown in the example below:
+
+- show log log-id &lt;log id&gt;
+show log log-id 101
+
+498 2025/11/10 18:35:48.230 UTC MINOR: USER #2011 management admin
+"User from 10.2.0.2: NFS-Sr-2s#  configure log syslog 1"
+
+If the Nokia router does not record time stamps for audit records that can be mapped to UTC or GMT, this is a finding.</check-content></check></Rule></Group><Group id="V-283779"><title>SRG-APP-000375-NDM-000300</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283779r1203583_rule" weight="10.0" severity="medium"><version>NOKI-ND-000660</version><title>The Nokia router must record time stamps for audit records that meet a granularity of one second for a minimum degree of precision.</title><description>&lt;VulnDiscussion&gt;Without sufficient granularity of time stamps, it is not possible to adequately determine the chronological order of records. Time stamps generated by the application include date and time. Granularity of time measurements refers to the degree of synchronization between information system clocks and reference clocks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001889</ident><fixtext fixref="F-88249r1203381_fix">Configure the Nokia router to record time stamps for audit records that meet a granularity of one second for a minimum degree of precision.
+
+Configure the syslog for millisecond granularity using the command below:
+
+- configure log syslog timestamp-format millisecond
+
+Other log files use millisecond granularity by default.</fixtext><fix id="F-88249r1203381_fix" /><check system="C-88344r1203582_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Determine if the Nokia router records time stamps for audit records that meet a granularity of one second for a minimum degree of precision. This requirement may be verified by demonstration or configuration. 
+
+Verify that "TIMESTAMP Format" is set to "millisecond":
+
+- show log log-id &lt;log id&gt;
+show log log-id 101
+
+498 2025/11/10 18:35:48.230 UTC MINOR: USER #2011 management admin
+"User from 10.2.0.2: NFS-Sr-2s#  configure log syslog 1"
+
+If the Nokia router does not record time stamps for audit records that meet a granularity of one second for a minimum degree of precision, this is a finding.</check-content></check></Rule></Group><Group id="V-283780"><title>SRG-APP-000395-NDM-000310</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283780r1203385_rule" weight="10.0" severity="medium"><version>NOKI-ND-000700</version><title>The Nokia router must be configured to authenticate Simple Network Management Protocol (SNMP) messages using a Federal Information Processing Standard (FIPS)-validated Keyed-Hash message authentication code.</title><description>&lt;VulnDiscussion&gt;Without authenticating devices, unidentified or unknown devices may be introduced, facilitating malicious activity. Bidirectional authentication provides stronger safeguards to validate the identity of other devices for connections that are of greater risk.
+
+A local connection is any connection with a device communicating without the use of a network. A network connection is any connection with a device that communicates through a network (e.g., local area or wide area network or the internet). A remote connection is any connection with a device communicating through an external network (e.g., the internet).
+
+Because of the challenges of applying this requirement on a large scale, organizations are encouraged to apply the requirement only to the limited number (and type) of devices that truly need to support this capability.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001967</ident><fixtext fixref="F-88250r1203384_fix">Configure the Nokia router to authenticate SNMP messages using authentication with FIPS-compliant algorithms, as shown in the example below:
+
+- configure system security user &lt;user name&gt; snmp authentication hmac-sha2-256  &lt;authentication key&gt;</fixtext><fix id="F-88250r1203384_fix" /><check system="C-88345r1203383_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Review the Nokia router configuration to verify it authenticates SNMP messages using authentication with FIPS-compliant algorithms, as shown in the example below:
+
+- show system security user &lt;user name&gt; detail| match "auth proto"
+ 
+auth protocol      : hmac-sha2-256
+
+If the Nokia router is not configured to authenticate SNMP messages using authentication with FIPS-validated algorithms, this is a finding.</check-content></check></Rule></Group><Group id="V-283781"><title>SRG-APP-000395-NDM-000347</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283781r1203388_rule" weight="10.0" severity="medium"><version>NOKI-ND-000710</version><title>The Nokia router must be configured to authenticate Network Time Protocol (NTP) sources using authentication with a Federal Information Processing Standard (FIPS)-compliant algorithm.</title><description>&lt;VulnDiscussion&gt;If NTP is not authenticated, an attacker can introduce a rogue NTP server. This rogue server can be used to send incorrect time information to network devices, which will make log timestamps inaccurate and affect scheduled actions. NTP authentication is used to prevent such tampering by authenticating the time source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001967</ident><fixtext fixref="F-88251r1203387_fix">Configure the Nokia router to authenticate NTP sources using authentication that is cryptographically based.
+
+Configure NTP for authentication with MD-5, as shown in the example below:
+
+- configure system time ntp server &lt;NTP server ip address&gt; authentication-key &lt;key id&gt; key &lt;key&gt; type message-digest
+</fixtext><fix id="F-88251r1203387_fix" /><check system="C-88346r1203386_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Review the Nokia router configuration to determine if the Nokia router authenticates NTP endpoints before establishing a local, remote, or network connection using authentication that is cryptographically based.
+
+Using the command below, verify NTP server "Admin status" and "Oper status" are listed and "Auth Check" is enabled.
+
+- show system ntp detail
+
+NTP Status
+
+Configured         : Yes                Stratum              : 3
+Admin Status       : up                 Oper Status          : up
+Server Enabled     : No                 Server Authenticate  : No
+Clock Source       : 10.1.0.158
+Auth Check         : Yes
+Auth Keychain      : test
+Auth Errors        : 0                  Auth Errors Ignored  : 0
+Auth Key Id Errors : 0                  Auth Key Type Errors : 0
+Current Date &amp; Time: 2025/11/12 02:19:32 UTC
+
+NOTE: Nokia router is limited to MD-5 for NTP authentication and incurs a permanent finding as it is not FIPS compliant. MD-5 partially reduces the risk but cannot fully mitigate it. 
+
+If the Nokia router does not authenticate NTP sources using authentication that is cryptographically based, this is a finding.</check-content></check></Rule></Group><Group id="V-283782"><title>SRG-APP-000411-NDM-000330</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283782r1223371_rule" weight="10.0" severity="high"><version>NOKI-ND-000740</version><title>The Nokia router must use Federal Information Processing Standard (FIPS)-validated Keyed-Hash Message Authentication Code (HMAC) to protect the integrity of nonlocal maintenance and diagnostic communications.</title><description>&lt;VulnDiscussion&gt;Unapproved mechanisms used for authentication to the cryptographic module are not verified and therefore cannot be relied on to provide confidentiality or integrity, and DoW data may be compromised.
+
+Nonlocal maintenance and diagnostic activities are activities conducted by individuals communicating through an external network (e.g., the internet) or internal network. 
+
+Currently, HMAC is the only FIPS-approved algorithm for generating and verifying message/data authentication codes in accordance with FIPS 198-1. Products that are FIPS 140-2 validated will have an HMAC that meets the specification; however, the option must be configured for use as the only message authentication code used for authentication to cryptographic modules.
+
+Separate requirements for configuring applications and protocols used by each application (e.g., Simple Network Management Protocol [SNMP] v3, Secure Shell [SSH] v2, Network Time Protocol [NTP], HyperText Transfer Protocol Secure [HTTPS], and other protocols and applications that require server/client authentication) are required to implement this requirement. Where SSH is used, the SSHv2 protocol suite is required because it includes layer 7 protocols such as Secure Copy (SCP) and Secure File Transfer Protocol (SFTP), which can be used for secure file transfers.
+
+Satisfies: SRG-APP-000411-NDM-000330, SRG-APP-000412-NDM-000331&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-002890</ident><ident system="http://cyber.mil/cci">CCI-003123</ident><fixtext fixref="F-88252r1203584_fix">Configure the Nokia router to use FIPS-validated HMAC to protect the integrity of nonlocal maintenance and diagnostic communications.
+
+When in FIPS mode, the non-FIPS algorithms are removed. To remove any of SSH ciphers, use the command below:
+
+- configure system security ssh
+
+Use the command below to view all ciphers available for "client-cipher-list", "server-cipher-list", "client-mac-list", and "server-mac-list":
+
+- info detail
+
+Remove any unwanted cipher from any of the lists above using the command below. For example, to remove cipher id 190 from server-cipher-list, use the following:
+ 
+- server-cipher-list no cipher 190</fixtext><fix id="F-88252r1203584_fix" /><check system="C-88347r1203389_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the Nokia router uses FIPS-validated HMAC to protect the integrity of nonlocal maintenance and diagnostic communications.
+
+SSH server list example:
+
+- show system security ssh server-lists
+
+SSH Server configurable algorithm lists
+
+SSHv2 Cipher List   : aes256-ctr
+                      aes192-ctr
+                      aes128-ctr
+                      aes128-cbc
+                      aes192-cbc
+                      aes256-cbc
+
+SSHv2 MAC List      : hmac-sha2-512
+                      hmac-sha2-256
+
+SSHv2 KEX List      : ecdh-sha2-nistp521
+                      ecdh-sha2-nistp384
+                      ecdh-sha2-nistp256
+                      diffie-hellman-group16-sha512
+                      diffie-hellman-group14-sha256
+
+SSHv2 Host Key List : ecdsa-sha2-nistp521
+                      ecdsa-sha2-nistp256
+                      rsa-sha2-512
+                      rsa-sha2-256
+
+SSH client list example:
+
+- show system security ssh client-lists
+
+If the Nokia router does not use FIPS-validated HMAC to protect the integrity of nonlocal maintenance and diagnostic communications, this is a finding.</check-content></check></Rule></Group><Group id="V-283783"><title>SRG-APP-000435-NDM-000315</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283783r1223372_rule" weight="10.0" severity="medium"><version>NOKI-ND-000760</version><title>The Nokia router must be configured to protect against known types of denial-of-service (DoS) attacks by employing organization-defined security safeguards.</title><description>&lt;VulnDiscussion&gt;DoS is a condition when a resource is not available for legitimate users. When this occurs, the organization either cannot accomplish its mission or must operate at degraded capacity.
+
+This requirement addresses the configuration of network devices to mitigate the impact of DoS attacks that have occurred or are ongoing on device availability. For each network device, known and potential DoS attacks must be identified and solutions for each type implemented. A variety of technologies exist to limit or, in some cases, eliminate the effects of DoS attacks (e.g., limiting processes or restricting the number of sessions the device opens at one time). Employing increased capacity and bandwidth, combined with service redundancy, may reduce the susceptibility to some DoS attacks.
+
+The security safeguards cannot be defined at the DoW level because they vary according to the capabilities of the individual network devices and the security controls applied on the adjacent networks (for example, firewalls performing packet filtering to block DoS attacks).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-002385</ident><fixtext fixref="F-88253r1203393_fix">Configure the Nokia router to protect against or limit the effects of all known types of DoS attacks by employing organization-defined security safeguards.
+
+Configure Distributed CPU Protection to rate limit various core/peering protocols, Link, ESM, interface protocols, and any other unspecified control traffic, as shown in the example below: 
+
+- configure system security dist-cpu-protection policy &lt;policy name&gt; create 
+- static-policer &lt;name&gt; create
+- rate packets &lt;ppi| ma&gt; within &lt;seconds&gt;
+OR
+- rate kbps &lt;kbps | max&gt; bytes mbs &lt;size&gt;
+- exceed-action discard
+- back
+- protocol &lt;protocol name or all-unspecified&gt; create
+
+Apply the policy to each interface:
+
+- configure router inter &lt;interface name&gt; dist-cpu-protection &lt;policy name&gt;</fixtext><fix id="F-88253r1203393_fix" /><check system="C-88348r1203392_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Determine if the Nokia router protects against or limits the effects of all known types of DoS attacks by employing organization-defined security safeguards.
+
+Verify Distributed CPU Protection is configured for each interface, as shown in the example below:
+
+- show router interface detail | match OperDCpuProtPlcy
+OperDCpuProtPlcy : test
+OperDCpuProtPlcy : ssh
+
+If the Nokia router does not protect against or limit the effects of all known types of DoS attacks by employing organization-defined security safeguards, this is a finding.</check-content></check></Rule></Group><Group id="V-283784"><title>SRG-APP-000515-NDM-000325</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283784r1203397_rule" weight="10.0" severity="medium"><version>NOKI-ND-000850</version><title>The Nokia router must off-load audit records onto a different system or media than the system being audited.</title><description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
+
+Off-loading is a common process in information systems with limited audit storage capacity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001851</ident><fixtext fixref="F-88254r1203396_fix">Configure the Nokia router to off-load audit records onto a different system or media than the system being audited.
+
+One option for off-loading audit records onto a different system is syslog. Configure syslog and the log file to be off-loaded to a syslog server as shown below:
+
+- configure log syslog &lt;syslog id&gt;
+- address &lt;syslog server ip address&gt;
+- level &lt;messages with severity level equal or higher to be reported- recommend warning&gt;
+- prefix &lt;prefix message that will show up for each log entry&gt;
+
+Configure the log file that will be off-loaded to syslog server:
+
+- configure log log-id &lt;log id&gt;
+- from &lt;select any combination of: main change security or debug&gt;
+- to syslog &lt;syslog id&gt;</fixtext><fix id="F-88254r1203396_fix" /><check system="C-88349r1203395_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Check the Nokia router configuration to determine if the device off-loads audit records onto a different system or media than the system being audited.
+
+One option for off-loading audit records onto a different system is syslog. Verify syslog has been configured using the command below:
+
+- show log syslog
+
+If the device does not off-load audit records onto a different system or media, this is a finding.</check-content></check></Rule></Group><Group id="V-283785"><title>SRG-APP-000516-NDM-000336</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283785r1203604_rule" weight="10.0" severity="high"><version>NOKI-ND-000890</version><title>The Nokia router must be configured to use at least two authentication servers for authenticating users prior to granting administrative access.</title><description>&lt;VulnDiscussion&gt;Centralized management of authentication settings increases the security of remote and nonlocal access methods. This control is particularly important protection against the insider threat. With robust centralized management, audit records for administrator account access to the organization's network devices can be more readily analyzed for trends and anomalies. 
+
+The alternative method of defining administrator accounts on each device exposes the device configuration to remote access authentication attacks and system administrators with multiple authenticators for each device.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000370</ident><fixtext fixref="F-88255r1203599_fix">1. Configure the Nokia router to use at least two authentication servers.
+
+Nokia router supports RADIUS, TACACS+, and LDAP for user authentication. Multiple authentication servers can be configured. The example below is for the TACACS configuration:
+
+- configure system security tacplus server &lt;index&gt; address &lt;tacacs+ server ip address&gt;
+
+2. Configure the authentication order to use the authentication servers as the primary source for authentication. Up to four methods of authentication order can be configured:
+
+- configure system security password authentication-order &lt;first order can be: local, radius, tacplus or ldap&gt; &lt;2nd order can be: local, radius, tacplus or ldap&gt; &lt;3rd order can be: local, radius, tacplus or ldap&gt; &lt;4th order can be: local, radius, tacplus or ldap&gt; 
+
+3. Configure all network connections associated with a device management to use the authentication servers for login authentication.</fixtext><fix id="F-88255r1203599_fix" /><check system="C-88350r1203398_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Review the Nokia router configuration to verify the device is configured to use at least two authentication servers as the primary source for authentication.
+
+Verify multiple authentication servers are configured and status is "up", as shown in the example below:
+
+- show system security authentication statistics
+show system security authentication statistics
+
+Authentication sequence : radius tacplus ldap local
+
+type status timeout (secs) retry count
+ server address retry timeout
+ server name (secs)
+
+radius up 3 3
+ 192.168.0.10:1812 n/a
+tacplus up 3 n/a
+ 192.168.1.10:49 300
+ldap up 3 3
+ 10.1.1.1:389 n/a
+ Corporate LDAP Server
+
+radius admin/oper status : up/up
+ UDP port : 1812
+ TCP port : 2083
+tacplus admin/oper status : up/up
+ldap admin/oper status : up/up
+health check : enabled (interval 30 secs)
+
+No. of Servers: 3
+
+If the Nokia router is not configured to use at least two authentication servers for authenticating users prior to granting administrative access, this is a finding.</check-content></check></Rule></Group><Group id="V-283786"><title>SRG-APP-000516-NDM-000340</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283786r1203403_rule" weight="10.0" severity="medium"><version>NOKI-ND-000900</version><title>The Nokia router must be configured to conduct backups of system-level information contained in the information system when changes occur.</title><description>&lt;VulnDiscussion&gt;System-level information includes default and customized settings and security attributes, including Access Control Lists (ACLs) that relate to the network device configuration and software required for the execution and operation of the device. Information system backup is a critical step in ensuring system integrity and availability. If the system fails and there is no backup of the system-level information, a denial-of-service condition is possible for all who use this critical network component.
+
+This control requires the network device to support the organizational central backup process for system-level information associated with the network device. This function may be provided by the network device itself; however, the preferred best practice is a centralized backup rather than each network device performing discrete backups.
+
+Satisfies: SRG-APP-000516-NDM-000340, SRG-APP-000516-NDM-000341&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000366</ident><ident system="http://cyber.mil/cci">CCI-000537</ident><ident system="http://cyber.mil/cci">CCI-000539</ident><fixtext fixref="F-88256r1203402_fix">Manual backups can be initiated using the command below:
+
+- admin save</fixtext><fix id="F-88256r1203402_fix" /><check system="C-88351r1203401_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify with the site that system-level backups are done when changes occur (or weekly, whichever is shorter).
+
+These can be via a centralized management system with scheduled backups or manually initiated backups. 
+
+If the router is not being maintained by approved backup methods, this is a finding.
+
+If the router does not back up information system documentation, including security-related documentation, when changes occur or weekly, whichever is sooner, this is a finding.</check-content></check></Rule></Group><Group id="V-283787"><title>SRG-APP-000516-NDM-000344</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283787r1203406_rule" weight="10.0" severity="medium"><version>NOKI-ND-000920</version><title>The Nokia router must obtain its public key certificates from an appropriate certificate policy through an approved service provider.</title><description>&lt;VulnDiscussion&gt;The aggregation of log data kept on a syslog server can be used to detect attacks and trigger an alert to the appropriate security personnel. The stored log data can be used to detect weaknesses in security that enable the network Information Assurance team to find and address these weaknesses before breaches can occur. Reviewing these logs, whether before or after a security breach, is important in showing whether someone is an internal employee or outside threat.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000366</ident><ident system="http://cyber.mil/cci">CCI-001159</ident><fixtext fixref="F-88257r1203405_fix">Configure the Nokia router to obtain its public key certificates from an appropriate certificate policy through an approved service provider.
+
+Generate a key pair using the command below:
+
+- admin certificate gen-keypair
+
+Generate a PKCS#10 certificate signing request with the key generated in the previous step (optionally an FQDN or IP address can be specified):
+
+- admin certificate gen-local-cert-req keypair &lt;url-string&gt; subject-dn &lt;subject-dn&gt; file &lt;url-string&gt;
+
+Import the key file:
+
+- admin certificate import type z,type&gt; input &lt;url-string&gt; output &lt;file name&gt; format &lt;format&gt; 
+
+Import the resulting certificate:
+
+- admin certificate import</fixtext><fix id="F-88257r1203405_fix" /><check system="C-88352r1203404_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Determine if the Nokia router obtains public key certificates from an appropriate certificate policy through an approved service provider. 
+
+Use the command below for certificate-authority profile information:
+
+- show certificate ca-profile
+
+Max Cert Chain Depth: 7 (default)
+
+Certificate Display Format: 1 ASCII
+
+CA Profile
+
+CA Profile Admin Oper Cert File CRL File
+ State State 
+
+CA0 up up CA1-00cert.der CA1-00crl.der
+CA1 up up CA1-01cert.der CA1-01crl.der
+CA2 up up CA1-02cert.der CA1-02crl.der
+CA3 up up CA1-03cert.der CA1-03crl.der
+CA4 up up CA1-04cert.der CA1-04crl.der
+CA5 up up rsa_sha512_1024_0cert.d* rsa_sha512_1024_0crl.der
+CA6 up up rsa_sha512_1024_1cert.d* rsa_sha512_1024_1crl.der
+CA7 up up rsa_sha512_1024_2cert.d* rsa_sha512_1024_2crl.der
+CA8 up up rsa_sha512_1024_3cert.d* rsa_sha512_1024_3crl.der
+CA9 up up rsa_sha512_1024_4cert.d* rsa_sha512_1024_4crl.der
+CA10 up up rsa_sha512_1024_5cert.d* rsa_sha512_1024_5crl.der
+CA11 up up rsa_sha384_1024_0cert.d* rsa_sha384_1024_0crl.der
+CA12 up up rsa_sha384_1024_1cert.d* rsa_sha384_1024_1crl.der
+CA13 up up rsa_sha384_1024_2cert.d* rsa_sha384_1024_2crl.der
+CA14 up up rsa_sha384_1024_3cert.d* rsa_sha384_1024_3crl.der
+CA15 up up rsa_sha384_1024_4cert.d* rsa_sha384_1024_4crl.der
+CA16 up up rsa_sha384_1024_5cert.d* rsa_sha384_1024_5crl.der
+CMPv2 up up rsaCMPv2cert.der rsaCMPv2CRL.der
+
+Entries found: 18
+
+If the Nokia router does not obtain its public key certificates from an appropriate certificate policy through an approved service provider, this is a finding.</check-content></check></Rule></Group><Group id="V-283788"><title>SRG-APP-000516-NDM-000350</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283788r1203409_rule" weight="10.0" severity="high"><version>NOKI-ND-000930</version><title>The Nokia router must be configured to send log data to at least two central log servers for the purpose of forwarding alerts to the administrators and the information system security officer (ISSO).</title><description>&lt;VulnDiscussion&gt;The aggregation of log data kept on a syslog server can be used to detect attacks and trigger an alert to the appropriate security personnel. The stored log data can be used to detect weaknesses in security that enable the network Information Assurance team to find and address these weaknesses before breaches can occur. Reviewing these logs, whether before or after a security breach, is important in showing whether someone is an internal employee or outside threat.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-001851</ident><fixtext fixref="F-88258r1203408_fix">Configure the Nokia router to send log data to at least two central log servers:
+
+- configure log syslog &lt;syslog id&gt;
+- address &lt;syslog server ip address&gt;
+- level &lt;messages with severity level equal or higher to be reported- recommend warning&gt;
+- prefix &lt;prefix message that will show up for each log entry&gt;
+- timestamp-format millisecond
+
+Configure the log file that will be off-loaded to the syslog server:
+
+- configure log log-id &lt;log id&gt;
+- from main change security 
+- to syslog &lt;syslog id&gt;</fixtext><fix id="F-88258r1203408_fix" /><check system="C-88353r1203407_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the Nokia router is configured to send log data to at least two central log servers, as shown in the example below: 
+
+- show log syslog
+
+Syslog Target Hosts
+
+Syslog Name
+Id Ip Address Port Sev Level
+ Below Level Drop Facility Prefix
+ TLS Profile
+
+Sunnyvale Server
+1 10.1.1.2 514 emergency
+ 0 local7 yes
+Naperville Server 
+2 192.168.0.10 514 info
+ 0 local7 yes
+
+If the Nokia router is not configured to send log data to at least two central log servers, this is a finding.</check-content></check></Rule></Group><Group id="V-283789"><title>SRG-APP-000516-NDM-000351</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283789r1207744_rule" weight="10.0" severity="high"><version>NOKI-ND-000940</version><title>The Nokia router must be running an operating system release that is currently supported by the vendor.</title><description>&lt;VulnDiscussion&gt;Network devices running an unsupported operating system lack current security fixes required to mitigate the risks associated with recent vulnerabilities.
+
+Satisfies: SRG-APP-000516-NDM-000351, SRG-APP-000457-NDM-000352&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-000366</ident><ident system="http://cyber.mil/cci">CCI-002605</ident><fixtext fixref="F-88259r1203411_fix">Upgrade the Nokia router to an operating system that is supported by the vendor.</fixtext><fix id="F-88259r1203411_fix" /><check system="C-88354r1203410_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the Nokia router complies with this requirement. 
+
+Use the command below to verify the operating system release:
+
+- show version
+
+If the Nokia router is not running an operating system release that is currently supported by the vendor, this is a finding.</check-content></check></Rule></Group><Group id="V-283790"><title>SRG-APP-000795-NDM-000130</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283790r1203415_rule" weight="10.0" severity="medium"><version>NOKI-ND-000950</version><title>The Nokia router must be configured to alert organization-defined personnel or roles upon detection of unauthorized access, modification, or deletion of audit information.</title><description>&lt;VulnDiscussion&gt;Audit information includes all information needed to successfully audit system activity, such as audit records, audit log settings, audit reports, and personally identifiable information. Audit logging tools are programs and devices used to conduct system audit and logging activities. 
+
+Protection of audit information focuses on technical protection and limits to authorized individuals the ability to access and execute audit logging tools. Physical protection of audit information is addressed by both media protection controls and physical and environmental protection controls.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-003831</ident><fixtext fixref="F-88260r1203414_fix">Configure the Nokia router to alert organization-defined personnel or roles upon detection of unauthorized access, modification, or deletion of audit information.
+
+When a log file "source" is set to "security", it will capture log modifications and deletions. These events are reported in real time through syslog and snmp traps.
+
+Configure syslog:
+
+- configure log syslog &lt;syslog id&gt;
+- address &lt;syslog server ip address&gt;
+- level &lt;messages with severity level equal or higher to be reported- recommend warning&gt;
+- prefix &lt;prefix message that will show up for each log entry&gt;
+
+- configure log log-id &lt;log id&gt;
+- from security
+- to &lt;syslog-id &gt;
+
+Configure snmpv3:
+
+Configure the snmpv3 access group:
+- configure system security snmp access group &lt;group name&gt; security -model usm security-level privacy read "iso" write "iso" notify "iso"
+
+The deletion of audit information is controlled through user privileges. Log files can be created to configure the snmpv3 user:
+- configure system security user &lt;user name&gt;
+- access console snmp
+- password &lt;password&gt;
+- group &lt;group name&gt;
+- authentication algorithm&gt; &lt;authen key&gt; privacy &lt;algorith&gt; &lt;privacy key&gt;
+
+Configure the snmp trap log file:
+- configure log snmp-trp-group &lt;log-id&gt;
+- trap-target &lt;name&gt; address &lt;ip address of server&gt; snmpv3 notify-community &lt;snmpv3 security name&gt; security-level privacy
+- configure log log-id &lt;id&gt;
+- from security main change
+- to snmp</fixtext><fix id="F-88260r1203414_fix" /><check system="C-88355r1203413_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the Nokia router is configured to alert organization-defined personnel or roles upon detection of unauthorized access, modification, or deletion of audit information. 
+
+Verify syslog has been configured, as shown in the example below:
+
+- show log syslog
+
+Syslog Target Hosts
+Syslog Name
+Id     Ip Address                                      Port        Sev Level
+         Below Level Drop                                Facility    Prefix
+           TLS Profile
+-------------------------------------------------------------------------------
+1
+1      1.1.1.1                                         514         info
+         0                                               local7      yes
+
+If the syslog trap has not been configured, this is a finding.</check-content></check></Rule></Group><Group id="V-283791"><title>SRG-APP-000875-NDM-000280</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283791r1203418_rule" weight="10.0" severity="medium"><version>NOKI-ND-001000</version><title>The Nokia router must be configured to implement a local cache of revocation data to support path discovery and validation for public key-based authentication.</title><description>&lt;VulnDiscussion&gt;Public key cryptography is a valid authentication mechanism for individuals, machines, and devices. For Public Key Infrastructure (PKI) solutions, status information for certification paths includes certificate revocation lists or certificate status protocol responses. 
+
+For Personal Identity Verification (PIV) cards, certificate validation involves the construction and verification of a certification path to the Common Policy Root trust anchor, which includes certificate policy processing. 
+
+Implementing a local cache of revocation data to support path discovery and validation also supports system availability in situations where organizations are unable to access revocation information via the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-004068</ident><fixtext fixref="F-88261r1203417_fix">Configure the Nokia router to implement a local cache of revocation data using the command below:
+
+- configure system security pki ca-profile ocsp
+- responder-url &lt;OCSCP responder URL&gt;
+- transmission-profile &lt;profile name&gt;</fixtext><fix id="F-88261r1203417_fix" /><check system="C-88356r1203416_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the Nokia router is configured to implement a local cache of revocation data to support path discovery and validation.
+
+Use the command below to display the current cached OCSP results:
+
+- show certificate ocsp-cache
+
+OCSP Cache information
+
+Entry                         Valid Until         Cert Status
+ Issuer
+ Serial#
+
+If the Nokia router is not configured to implement a local cache of revocation data to support path discovery and validation, this is a finding.</check-content></check></Rule></Group><Group id="V-283792"><title>SRG-APP-000880-NDM-000290</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283792r1203421_rule" weight="10.0" severity="medium"><version>NOKI-ND-001010</version><title>The Nokia router must be configured to protect nonlocal maintenance sessions by separating the maintenance session from other network sessions within the system by logically separated communications paths.</title><description>&lt;VulnDiscussion&gt;Nonlocal maintenance and diagnostic activities are conducted by individuals who communicate through an external or internal network. Communications paths can be logically separated using encryption.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-004192</ident><fixtext fixref="F-88262r1203420_fix">Configure the out-of-band management session using the management port.
+
+Assign an IP address to the management port:
+
+- bof address &lt;ip address&gt;
+
+Configure any static-routes needed:
+
+- bof static-route &lt;ip prefix/mask&gt; next-hop &lt;ip address&gt;</fixtext><fix id="F-88262r1203420_fix" /><check system="C-88357r1203419_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the out-of-band management IP address and static-routes are configured:
+
+-  show bof
+
+    primary-image    cf3:\TiMOS-SR-24.10.R5
+    primary-config   cf3:\config.cfg
+    secondary-image  cf3:\TiMOS-SR-24.3.R3
+    license-file     cf3:\license-xma.txt
+    address          10.1.0.156/24 active
+    address          10.1.0.157/24 standby
+    static-route     0.0.0.0/1 next-hop 10.1.0.1
+    static-route     128.0.0.0/1 next-hop 10.1.0.1
+
+If the out-of-band management IP address and static-routes are not configured, this is a finding.</check-content></check></Rule></Group><Group id="V-283793"><title>SRG-APP-000910-NDM-000300</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283793r1203590_rule" weight="10.0" severity="medium"><version>NOKI-ND-001020</version><title>The Nokia router must be configured to include only approved trust anchors in trust stores or certificate stores managed by the organization.</title><description>&lt;VulnDiscussion&gt;Public Key Infrastructure (PKI) certificates are certificates with visibility external to organizational systems and certificates related to the internal operations of systems, such as application-specific time services. In cryptographic systems with a hierarchical structure, a trust anchor is an authoritative source (i.e., a certificate authority) for which trust is assumed and not derived. A root certificate for a PKI system is an example of a trust anchor. A trust store or certificate store maintains a list of trusted root certificates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-004909</ident><fixtext fixref="F-88263r1203423_fix">Configure the Nokia router to include only approved trust anchors in trust stores or certificate stores managed by the organization.
+
+ Configure the TLS certification profile:
+
+- configure system security tls cert-profile &lt;profile name&gt; create 
+- entry &lt;id&gt; create
+- cert &lt;cert file name&gt;
+- key &lt;key file name&gt;
+
+Configure TLS-approved trust anchors:
+
+- configure system security tls trust-anchor-profile &lt;name&gt; create
+- trust-anchor &lt;ca profile name&gt;</fixtext><fix id="F-88263r1203423_fix" /><check system="C-88358r1203589_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the Nokia router is configured to include only approved trust anchors in trust stores or certificate stores managed by the organization. 
+
+Use the command below to view the trust anchor information for TLS:
+
+- show system security tls trust-anchor-profile
+
+If the Nokia router is not configured to include only approved trust anchors in trust stores or certificate stores managed by the organization, this is a finding.</check-content></check></Rule></Group><Group id="V-283794"><title>SRG-APP-000920-NDM-000320</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283794r1203427_rule" weight="10.0" severity="medium"><version>NOKI-ND-001030</version><title>The Nokia router must be configured to synchronize system clocks within and between systems or system components.</title><description>&lt;VulnDiscussion&gt;Time synchronization of system clocks is essential for the correct execution of many system services, including identification and authentication processes that involve certificates and time-of-day restrictions as part of access control. Denial of service or failure to deny expired credentials may result without properly synchronized clocks within and between systems and system components. 
+
+Time is commonly expressed in Coordinated Universal Time (UTC), a modern continuation of Greenwich Mean Time (GMT), or local time with an offset from UTC. The granularity of time measurements refers to the degree of synchronization between system clocks and reference clocks, such as clocks synchronizing within hundreds of milliseconds or tens of milliseconds. 
+
+Organizations may define different time granularities for system components. Time service can be critical to other security capabilities such as access control and identification and authentication depending on the nature of the mechanisms used to support the capabilities.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-004922</ident><fixtext fixref="F-88264r1203426_fix">Configure the Nokia router to synchronize system clocks within and between systems or system components.
+
+Configure NTP server to be used for timing using the command below:
+
+- configure system time ntp server &lt;NTP server ip address&gt;authentication-key &lt;key id&gt; key &lt;key&gt; type message-digest</fixtext><fix id="F-88264r1203426_fix" /><check system="C-88359r1203425_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the Nokia router is configured to synchronize system clocks within and between systems or system components.
+
+Verify NTP server is configured:
+
+- show system ntp detail
+
+NTP Status
+
+Configured         : Yes                Stratum              : 3
+Admin Status       : up                 Oper Status          : up
+Server Enabled     : No                 Server Authenticate  : No
+Clock Source       : 10.1.0.158
+Auth Check         : Yes
+Auth Keychain      :
+Auth Errors        : 0                  Auth Errors Ignored  : 0
+Auth Key Id Errors : 0                  Auth Key Type Errors : 0
+Current Date &amp; Time: 2025/12/02 13:45:31 UTC
+
+If the Nokia router is not configured to synchronize system clocks within and between systems or system components, this is a finding.</check-content></check></Rule></Group><Group id="V-283795"><title>SRG-APP-000925-NDM-000330</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283795r1203430_rule" weight="10.0" severity="medium"><version>NOKI-ND-001040</version><title>The Nokia router must be configured to compare the internal system clocks on an organization-defined frequency with an organization-defined authoritative time source.</title><description>&lt;VulnDiscussion&gt;Synchronization of internal system clocks with an authoritative source provides uniformity of time stamps for systems with multiple system clocks and systems connected over a network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-004923</ident><fixtext fixref="F-88265r1203429_fix">Configure the Nokia router to compare the internal system clocks on an organization-defined frequency with an organization-defined authoritative time source. 
+
+Configure NTP server to be used for timing using the command below:
+
+- configure system time ntp server &lt;NTP server ip address&gt;authentication-key &lt;key id&gt; key &lt;key&gt; type message-digest</fixtext><fix id="F-88265r1203429_fix" /><check system="C-88360r1203428_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the Nokia router is configured to compare the internal system clocks on an organization-defined frequency with organization defined authoritative time source. 
+
+Verify NTP server is configured:
+
+- show system ntp detail
+
+NTP Status
+
+Configured         : Yes                Stratum              : 3
+Admin Status       : up                 Oper Status          : up
+Server Enabled     : No                 Server Authenticate  : No
+Clock Source       : 10.1.0.158
+Auth Check         : Yes
+Auth Keychain      :
+Auth Errors        : 0                  Auth Errors Ignored  : 0
+Auth Key Id Errors : 0                  Auth Key Type Errors : 0
+Current Date &amp; Time: 2025/12/02 13:45:31 UTC
+
+If the Nokia router is not configured to compare the internal system clocks on an organization-defined frequency with an organization-defined authoritative time source, this is a finding.</check-content></check></Rule></Group><Group id="V-283799"><title>SRG-APP-000825-NDM-000180</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-283799r1203603_rule" weight="10.0" severity="medium"><version>NOKI-ND-000970</version><title>The Nokia router must be configured to implement multifactor authentication for local, network, and/or remote access to privileged and nonprivileged accounts such that the device meets organization-defined strength of mechanism requirements.</title><description>&lt;VulnDiscussion&gt;Requiring a device separate from the system to which the user is attempting to gain access for one of the factors during multifactor authentication reduces the likelihood of compromising authenticators or credentials stored on the system. 
+
+Adversaries may be able to compromise such authenticators or credentials and subsequently impersonate authorized users. Implementing one of the factors on a separate device (e.g., a hardware token), provides a greater strength of mechanism and an increased level of assurance in the authentication process.
+
+Satisfies: SRG-APP-000825-NDM-000180, SRG-APP-000156-NDM-000250, SRG-APP-000820-NDM-000170&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Nokia SR OS 25.x NDM</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Nokia SR OS 25.x NDM</dc:subject><dc:identifier>5744</dc:identifier></reference><ident system="http://cyber.mil/cci">CCI-004047</ident><ident system="http://cyber.mil/cci">CCI-001941</ident><ident system="http://cyber.mil/cci">CCI-004046</ident><fixtext fixref="F-88269r1203602_fix">Configure the Nokia router to enable message/response multifactor authentication for RADIUS and TACACS+. 
+
+For TACACS+, use the command shown below:
+
+- configure system security tacplus interactive-authentication 
+
+For RADIUS, use the command shown below:
+
+- configure system security radius interactive-authentication</fixtext><fix id="F-88269r1203602_fix" /><check system="C-88364r1203601_chk"><check-content-ref href="Nokia_SR_OS_25.x_NDM_STIG.xml" name="M" /><check-content>Verify the Nokia router is configured for interactive authentication mode.
+
+For TACACS+, use the example shown below:
+
+- configure system security tacplus
+
+&gt;config&gt;system&gt;security&gt;tacplus# info
+----------------------------------------------
+                interactive-authentication
+----------------------------------------------
+
+For RADIUS, use the example shown below:
+
+- configure system security radius
+
+&gt;config&gt;system&gt;security&gt;radius# info
+----------------------------------------------
+                interactive-authentication
+----------------------------------------------
+
+If interactive-authentication is not present in this scenario, this is a finding.</check-content></check></Rule></Group></Benchmark>
